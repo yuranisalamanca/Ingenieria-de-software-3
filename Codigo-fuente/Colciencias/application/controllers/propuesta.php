@@ -64,7 +64,12 @@ Class Propuesta extends CI_Controller {
 
 	public function buscarEvaluadores($idPropuesta) {
 
-		$this->load->view('listaPropuestas');
+		if (isset($this->input->post('select')) && $this->input->post('select')) {
+			# code...
+		}
+
+		$data['idPropuesta'] = $idPropuesta;
+		$this->load->view('seleccionarCriteriosEvaluador', $data);
 	}
 
 

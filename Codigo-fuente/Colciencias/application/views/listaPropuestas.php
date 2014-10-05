@@ -6,15 +6,19 @@
         <title>Propuestas</title>
         <link rel="stylesheet" href="<?php echo base_url(); ?>css/foundation.css" />
         <link rel="stylesheet" href="<?php echo base_url(); ?>css/jquery.fancybox.css" />
-        <script src="<?php echo base_url(); ?>js/modernizr.js"></script>
+        <script src="<?php echo base_url(); ?>js/vendor/modernizr.js"></script>
+        <script src="<?php echo base_url(); ?>js/vendor/jquery.js"></script>
         <script src="<?php echo base_url(); ?>js/jquery.fancybox.js"></script>
         <script src="<?php echo base_url(); ?>js/jquery.fancybox.pack.js"></script>
         <script type="text/javascript">
             $(document).ready(function(){
-                document.getElementById('buscarEvaluadores').fancybox({
-                    'frameWidth': 300,
-                    'frameHeight': 300,
-                    'type': 'iframe'
+                $(".buscarEvaluadores").fancybox({
+                'width'     : '50%',
+                'height'    : '50%',
+                'autoScale'     : false,
+                'transitionIn'  : 'none',
+                'transitionOut' : 'none',
+                'type'      : 'iframe'
                 });
             });
         </script>
@@ -48,8 +52,8 @@
              				<td style="text-align: center"> <?php echo utf8_decode($listaPropuesta[$i]['nombreInstitucion']); ?> </td>
              				<td style="text-align: center"> <?php echo utf8_decode($listaPropuesta[$i]['lineaNombre']);?> </td>
              				<td style="text-align: center"> <?php echo utf8_decode($listaPropuesta[$i]['tipoEvaluacionNombre']); ?> </td>
-                            <td><a id="buscarEvaluadores" href="<?php echo site_url('propuesta/buscarEvaluadores/'.$listaPropuesta[$i]['idPropuesta']); ?>">
-                                    <img src="img/search.png">
+                            <td><a class="buscarEvaluadores" href="<?php echo site_url('propuesta/buscarEvaluadores/'.$listaPropuesta[$i]['idPropuesta']); ?>">
+                                    <img src="<?php echo base_url(); ?>img/search.png">
                                 </a>
                             </td>
              			</tr>
