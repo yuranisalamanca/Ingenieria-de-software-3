@@ -29,7 +29,7 @@ Class Propuesta_model extends CI_Model
                         AND p.Estado_propuesta_idEstado_propuesta=e.idEstado_propuesta 
                         AND p.tipo_evaluacion_idtipo_evaluacion=te.idTipo_evaluacion 
                         AND p.Institucion_idInstitucion=i.idInstitucion 
-                        AND p.Linea_tematica_idLinea_tematica=lt.idLinea_tematica";
+                        AND p.area_conocimiento_idArea_conocimiento=a.idArea_conocimiento";
 
             $query = $this->db->query($sql);
             if($query->num_rows()>0){
