@@ -91,7 +91,7 @@ Class Propuesta_model extends CI_Model
         $where = '';
 
         if (isset($data['area'])) {
-          $where .= ' WHERE '
+          $where .= ' WHERE ';
         }
        
         $this->db->query("SELECT * FROM evaluador");
