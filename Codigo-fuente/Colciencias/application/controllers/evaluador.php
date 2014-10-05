@@ -42,6 +42,25 @@ Class Evaluador extends CI_Controller {
 	}
 
 
+	 /**
+       * esta funcion sirve para llamar el va vista las funciones que vienen del modelo evaluadores_model
+       * @return arreglo de  3 evaluadores
+       * @param $idPropuesta, que representa el id de la propuesta por la cual se va a buscar.
+       * @author Karen Daniela Ramirez Montoya 
+       * @author Yurani Alejandra Salamanca 
+       */
+	public function listar3EvaluadoresPorPropuesta($idPropuesta){
+
+		$this->load->model('evaluadores_model');   
+		$data['listar3EvaluadoresPropuesta'] = $this->evaluadores_model->listar3EvaluadoresPorPropuesta($idPropuesta);
+		/*echo "<pre>";
+		print_r($data['listaPropuesta']);
+		echo "</pre>";die();*/
+		$this->load->view('barra');
+	    $this->load->view('lista3EvaluadoresPropuesta', $data);
+	}
+
+
 
 }
 

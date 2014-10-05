@@ -121,6 +121,7 @@
     }
   }
 
+
   public function getCiudadPropuesta($idPropuesta)
   {
     $query = $this->db->query("SELECT ci.idCiudad, ci.nombre FROM ciudad ci, propuesta p 
@@ -144,10 +145,36 @@
       foreach ($query->result() as $resultado) {
         $data['id'] = $resultado->idarea_conocimiento;
         $data['nombre'] = $resultado->nombre;
-      }
+        }
       return $data;
     }
   }
+
+       /**
+       * esta funcion sirve para buscar si la propuesta seleccionada se encuentra en la tabla evaluacion_propuesta
+       * @return $idPropuesta
+       * @param 
+       * @author Karen Daniela Ramirez Montoya 
+       * @author Yurani Alejandra Salamanca
+       */
+      public buscarPropuestaEvistenteEvaPro($idPropuesta){
+
+        $sql="SELECT ep.Propuesta_idPropuesta as idPropuesta from evaluacion_propuesta ep WHERE ep.Propuesta_idPropuesta= ".$idPropuesta;
+        $this->db->query($sql);
+
+         if($query->num_rows()>0){
+
+                $arreglo=array();
+                $cont=0;
+                foreach ($query->result() as $resultado) {
+
+                  $arreglo[$cont]['idPropuesta']= $resultado->idPropuesta;
+                  $cont++;
+          }
+                return $arreglo;
+
+        }
+      }
 
   public function buscarEvaluadores($idPropuesta, $data) {
 
@@ -186,7 +213,7 @@
       print_r($arreglo);
       echo "</pre>";die();
       for ($i=0; $i < count($arreglo); $i++) { 
-        $this->db->query("INSERT INTO evaluacion_propuesta ep");
+//        $this->db->query("INSERT INTO evaluacion_propuesta ep");
       } 
     }
   }
