@@ -35,7 +35,7 @@
           				<td> <?php echo $propuestas[$i]['Organizacion_idOrganizacion']; ?> </td>
          				<td> <?php echo $propuestas[$i]['Institucion_idInstitucion']; ?> </td>
          				<td> <?php echo $propuestas[$i]['Linea_tematica_idLinea_tematica']; ?> </td>
-         				<td> <?php echo $propuestas[$i]['tipo_evaluacion_idtipo_evaluacion']; ?> </td>
+         				<td> <?php echo $propuestas[$i]['tipo_evaluacion_idtipo_evaluacion'];} ?> </td>
          			</tr>
          		</tbody>
          	</table>
