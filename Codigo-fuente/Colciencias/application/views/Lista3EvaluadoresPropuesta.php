@@ -38,8 +38,9 @@
              				<td style="text-align: center"> <?php echo utf8_decode($listarEvaluadores[$i]['nvNombre']);?> </td>
              				<td style="text-align: center"> <?php echo utf8_decode($listarEvaluadores[$i]['organizacionNombre']); ?> </td>
                             <td style="text-align: center"> <?php echo utf8_decode($listarEvaluadores[$i]['areaNombre']); ?> </td>
-                            <td style="text-align: center"><a class="" href="">
-                                    <img src="<?php echo base_url(); ?>img/iconos/listarPropuesta.png">
+                            <td style="text-align: center"><a class="" href="" href="<?php echo site_url('evaluador/listar3EvaluadoresPorPropuesta/'.$listarEvaluadores[$i]['idPropuesta']); ?>">
+                                    <img src="<?php echo base_url(); ?>img/iconos/seleccionarEvaluador.png">
+                                    <img src="<?php echo base_url(); ?>img/iconos/seleccionarEvaluador.png">                                    
                                 </a>
                             </td>
              			</tr>

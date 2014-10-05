@@ -52,40 +52,31 @@ Class Propuesta_model extends CI_Model
             }
       }
 
+       /**
+       * esta funcion sirve para buscar si la propuesta seleccionada se encuentra en la tabla evaluacion_propuesta
+       * @return $idPropuesta
+       * @param 
+       * @author Karen Daniela Ramirez Montoya 
+       * @author Yurani Alejandra Salamanca
+       */
+      public buscarPropuestaEvistenteEvaPro($idPropuesta){
 
-            public function listarPropuestasYEvaluadores()
-            {
-                  $sql="SELECT p.idPropuesta, p.titulo, e.nombre as nombreEstado,o.nombre as nombreOrganizacion,i.nombre as nombreInstitucion,          
-                        lt.nombre as lineaNombre, te.nombre as tipoEvaluacionNombre 
-                        FROM propuesta p, organizacion o, institucion i,
-                              linea_tematica lt, tipo_evaluacion te, estado_propuesta e 
-                        WHERE p.Organizacion_idOrganizacion=o.idOrganizacion 
-                              AND p.Estado_propuesta_idEstado_propuesta=e.idEstado_propuesta 
-                              AND p.tipo_evaluacion_idtipo_evaluacion=te.idTipo_evaluacion 
-                              AND p.Institucion_idInstitucion=i.idInstitucion 
-                              AND p.Linea_tematica_idLinea_tematica=lt.idLinea_tematica";
+        $sql="SELECT ep.Propuesta_idPropuesta as idPropuesta from evaluacion_propuesta ep WHERE ep.Propuesta_idPropuesta= ".$idPropuesta;
+        $this->db->query($sql);
 
-                  $query = $this->db->query($sql);
-                  if($query->num_rows()>0){
+         if($query->num_rows()>0){
 
-                      $arreglo=array();
-                      $cont=0;
-                      foreach ($query->result() as $resultado) {
+                $arreglo=array();
+                $cont=0;
+                foreach ($query->result() as $resultado) {
 
-                        $arreglo[$cont]['idPropuesta']            = $resultado->idPropuesta;
-                        $arreglo[$cont]['titulo']                 = $resultado->titulo;
-                        $arreglo[$cont]['nombreEstado']           = $resultado->nombreEstado;
-                        $arreglo[$cont]['nombreOrganizacion']     = $resultado->nombreOrganizacion;
-                        $arreglo[$cont]['nombreInstitucion']      = $resultado->nombreInstitucion;
-                        $arreglo[$cont]['lineaNombre']            = $resultado->lineaNombre;
-                        $arreglo[$cont]['tipoEvaluacionNombre']   = $resultado->tipoEvaluacionNombre;
-                        $cont++;
-                      }
-                      return $arreglo;
-                     
-            }
-       }
+                  $arreglo[$cont]['idPropuesta']= $resultado->idPropuesta;
+                  $cont++;
+          }
+                return $arreglo;
 
+
+      }
       public function buscarEvaluadores($idPropuesta, $data) {
 
         $where = '';
