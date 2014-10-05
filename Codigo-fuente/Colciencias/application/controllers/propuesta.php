@@ -45,7 +45,23 @@ Class Propuesta extends CI_Controller {
 
 		$this->load->model('Propuesta_model');
 	    
-		$data['listaPropuesta'] = $this->Propuesta_model->listarPropuesta();
+		$listaPropuesta = $this->Propuesta_model->listarPropuesta();
+		$data['listaPropuesta'] = array();
+		for($i=0; $i<count($listaPropuesta);$i++) {
+
+			$idPropuesta = $listaPropuesta[$i]['idPropuesta'];
+			$boolean = $this->Propuesta_model->buscarPropuestaExistente($idPropuesta);
+
+			$data['listaPropuesta'][$i]['idPropuesta'] 			  = $listaPropuesta[$i]['idPropuesta'];
+			$data['listaPropuesta'][$i]['titulo'] 				  = $listaPropuesta[$i]['titulo'];
+			$data['listaPropuesta'][$i]['nombreEstado']		      = $listaPropuesta[$i]['nombreEstado'];
+			$data['listaPropuesta'][$i]['nombreOrganizacion'] 	  = $listaPropuesta[$i]['nombreOrganizacion'];
+			$data['listaPropuesta'][$i]['nombreInstitucion']      = $listaPropuesta[$i]['nombreInstitucion'];
+			$data['listaPropuesta'][$i]['areaNombre']		      = $listaPropuesta[$i]['areaNombre'];
+			$data['listaPropuesta'][$i]['tipoEvaluacionNombre']   = $listaPropuesta[$i]['tipoEvaluacionNombre'];
+			$data['listaPropuesta'][$i]['evaluadoresEncontrados'] = $boolean; 
+		}
+
 		/*echo "<pre>";
 		print_r($data['listaPropuesta']);
 		echo "</pre>";die();*/
@@ -132,11 +148,7 @@ Class Propuesta extends CI_Controller {
 		$this->load->view('seleccionarCriteriosEvaluador', $data);
 	}
 
-	public function asignarEvaluador($idPropuesta,$idEvaluador){
-
-		$sql="UPDATE evaluacion_ propuesta e SET e.esConfirmado=1  
-			  WHERE e.Propuesta_idPropuesta=".$idPropuesta." AND e.Evaluador_idEvaluador=".$idEvaluador";
-	}
+	
 
 }
 

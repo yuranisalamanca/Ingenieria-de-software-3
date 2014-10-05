@@ -18,6 +18,9 @@
                 'autoScale'     : false,
                 'transitionIn'  : 'none',
                 'transitionOut' : 'none',
+                afterClose: function () {
+                    parent.location.reload(true);
+                },
                 'type'      : 'iframe'
                 });
             });
@@ -44,19 +47,23 @@
              			</tr>
              		</thead>
              		<tbody>
-             			<?php for($i=0; $i<count($listarEvaluadores);$i++) { ?>
+             			<?php for($i=0; $i<count($listar3EvaluadoresPropuesta);$i++) { ?>
              			<tr>
-             				<td style="text-align: center"> <?php echo utf8_decode($listarEvaluadores[$i]['nombre']); ?></td>
-             				<td style="text-align: center"> <?php echo utf8_decode($listarEvaluadores[$i]['cedula']); ?> </td>
-              				<td style="text-align: center"> <?php echo utf8_decode($listarEvaluadores[$i]['ciudadNombre']); ?> </td>
-             				<td style="text-align: center"> <?php echo utf8_decode($listarEvaluadores[$i]['calificacion']); ?> </td>
-             				<td style="text-align: center"> <?php echo utf8_decode($listarEvaluadores[$i]['nvNombre']);?> </td>
-             				<td style="text-align: center"> <?php echo utf8_decode($listarEvaluadores[$i]['organizacionNombre']); ?> </td>
-                            <td style="text-align: center"> <?php echo utf8_decode($listarEvaluadores[$i]['areaNombre']); ?> </td>
-                            <td style="text-align: center"><a class="cambiarEvaluador" href="<?php echo site_url(); ?>">
-                                    <img src="<?php echo base_url(); ?>img/iconos/seleccionarEvaluador.png">
-                                    <img src="<?php echo base_url(); ?>img/iconos/seleccionarEvaluador.png">                                    
+             				<td style="text-align: center"> <?php echo utf8_decode($listar3EvaluadoresPropuesta[$i]['nombre']); ?></td>
+             				<td style="text-align: center"> <?php echo utf8_decode($listar3EvaluadoresPropuesta[$i]['cedula']); ?> </td>
+              				<td style="text-align: center"> <?php echo utf8_decode($listar3EvaluadoresPropuesta[$i]['ciudadNombre']); ?> </td>
+             				<td style="text-align: center"> <?php echo utf8_decode($listar3EvaluadoresPropuesta[$i]['calificacion']); ?> </td>
+             				<td style="text-align: center"> <?php echo utf8_decode($listar3EvaluadoresPropuesta[$i]['nvNombre']);?> </td>
+             				<td style="text-align: center"> <?php echo utf8_decode($listar3EvaluadoresPropuesta[$i]['organizacionNombre']); ?> </td>
+                            <td style="text-align: center"> <?php echo utf8_decode($listar3EvaluadoresPropuesta[$i]['areaNombre']); ?> </td>
+                            <td style="text-align: center">
+                                <a href="<?php echo site_url(); ?>">
+                                    <img src="<?php echo base_url(); ?>img/iconos/checkEvaluador.png">                                   
                                 </a>
+                                 <a href="<?php echo site_url(); ?>">
+                                    <img src="<?php echo base_url(); ?>img/iconos/cambiarEvaluador.png">                                   
+                                </a>
+                               
                             </td>
              			</tr>
                         <?php } ?>

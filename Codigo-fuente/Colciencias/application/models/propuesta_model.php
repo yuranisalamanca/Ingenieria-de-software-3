@@ -150,6 +150,13 @@
     }
   }
 
+  public function asignarEvaluador($idPropuesta,$idEvaluador){
+
+        $sql="UPDATE evaluacion_ propuesta e SET e.esConfirmado=1  
+            WHERE e.Propuesta_idPropuesta=".$idPropuesta." AND e.Evaluador_idEvaluador=".$idEvaluador;
+        $query=$this->query($sql);
+  }
+
        /**
        * esta funcion sirve para buscar si la propuesta seleccionada se encuentra en la tabla evaluacion_propuesta
        * @return $idPropuesta
@@ -157,32 +164,20 @@
        * @author Karen Daniela Ramirez Montoya 
        * @author Yurani Alejandra Salamanca
        */
-      public function buscarPropuestaEvistenteEvaPro($idPropuesta){
+      public function buscarPropuestaExistente($idPropuesta){
 
         $sql="SELECT ep.Propuesta_idPropuesta as idPropuesta from evaluacion_propuesta ep WHERE ep.Propuesta_idPropuesta= ".$idPropuesta;
-        $this->db->query($sql);
+        $query=$this->db->query($sql);
 
          if($query->num_rows()>0){
-
-                $arreglo=array();
-                $cont=0;
-                foreach ($query->result() as $resultado) {
-
-                  $arreglo[$cont]['idPropuesta']= $resultado->idPropuesta;
-                  $cont++;
-          }
-                return $arreglo;
-
-        }
+                return true;
+          }else{
+              return false;
+          }  
       }
 
 
-        public function asignarEvaluador($idPropuesta,$idEvaluador){
-
-        $sql="UPDATE evaluacion_ propuesta e SET e.esConfirmado=1  
-            WHERE e.Propuesta_idPropuesta=".$idPropuesta." AND e.Evaluador_idEvaluador=".$idEvaluador;
-        $query=$this->query($sql);
-  }
+        
 
          
 

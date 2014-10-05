@@ -54,7 +54,7 @@ Class Evaluador extends CI_Controller {
 		$this->load->model('evaluadores_model');   
 		$data['listar3EvaluadoresPropuesta'] = $this->evaluadores_model->listar3EvaluadoresPorPropuesta($idPropuesta);
 		/*echo "<pre>";
-		print_r($data['listaPropuesta']);
+		print_r($data['listar3EvaluadoresPropuesta']);
 		echo "</pre>";die();*/
 		$this->load->view('barra');
 	    $this->load->view('lista3EvaluadoresPropuesta', $data);
