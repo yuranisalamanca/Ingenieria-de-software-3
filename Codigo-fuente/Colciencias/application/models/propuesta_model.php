@@ -86,6 +86,17 @@ Class Propuesta_model extends CI_Model
             }
        }
 
+      public function buscarEvaluadores($idPropuesta, $data) {
+
+        $where = '';
+
+        if (isset($data['area'])) {
+          $where .= ' WHERE '
+        }
+       
+        $this->db->query("SELECT * FROM evaluador");
+      }
+
          
 
 }

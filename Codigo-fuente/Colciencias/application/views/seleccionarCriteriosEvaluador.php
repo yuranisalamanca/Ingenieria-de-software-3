@@ -24,31 +24,31 @@
                         <tbody>
                             <tr>
                                 <td style="text-align: center"><label>&Aacute;rea de conocimiento</label></td>
-                                <td style="text-align: center"><input name="check_area" type="checkbox"></td>
+                                <td style="text-align: center"><input name="area" type="checkbox"></td>
                             </tr>
                             <tr>
                                 <td style="text-align: center"><label>Calificaci&oacute;n</label></td>
-                                <td style="text-align: center"><input name="check_calificacion" type="checkbox"></td>
+                                <td style="text-align: center"><input name="calificacion" type="checkbox"></td>
                             </tr>
                             <tr>
                                 <td style="text-align: center"><label>Ciudad</label></td>
-                                <td style="text-align: center"><input name="check_ciudad" type="checkbox"></td>
+                                <td style="text-align: center"><input name="ciudad" type="checkbox"></td>
                             </tr>
                             <tr>
                                 <td style="text-align: center"><label>Experiencia</label></td>
-                                <td style="text-align: center"><input name="check_experiencia" type="checkbox"></td>
+                                <td style="text-align: center"><input name="experiencia" type="checkbox"></td>
                             </tr>
                             <tr>
                                 <td style="text-align: center"><label>Nivel de formaci&oacute;n</label></td>
-                                <td style="text-align: center"><input name="check_nivel" type="checkbox"></td>
+                                <td style="text-align: center"><input name="nivel" type="checkbox"></td>
                             </tr>
                             <tr>
                                 <td style="text-align: center"><label>Organizaci&oacute;n</label></td>
-                                <td style="text-align: center"><input name="check_organizacion" type="checkbox"></td>
+                                <td style="text-align: center"><input name="organizacion" type="checkbox"></td>
                             </tr>
                             <tr>
                                 <td style="text-align: center"><label>Idioma</label></td>
-                                <td style="text-align: center"><input name="check_idioma" type="checkbox"></td>
+                                <td style="text-align: center"><input name="idioma" type="checkbox"></td>
                             </tr>
                         </tbody>
                     </table>

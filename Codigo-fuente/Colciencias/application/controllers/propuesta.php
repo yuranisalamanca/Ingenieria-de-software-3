@@ -64,8 +64,48 @@ Class Propuesta extends CI_Controller {
 
 	public function buscarEvaluadores($idPropuesta) {
 
-		if (isset($this->input->post('select')) && $this->input->post('select')) {
-			# code...
+		$this->load->model('Propuesta_model');
+
+		if (null !== $this->input->post('select') && $this->input->post('select') == 1) {
+			if(count($this->input->post()) > 1) {
+				if (null !== $this->input->post('area')) {
+					$dataSearch['area'] = 1;
+				} else {
+					$dataSearch['area'] = 0;
+				}
+				if (null !== $this->input->post('calificacion')) {
+					$dataSearch['calificacion'] = 1;
+				} else {
+					$dataSearch['calificacion'] = 0;
+				}
+				if (null !== $this->input->post('ciudad')) {
+					$dataSearch['ciudad'] = 1;
+				} else {
+					$dataSearch['ciudad'] = 0;
+				}
+				if (null !== $this->input->post('experiencia')) {
+					$dataSearch['experiencia'] = 1;
+				} else {
+					$dataSearch['experiencia'] = 0;
+				}
+				if (null !== $this->input->post('nivel')) {
+					$dataSearch['nivel'] = 1;
+				} else {
+					$dataSearch['nivel'] = 0;
+				}
+				if (null !== $this->input->post('organizacion')) {
+					$dataSearch['organizacion'] = 1;
+				} else {
+					$dataSearch['organizacion'] = 0;
+				}
+				if (null !== $this->input->post('idioma')) {
+					$dataSearch['idioma'] = 1;
+				} else {
+					$dataSearch['idioma'] = 0;
+				}
+
+				$this->Propuesta_model->buscarEvaluadores($idPropuesta, $dataSearch);
+			}
 		}
 
 		$data['idPropuesta'] = $idPropuesta;
