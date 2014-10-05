@@ -111,6 +111,11 @@ Class Propuesta extends CI_Controller {
 		$this->load->view('seleccionarCriteriosEvaluador', $data);
 	}
 
+	public function asignarEvaluador($idPropuesta,$idEvaluador){
+
+		$sql="UPDATE evaluacion_ propuesta e SET e.esConfirmado=1  
+			  WHERE e.Propuesta_idPropuesta=".$idPropuesta." AND e.Evaluador_idEvaluador=".$idEvaluador";
+	}
 
 }
 
