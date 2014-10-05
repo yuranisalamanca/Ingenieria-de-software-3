@@ -50,7 +50,7 @@
              				<td style="text-align: center"> <?php echo utf8_decode($listaPropuesta[$i]['nombreEstado']); ?> </td>
               				<td style="text-align: center"> <?php echo utf8_decode($listaPropuesta[$i]['nombreOrganizacion']); ?> </td>
              				<td style="text-align: center"> <?php echo utf8_decode($listaPropuesta[$i]['nombreInstitucion']); ?> </td>
-             				<td style="text-align: center"> <?php echo utf8_decode($listaPropuesta[$i]['lineaNombre']);?> </td>
+             				<td style="text-align: center"> <?php echo utf8_decode($listaPropuesta[$i]['areaNombre']);?> </td>
              				<td style="text-align: center"> <?php echo utf8_decode($listaPropuesta[$i]['tipoEvaluacionNombre']); ?> </td>
                             <td><a class="buscarEvaluadores" href="<?php echo site_url('propuesta/buscarEvaluadores/'.$listaPropuesta[$i]['idPropuesta']); ?>">
                                     <img src="<?php echo base_url(); ?>img/search.png">

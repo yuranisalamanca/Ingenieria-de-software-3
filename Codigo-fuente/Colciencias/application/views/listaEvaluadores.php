@@ -25,7 +25,7 @@
              				<th width="210" style="text-align: center"> Nivel de formaci&oacute;n </th>
                             <th width="210" style="text-align: center"> Organizaci&oacute;n </th>
               				<th width="210" style="text-align: center"> Area de conocimiento </th>
-
+                            <th width="210" style="text-align: center"> Acci&oacute;n </th>
              			</tr>
              		</thead>
              		<tbody>
@@ -38,6 +38,9 @@
              				<td style="text-align: center"> <?php echo utf8_decode($listarEvaluadores[$i]['nvNombre']);?> </td>
              				<td style="text-align: center"> <?php echo utf8_decode($listarEvaluadores[$i]['organizacionNombre']); ?> </td>
                             <td style="text-align: center"> <?php echo utf8_decode($listarEvaluadores[$i]['areaNombre']); ?> </td>
+                            <td style="text-align: center"><a class="" href="">
+                                    <img src="<?php echo base_url(); ?>img/iconos/listarPropuesta.png">
+                                </a>
                             </td>
              			</tr>
                         <?php } ?>

@@ -60,6 +60,11 @@ Class Evaluadores_model extends CI_Model
             }
       }
 
+      public function listar3EvaluadoresPorPropuesta(){
+
+        $sql="SELECT  ep.Evaluador_idEvaluador FROM evaluacion_propuesta ep";
+      }
+
 
             
        
