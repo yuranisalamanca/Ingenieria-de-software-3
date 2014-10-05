@@ -21,7 +21,8 @@ class Welcome extends CI_Controller {
 	{
 
 		$this->load->view('barra');
-		$this->load->view('listarArbitros');
+		$data['hola'] = array('m' => 'ghjk');
+		$this->load->view('listaPropuestas', $data);
 	}
 }
 

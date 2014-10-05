@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Propuesta extends CI_Controller {
+Class Propuesta extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -17,15 +17,22 @@ class Propuesta extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function listarPropuesta(){
+	public function index(){
 
-		$this->load->model('propuesta');
-		   $propuestas=array();
-   		   $propuestas=$this->Propuesta->listarPropuesta();   
+		$this->load->model('Propuesta_model');
 	    
-	   		 $data['listaPropuesta']=$propuestas;
-	    	 $this->load->view('listar',$data);   
+		$data['listaPropuesta'] = $this->Propuesta_model->listarPropuesta();
+		/*echo "<pre>";
+		print_r($data['listaPropuesta']);
+		echo "</pre>";die();*/
+		$this->load->view('barra');
+	    $this->load->view('listaPropuestas', $data);
 
+	}
+
+	public function buscarEvaluadores($idPropuesta) {
+
+		$this->load->view('listaPropuestas');
 	}
 
 }
