@@ -157,7 +157,7 @@
        * @author Karen Daniela Ramirez Montoya 
        * @author Yurani Alejandra Salamanca
        */
-      public buscarPropuestaEvistenteEvaPro($idPropuesta){
+      public function buscarPropuestaEvistenteEvaPro($idPropuesta){
 
         $sql="SELECT ep.Propuesta_idPropuesta as idPropuesta from evaluacion_propuesta ep WHERE ep.Propuesta_idPropuesta= ".$idPropuesta;
         $this->db->query($sql);
@@ -188,6 +188,9 @@
 
   public function buscarEvaluadores($idPropuesta, $data) {
 
+    /*echo "<pre>";
+    print_r($data);
+    echo "</pre>";die();*/
     $where = '';
 
     if ($data['area'] != 0 && $data['select_area'] != 0) {
@@ -206,10 +209,8 @@
       $where .= ' AND e.idioma_ididioma = ' . $data['select_idioma'];
     }
 
-    $query = $this->db->query("SELECT idEvaluador FROM evaluador e WHERE 1 = 1".$where." LIMIT 0, 3");
-    echo "<pre>";
-      print_r($query);
-      echo "</pre>";die();
+    $query = $this->db->query("SELECT idEvaluador, Ciudad_idCiudad FROM evaluador e WHERE 1 = 1".$where." LIMIT 0, 3");
+    
     if($query->num_rows()>0){
 
       $arreglo=array();
@@ -217,13 +218,12 @@
       foreach ($query->result() as $resultado) {
 
         $arreglo[$cont]['idEvaluador'] = $resultado->idEvaluador;
+        $arreglo[$cont]['ciudad'] = $resultado->Ciudad_idCiudad;
         $cont++;
       }
-      echo "<pre>";
-      print_r($arreglo);
-      echo "</pre>";die();
       for ($i=0; $i < count($arreglo); $i++) { 
-//        $this->db->query("INSERT INTO evaluacion_propuesta ep");
+        $this->db->query("INSERT INTO evaluacion_propuesta (Ciudad_idCiudad, Evaluador_idEvaluador, Propuesta_idPropuesta)
+                          VALUES (".$arreglo[$i]['ciudad'].", ".$arreglo[$i]['idEvaluador'].", ".$idPropuesta.")");
       } 
     }
   }

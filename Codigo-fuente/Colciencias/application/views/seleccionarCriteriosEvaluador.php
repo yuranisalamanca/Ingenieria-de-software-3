@@ -73,8 +73,13 @@
                             </tr>
                         </tbody>
                     </table>
-                    <input type="submit" class="button" style="margin-left: 43%" value="Iniciar B&uacute;squeda">
+                    <input type="submit" id="send" class="button" style="margin-left: 43%" value="Iniciar B&uacute;squeda">
                 </form>
         </div>
     </body>
+    <script type="text/javascript">
+    $("#send").click(function() {
+        parent.$.fancybox.close();
+    });
+    </script>
 </html>

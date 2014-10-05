@@ -119,6 +119,7 @@ Class Propuesta extends CI_Controller {
 				}
 
 				$this->Propuesta_model->buscarEvaluadores($idPropuesta, $dataSearch);
+				$this->listaDePropuestas();
 			}
 		}
 

@@ -18,6 +18,9 @@
                 'autoScale'     : false,
                 'transitionIn'  : 'none',
                 'transitionOut' : 'none',
+                afterClose: function () {
+                    parent.location.reload(true);
+                },
                 'type'      : 'iframe'
                 });
             });
