@@ -4,7 +4,7 @@
 <nav class="top-bar" data-topbar style="background-color: #086A87;">
   <ul class="title-area">
     <li class="name">
-      <h1><a href="index.php"><b>Colciencias</b></a></h1>
+      <h1><a href="<?php echo site_url('propuesta'); ?>"><b>Colciencias</b></a></h1>
     </li>
     
   </ul>

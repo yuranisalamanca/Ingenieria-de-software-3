@@ -22,9 +22,9 @@ Class Propuesta_model extends CI_Model
        public function listarPropuesta()
        {
             $sql="SELECT p.titulo, e.nombre as nombreEstado,o.nombre as nombreOrganizacion,i.nombre as nombreInstitucion,          
-                  lt.nombre as lineaNombre, te.nombre as tipoEvaluacionNombre, p.idPropuesta 
+                  a.nombre as areaNombre, te.nombre as tipoEvaluacionNombre, p.idPropuesta 
                   FROM propuesta p, organizacion o, institucion i,
-                        linea_tematica lt, tipo_evaluacion te, estado_propuesta e 
+                        area_conocimiento a, tipo_evaluacion te, estado_propuesta e 
                   WHERE p.Organizacion_idOrganizacion=o.idOrganizacion 
                         AND p.Estado_propuesta_idEstado_propuesta=e.idEstado_propuesta 
                         AND p.tipo_evaluacion_idtipo_evaluacion=te.idTipo_evaluacion 
@@ -43,7 +43,7 @@ Class Propuesta_model extends CI_Model
                   $arreglo[$cont]['nombreEstado']           = $resultado->nombreEstado;
                   $arreglo[$cont]['nombreOrganizacion']     = $resultado->nombreOrganizacion;
                   $arreglo[$cont]['nombreInstitucion']      = $resultado->nombreInstitucion;
-                  $arreglo[$cont]['lineaNombre']            = $resultado->lineaNombre;
+                  $arreglo[$cont]['areaNombre']             = $resultado->areaNombre;
                   $arreglo[$cont]['tipoEvaluacionNombre']   = $resultado->tipoEvaluacionNombre;
                   $cont++;
                 }
