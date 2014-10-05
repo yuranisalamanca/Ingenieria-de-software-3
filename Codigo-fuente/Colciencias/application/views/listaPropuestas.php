@@ -37,7 +37,7 @@
              				<th width="210" style="text-align: center"> Estado </th>
              				<th width="210" style="text-align: center"> Organizaci&oacute;n </th> 
              				<th width="210" style="text-align: center"> Instituci&oacute;n </th>
-             				<th width="210" style="text-align: center"> Linea tem&aacute;tica </th>
+             				<th width="210" style="text-align: center"> &Aacute;rea de conocimiento</th>
                             <th width="210" style="text-align: center"> Tipo de evaluaci&oacute;n </th>
               				<th width="210" style="text-align: center"> Acci&oacute;n </th>
 
