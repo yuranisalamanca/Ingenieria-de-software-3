@@ -13,8 +13,9 @@
         <script type="text/javascript">
             $(document).ready(function(){
                 $(".cambiarEvaluador").fancybox({
-                'width'     : '50%',
-                'height'    : '50%',
+                'autoSize' : false,
+                'width'     : '30%',
+                'height'    : '30%',
                 'autoScale'     : false,
                 'transitionIn'  : 'none',
                 'transitionOut' : 'none',
@@ -57,11 +58,11 @@
              				<td style="text-align: center"> <?php echo utf8_decode($listar3EvaluadoresPropuesta[$i]['organizacionNombre']); ?> </td>
                             <td style="text-align: center"> <?php echo utf8_decode($listar3EvaluadoresPropuesta[$i]['areaNombre']); ?> </td>
                             <td style="text-align: center">
-                                <a href="<?php echo site_url(); ?>">
+                                <a href="<?php echo site_url('evaluador/asignarEvaluador/'.$idPropuesta); ?>">
                                     <img src="<?php echo base_url(); ?>img/iconos/checkEvaluador.png">                                   
                                 </a>
-                                 <a href="<?php echo site_url(); ?>">
-                                    <img src="<?php echo base_url(); ?>img/iconos/cambiarEvaluador.png">                                   
+                                 <a  class="cambiarEvaluador" href="<?php echo site_url('propuesta/cambiarEvaluador/'.$idEv0.'/'.$idEv1.'/'.$idEv2.'/'.$listar3EvaluadoresPropuesta[$i]['idEvaluador'].'/'.$idPropuesta); ?>">
+                                    <img src="<?php echo base_url(''); ?>img/iconos/cambiarEvaluador.png">                                   
                                 </a>
                                
                             </td>

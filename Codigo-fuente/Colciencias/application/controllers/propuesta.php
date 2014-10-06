@@ -148,6 +148,28 @@ Class Propuesta extends CI_Controller {
 		$this->load->view('seleccionarCriteriosEvaluador', $data);
 	}
 
+
+    public function cambiarEvaluador($idEv0, $idEv1,$idEv2,$idCambiado,$idPropuesta){
+
+    	$this->load->model('propuesta_model');
+    	if (null !== $this->input->post('select') && $this->input->post('select') == 1) {
+			if(count($this->input->post()) > 1) {
+				$idEvalNuevo = $this->input->post('select_evaluador');
+	    		$this->propuesta_model->cambiarEvaluador($idCambiado,$idEvalNuevo,$idPropuesta);
+
+			}
+		}	    
+	    $data['listarEvaluadoresTodos'] = $this->propuesta_model->listarEvaluadoresTodos($idEv0, $idEv1,$idEv2);
+	    $data['idEv0'] = $idEv0;	    
+	    $data['idEv1'] = $idEv1;	    
+	    $data['idEv2'] = $idEv2;	    
+	    $data['idCambiado'] = $idCambiado;
+	    $data['idPropuesta'] = $idPropuesta;
+	    /*echo "<pre>";
+		print_r($data['listarEvaluadoresTodos']);
+		echo "</pre>";die();*/
+	    $this->load->view('fancyboxCambiarEvaluador', $data);
+	 }
 	
 
 }

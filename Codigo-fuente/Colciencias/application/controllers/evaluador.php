@@ -52,7 +52,21 @@ Class Evaluador extends CI_Controller {
 	public function listar3EvaluadoresPorPropuesta($idPropuesta){
 
 		$this->load->model('evaluadores_model');   
+		$data['idPropuesta']=$idPropuesta;
 		$data['listar3EvaluadoresPropuesta'] = $this->evaluadores_model->listar3EvaluadoresPorPropuesta($idPropuesta);
+		for($i=0; $i<count($data['listar3EvaluadoresPropuesta']);$i++) {
+			$data['idEv'.$i] = $data['listar3EvaluadoresPropuesta'][$i]['idEvaluador'];
+		}
+		if(!isset($data['idEv0']))
+		{
+			$data['idEv0']=0;
+		}
+		if(!isset($data['idEv1'])){
+			$data['idEv1']=0;
+		}
+		if(!isset($data['idEv1'])){
+			$data['idEv1']=0;
+		}
 		/*echo "<pre>";
 		print_r($data['listar3EvaluadoresPropuesta']);
 		echo "</pre>";die();*/
@@ -60,7 +74,12 @@ Class Evaluador extends CI_Controller {
 	    $this->load->view('lista3EvaluadoresPropuesta', $data);
 	}
 
+  	public function asignarEvaluador($idPropuesta,$idEvaluador)
+	{
+		$this->load->model('propuesta_model');
 
+		$this->propuesta_model->asignarEvaluador($idPropuesta,$idEvaluador);
+	}
 
 }
 

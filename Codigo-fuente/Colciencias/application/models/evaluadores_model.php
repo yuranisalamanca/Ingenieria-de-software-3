@@ -70,7 +70,7 @@ Class Evaluadores_model extends CI_Model
        */
       public function listar3EvaluadoresPorPropuesta($idPropuesta){
 
-        $sql="SELECT  e.nombre, e.cedula, c.nombre as ciudadNombre, e.calificacion, n.nombre as nvNombre, 
+        $sql="SELECT  e.idEvaluador as idEvaluador, e.nombre, e.cedula, c.nombre as ciudadNombre, e.calificacion, n.nombre as nvNombre, 
                        o.nombre as organizacionNombre, a.nombre as areaNombre
                       FROM evaluador e, nivel_formacion n, organizacion o, ciudad c, area_conocimiento a, evaluacion_propuesta ep 
                       WHERE  ep.Evaluador_idEvaluador=e.idEvaluador
@@ -86,7 +86,7 @@ Class Evaluadores_model extends CI_Model
                 $arreglo=array();
                 $cont=0;
                 foreach ($query->result() as $resultado) {
-
+                  $arreglo[$cont]['idEvaluador']            = $resultado->idEvaluador;
                   $arreglo[$cont]['nombre']                 = $resultado->nombre;
                   $arreglo[$cont]['cedula']                 = $resultado->cedula;
                   $arreglo[$cont]['ciudadNombre']           = $resultado->ciudadNombre;

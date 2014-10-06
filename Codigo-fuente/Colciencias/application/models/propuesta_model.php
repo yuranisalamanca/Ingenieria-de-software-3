@@ -52,39 +52,6 @@
     }
   }
 
-
-  public function listarPropuestasYEvaluadores()
-  {
-    $sql="SELECT p.idPropuesta, p.titulo, e.nombre as nombreEstado,o.nombre as nombreOrganizacion,i.nombre as nombreInstitucion,          
-          lt.nombre as lineaNombre, te.nombre as tipoEvaluacionNombre 
-          FROM propuesta p, organizacion o, institucion i,
-          linea_tematica lt, tipo_evaluacion te, estado_propuesta e 
-          WHERE p.Organizacion_idOrganizacion=o.idOrganizacion 
-          AND p.Estado_propuesta_idEstado_propuesta=e.idEstado_propuesta 
-          AND p.tipo_evaluacion_idtipo_evaluacion=te.idTipo_evaluacion 
-          AND p.Institucion_idInstitucion=i.idInstitucion 
-          AND p.Linea_tematica_idLinea_tematica=lt.idLinea_tematica";
-
-    $query = $this->db->query($sql);
-    if($query->num_rows()>0){
-
-      $arreglo=array();
-      $cont=0;
-      foreach ($query->result() as $resultado) {
-
-        $arreglo[$cont]['idPropuesta']            = $resultado->idPropuesta;
-        $arreglo[$cont]['titulo']                 = $resultado->titulo;
-        $arreglo[$cont]['nombreEstado']           = $resultado->nombreEstado;
-        $arreglo[$cont]['nombreOrganizacion']     = $resultado->nombreOrganizacion;
-        $arreglo[$cont]['nombreInstitucion']      = $resultado->nombreInstitucion;
-        $arreglo[$cont]['lineaNombre']            = $resultado->lineaNombre;
-        $arreglo[$cont]['tipoEvaluacionNombre']   = $resultado->tipoEvaluacionNombre;
-        $cont++;
-      }
-      return $arreglo;
-    }
-  }
-
   public function getIdiomas()
   {
     $query = $this->db->query("SELECT * FROM idioma");
@@ -157,6 +124,20 @@
         $query=$this->query($sql);
   }
 
+  public function verficarEvaluadorConfirmado($idPropuesta)
+  {
+     $sql="SELECT ep.Evaluador_idEvaluador as idEvaluador FROM evaluacion_propuesta ep WHERE ep.Propuesta_idPropuesta AND ep.esConfirmado=1";
+     $query=$this->query($sql);
+     if($query->num_rows()>0) {
+      $data = '';
+      foreach ($query->result() as $resultado) {
+        $data['idEvaluador'] = $resultado->idEvaluador;
+        }
+      return $data;
+    }
+     return $query;
+  }
+
        /**
        * esta funcion sirve para buscar si la propuesta seleccionada se encuentra en la tabla evaluacion_propuesta
        * @return $idPropuesta
@@ -221,6 +202,32 @@
                           VALUES (".$arreglo[$i]['ciudad'].", ".$arreglo[$i]['idEvaluador'].", ".$idPropuesta.")");
       } 
     }
+  }
+
+
+  public function listarEvaluadoresTodos($idEv0, $idEv1,$idEv2){
+
+    $sql="SELECT e.idEvaluador,e.nombre from evaluador e 
+          where e.idEvaluador<>".$idEv0." AND e.idEvaluador<>".$idEv1." AND e.idEvaluador<>".$idEv2;
+    $query=$this->db->query($sql);
+    $arreglo=array();
+    $cont=0;
+    if($query->num_rows()>0){
+
+      foreach ($query->result() as $resultado) {
+       
+        $arreglo[$cont]['idEvaluador'] = $resultado->idEvaluador;
+        $arreglo[$cont]['nombre']      = $resultado->nombre;
+        $cont++;
+      }
+      return $arreglo;
+    }
+  }
+
+  public function cambiarEvaluador($idCambiado,$idEvalNuevo,$idPropuesta)
+  {
+    $sql="UPDATE evaluacion_propuesta e SET e.Evaluador_idEvaluador=".$idEvalNuevo." WHERE e.Evaluador_idEvaluador=".$idCambiado." AND e.Propuesta_idPropuesta=".$idPropuesta;
+    $query=$this->db->query($sql);
   }
 }
 ?>
