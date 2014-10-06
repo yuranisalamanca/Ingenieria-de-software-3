@@ -132,23 +132,22 @@
 
   public function asignarEvaluador($idPropuesta,$idEvaluador){
 
-        $sql="UPDATE evaluacion_ propuesta e SET e.esConfirmado=1  
+        $sql="UPDATE evaluacion_propuesta e SET e.esConfirmado=1  
             WHERE e.Propuesta_idPropuesta=".$idPropuesta." AND e.Evaluador_idEvaluador=".$idEvaluador;
-        $query=$this->query($sql);
+        $query=$this->db->query($sql);
   }
 
   public function verficarEvaluadorConfirmado($idPropuesta)
   {
      $sql="SELECT ep.Evaluador_idEvaluador as idEvaluador FROM evaluacion_propuesta ep WHERE ep.Propuesta_idPropuesta AND ep.esConfirmado=1";
-     $query=$this->query($sql);
+     $query=$this->db->query($sql);
      if($query->num_rows()>0) {
-      $data = '';
+      $idEvaluador = 0;
       foreach ($query->result() as $resultado) {
-        $data['idEvaluador'] = $resultado->idEvaluador;
-        }
-      return $data;
+        $idEvaluador = $resultado->idEvaluador;
+      }
+      return $idEvaluador;
     }
-     return $query;
   }
 
        /**
