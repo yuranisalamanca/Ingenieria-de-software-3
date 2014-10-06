@@ -69,9 +69,6 @@ Class Evaluador extends CI_Controller {
 			$data['idEv2']=0;
 		}
 		$data['idConfirmado'] = $this->propuesta_model->verficarEvaluadorConfirmado($idPropuesta);
-		/*echo "<pre>";
-		print_r($data['idConfirmado']);
-		echo "</pre>";die();*/
 		$this->load->view('barra');
 	    $this->load->view('lista3EvaluadoresPropuesta', $data);
 	}
@@ -81,7 +78,9 @@ Class Evaluador extends CI_Controller {
 		$this->load->model('propuesta_model');
 
 		$this->propuesta_model->asignarEvaluador($idPropuesta,$idEvaluador);
-		$this->load->view('listar3EvaluadoresPropuesta');
+		
+
+
 	}
 
 	public function listarPropuestaPorEvaluador($idEvaluador)
