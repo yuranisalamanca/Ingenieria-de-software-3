@@ -204,7 +204,6 @@
 
         $sql="SELECT ep.Propuesta_idPropuesta as idPropuesta from evaluacion_propuesta ep WHERE ep.Propuesta_idPropuesta= ".$idPropuesta;
         $query=$this->db->query($sql);
-
          if($query->num_rows()>0){
                 return true;
           }else{
@@ -219,9 +218,6 @@
 
   public function buscarEvaluadores($idPropuesta, $data) {
 
-    /*echo "<pre>";
-    print_r($data);
-    echo "</pre>";die();*/
     $where = '';
 
     if ($data['area'] != 0 && $data['select_area'] != 0) {
@@ -240,8 +236,9 @@
       $where .= ' AND e.idioma_ididioma = ' . $data['select_idioma'];
     }
 
-    $query = $this->db->query("SELECT e.idEvaluador, e.Ciudad_idCiudad FROM evaluador e WHERE e.Organizacion_idOrganizacion <> ".$data['select_organizacion'].$where." LIMIT 0, 3");
+    $sql="SELECT e.idEvaluador, e.Ciudad_idCiudad FROM evaluador e WHERE e.Organizacion_idOrganizacion <> ".$data['select_organizacion'].$where." LIMIT 0, 3";
     
+    $query= $this->db->query($sql);
     if($query->num_rows()>0){
 
       $arreglo=array();

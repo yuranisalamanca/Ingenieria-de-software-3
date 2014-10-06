@@ -58,7 +58,7 @@
              				<td style="text-align: center"> <?php echo utf8_decode($listaPropuesta[$i]['areaNombre']);?> </td>
              				<td style="text-align: center"> <?php echo utf8_decode($listaPropuesta[$i]['tipoEvaluacionNombre']); ?> </td>
                             <td style="text-align: center">
-                            <?php if($listaPropuesta[$i]['evaluadoresEncontrados']===true){ ?>
+                            <?php if($listaPropuesta[$i]['evaluadoresEncontrados']==true){ ?>
                                  <a class="cambiarEvaluador" href="<?php echo site_url('evaluador/listar3EvaluadoresPorPropuesta/'.$listaPropuesta[$i]['idPropuesta']); ?>">
                                     <img src="<?php echo base_url(); ?>img/iconos/verInfoEvaluadores.png">                                 
                                 </a>
