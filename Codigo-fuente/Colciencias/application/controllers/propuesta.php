@@ -82,7 +82,7 @@ Class Propuesta extends CI_Controller {
 		$this->load->model('Propuesta_model');
 
 		if (null !== $this->input->post('select') && $this->input->post('select') == 1) {
-			if(count($this->input->post()) > 3) {
+			if(count($this->input->post()) > 4) {
 				if (null !== $this->input->post('area')) {
 					$dataSearch['area'] = 1;
 				} else {
@@ -133,17 +133,23 @@ Class Propuesta extends CI_Controller {
 				} else {
 					$dataSearch['select_idioma'] = 0;
 				}
+				if (null !== $this->input->post('select_organizacion')) {
+					$dataSearch['select_organizacion'] = $this->input->post('select_organizacion');
+				} else {
+					$dataSearch['select_organizacion'] = 0;
+				}
 
 				$this->Propuesta_model->buscarEvaluadores($idPropuesta, $dataSearch);
 				$this->listaDePropuestas();
 			}
 		}
 
-		$data['idPropuesta'] = $idPropuesta;
-		$data['idiomas']	 = $this->Propuesta_model->getIdiomas();
-		$data['niveles']	 = $this->Propuesta_model->getNiveles();
-		$data['ciudad']		 = $this->Propuesta_model->getCiudadPropuesta($idPropuesta);
-		$data['area']		 = $this->Propuesta_model->getAreaPropuesta($idPropuesta);
+		$data['idPropuesta']  = $idPropuesta;
+		$data['idiomas']	  = $this->Propuesta_model->getIdiomas();
+		$data['niveles']	  = $this->Propuesta_model->getNiveles();
+		$data['ciudad']		  = $this->Propuesta_model->getCiudadPropuesta($idPropuesta);
+		$data['area']		  = $this->Propuesta_model->getAreaPropuesta($idPropuesta);
+		$data['organizacion'] = $this->Propuesta_model->getOrganizacionPropuesta($idPropuesta);
 		
 		$this->load->view('seleccionarCriteriosEvaluador', $data);
 	}

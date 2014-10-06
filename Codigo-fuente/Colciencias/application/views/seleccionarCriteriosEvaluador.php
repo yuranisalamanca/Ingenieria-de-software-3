@@ -14,6 +14,7 @@
             <div class="row">
                 <form method="post" action="<?php echo site_url('propuesta/buscarEvaluadores/'.$idPropuesta); ?>">
                 <input type="hidden" name="select" value="1">
+                <input type="hidden" name="select_organizacion" value="<?php echo $organizacion; ?>">
                     <table style="margin-left: 25%">
                         <thead>
                             <tr>

@@ -117,6 +117,19 @@
     }
   }
 
+  public function getOrganizacionPropuesta($idPropuesta)
+  {
+    $query = $this->db->query("SELECT o.idOrganizacion FROM organizacion o, propuesta p 
+                      WHERE o.idOrganizacion = p.Organizacion_idOrganizacion AND p.idPropuesta = " . $idPropuesta);
+    if($query->num_rows()>0) {
+      $id = '';
+      foreach ($query->result() as $resultado) {
+        $id = $resultado->idOrganizacion;
+        }
+      return $id;
+    }
+  }
+
   public function asignarEvaluador($idPropuesta,$idEvaluador){
 
         $sql="UPDATE evaluacion_ propuesta e SET e.esConfirmado=1  
@@ -185,7 +198,7 @@
       $where .= ' AND e.idioma_ididioma = ' . $data['select_idioma'];
     }
 
-    $query = $this->db->query("SELECT idEvaluador, Ciudad_idCiudad FROM evaluador e WHERE 1 = 1".$where." LIMIT 0, 3");
+    $query = $this->db->query("SELECT e.idEvaluador, e.Ciudad_idCiudad FROM evaluador e WHERE e.Organizacion_idOrganizacion <> ".$data['select_organizacion'].$where." LIMIT 0, 3");
     
     if($query->num_rows()>0){
 
