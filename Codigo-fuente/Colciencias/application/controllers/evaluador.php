@@ -83,6 +83,23 @@ Class Evaluador extends CI_Controller {
 		$this->propuesta_model->asignarEvaluador($idPropuesta,$idEvaluador);
 	}
 
+	public function listarPropuestaPorEvaluador($idEvaluador)
+	{
+		$this->load->model('propuesta_model');
+		$data['listarPropuestasEvaluador'] = $this->propuesta_model->listarPropuestaPorEvaluador($idEvaluador);
+		$this->load->view('barra');
+		$this->load->view('listaPropuestasPorEvaluador', $data);
+	}
+
+
+	public function listarPropuestasTodosEvaluadores($idEvaluador)
+	{
+		$this->load->model('propuesta_model');
+		$data['listarPropuestasTodosEvaluadores'] = $this->propuesta_model->listarPropuestaPorEvaluador($idEvaluador);
+		$this->load->view('barra');
+		$this->load->view('listaPropuestasTodosEvaluadores',$data);
+	}
+
 }
 
 /* End of file welcome.php */

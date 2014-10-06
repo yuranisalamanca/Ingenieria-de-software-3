@@ -13,7 +13,8 @@
         </br>
           <div class="row" style="">
          	</br>
-            
+            <label style="text-align: center"><h3> Evaluadores Colciencias</h3></label>
+            <br>
              <div>
              	<table>
              		<thead>
@@ -38,7 +39,7 @@
              				<td style="text-align: center"> <?php echo utf8_decode($listarEvaluadores[$i]['nvNombre']);?> </td>
              				<td style="text-align: center"> <?php echo utf8_decode($listarEvaluadores[$i]['organizacionNombre']); ?> </td>
                             <td style="text-align: center"> <?php echo utf8_decode($listarEvaluadores[$i]['areaNombre']); ?> </td>
-                            <td style="text-align: center"><a class="" href="">
+                            <td style="text-align: center"><a class="" href="<?php echo site_url('evaluador/listarPropuestasTodosEvaluadores/'.$listarEvaluadores[$i]['idEvaluador']); ?>">
                                     <img src="<?php echo base_url(); ?>img/iconos/listarPropuesta.png">
                                 </a>
                             </td>
@@ -50,5 +51,7 @@
         	</div>
     	
         </div>
+        <center><h3 class="subheader">Todos los derechos reservados</h3><center>
+        <center><h3 class="subheader">2014</h3><center>
     </body>
 </html>

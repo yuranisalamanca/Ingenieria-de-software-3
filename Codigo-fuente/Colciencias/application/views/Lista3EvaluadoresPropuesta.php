@@ -32,7 +32,8 @@
         </br>
           <div class="row" style="">
          	</br>
-            
+            <label style="text-align: center"><h3> Lista de evaluadores asignados a una propuesta</h3></label>
+            <br>
              <div>
              	<table>
              		<thead>
@@ -68,6 +69,9 @@
                                  <a  class="cambiarEvaluador" href="<?php echo site_url('propuesta/cambiarEvaluador/'.$idEv0.'/'.$idEv1.'/'.$idEv2.'/'.$listar3EvaluadoresPropuesta[$i]['idEvaluador'].'/'.$idPropuesta); ?>">
                                     <img src="<?php echo base_url(''); ?>img/iconos/cambiarEvaluador.png">                                   
                                 </a>
+                                <a  class="" href="<?php echo site_url('evaluador/listarPropuestaPorEvaluador/'.$listar3EvaluadoresPropuesta[$i]['idEvaluador']);?>">
+                                    <img src="<?php echo base_url(''); ?>img/iconos/listarPropuesta.png">                                   
+                                </a>
                                
                             </td>
              			</tr>
@@ -78,5 +82,7 @@
         	</div>
     	
         </div>
+        <center><h3 class="subheader">Todos los derechos reservados</h3><center>
+        <center><h3 class="subheader">2014</h3><center>
     </body>
 </html>

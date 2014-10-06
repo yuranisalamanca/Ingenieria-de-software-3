@@ -32,7 +32,7 @@
         </br>
           <div class="row" style="">
          	</br>
-            <label style="text-align: center"><h3> Listado de propuestas</h3></label>
+            <label style="text-align: center"><h3> Listado de propuestas por evaluador</h3></label>
             <br>
              <div>
              	<table>
@@ -49,24 +49,18 @@
              			</tr>
              		</thead>
              		<tbody>
-             			<?php for($i=0; $i<count($listaPropuesta);$i++) { ?>
+             			<?php for($i=0; $i<count($listarPropuestasEvaluador);$i++) { ?>
              			<tr>
-             				<td style="text-align: center"> <?php echo utf8_decode($listaPropuesta[$i]['titulo']); ?></td>
-             				<td style="text-align: center"> <?php echo utf8_decode($listaPropuesta[$i]['nombreEstado']); ?> </td>
-              				<td style="text-align: center"> <?php echo utf8_decode($listaPropuesta[$i]['nombreOrganizacion']); ?> </td>
-             				<td style="text-align: center"> <?php echo utf8_decode($listaPropuesta[$i]['nombreInstitucion']); ?> </td>
-             				<td style="text-align: center"> <?php echo utf8_decode($listaPropuesta[$i]['areaNombre']);?> </td>
-             				<td style="text-align: center"> <?php echo utf8_decode($listaPropuesta[$i]['tipoEvaluacionNombre']); ?> </td>
+             				<td style="text-align: center"> <?php echo utf8_decode($listarPropuestasEvaluador[$i]['titulo']); ?></td>
+             				<td style="text-align: center"> <?php echo utf8_decode($listarPropuestasEvaluador[$i]['nombreEstado']); ?> </td>
+              				<td style="text-align: center"> <?php echo utf8_decode($listarPropuestasEvaluador[$i]['nombreOrganizacion']); ?> </td>
+             				<td style="text-align: center"> <?php echo utf8_decode($listarPropuestasEvaluador[$i]['nombreInstitucion']); ?> </td>
+             				<td style="text-align: center"> <?php echo utf8_decode($listarPropuestasEvaluador[$i]['areaNombre']);?> </td>
+             				<td style="text-align: center"> <?php echo utf8_decode($listarPropuestasEvaluador[$i]['tipoEvaluacionNombre']); ?> </td>
                             <td style="text-align: center">
-                            <?php if($listaPropuesta[$i]['evaluadoresEncontrados']===true){ ?>
-                                 <a class="cambiarEvaluador" href="<?php echo site_url('evaluador/listar3EvaluadoresPorPropuesta/'.$listaPropuesta[$i]['idPropuesta']); ?>">
-                                    <img src="<?php echo base_url(); ?>img/iconos/verInfoEvaluadores.png">                                 
+                                 <a href="">
+                                    <img src="<?php echo base_url(''); ?>img/iconos/back.png">                                 
                                 </a>
-                            <?php } else { ?>
-                                  <a class="buscarEvaluadores" href="<?php echo site_url('propuesta/buscarEvaluadores/'.$listaPropuesta[$i]['idPropuesta']); ?>">
-                                    <img src="<?php echo base_url(); ?>img/iconos/search.png">
-                                </a>
-                            <?php } ?>
                             </td>
              			</tr>
                         <?php } ?>
