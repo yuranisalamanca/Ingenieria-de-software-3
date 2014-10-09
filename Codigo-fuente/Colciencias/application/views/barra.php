@@ -1,4 +1,4 @@
-<center><img style="width: 73.2%" src="<?php echo base_url(); ?>img/logo-colciencias.jpg"></center>
+<center><img style="height: 150px" src="<?php echo base_url(); ?>img/logo-colciencias.jpg"></center>
 <div class="row">
     
 <nav class="top-bar" data-topbar style="background-color: #086A87;">

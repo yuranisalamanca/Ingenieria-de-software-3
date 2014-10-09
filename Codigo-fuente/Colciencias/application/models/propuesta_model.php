@@ -58,6 +58,48 @@
   * @param 
   * @author
   */
+  public function listarPropuestaPorConvocatoria($idConvocatoria)
+  {
+    $sql="SELECT c.idConvocatoria as idConvocatoria,p.titulo,e.nombre as nombreEstado,o.nombre as nombreOrganizacion,i.nombre as nombreInstitucion,          
+          a.nombre as areaNombre, te.nombre as tipoEvaluacionNombre, p.idPropuesta 
+          FROM propuesta p, organizacion o, institucion i,
+          area_conocimiento a, tipo_evaluacion te, estado_propuesta e, convocatoria c 
+          WHERE p.Organizacion_idOrganizacion=o.idOrganizacion 
+          AND p.Estado_propuesta_idEstado_propuesta=e.idEstado_propuesta 
+          AND p.tipo_evaluacion_idtipo_evaluacion=te.idTipo_evaluacion 
+          AND p.Institucion_idInstitucion=i.idInstitucion 
+          AND p.area_conocimiento_idArea_conocimiento=a.idArea_conocimiento
+          AND p.Convocatoria_idConvocatoria=c.idConvocatoria
+          AND c.idConvocatoria=".$idConvocatoria;
+
+    $query = $this->db->query($sql);
+    if($query->num_rows()>0){
+
+      $arreglo=array();
+      $cont=0;
+      foreach ($query->result() as $resultado) {
+
+        $arreglo[$cont]['idConvocatoria']         = $resultado->idConvocatoria;
+        $arreglo[$cont]['idPropuesta']            = $resultado->idPropuesta;
+        $arreglo[$cont]['titulo']                 = $resultado->titulo;
+        $arreglo[$cont]['nombreEstado']           = $resultado->nombreEstado;
+        $arreglo[$cont]['nombreOrganizacion']     = $resultado->nombreOrganizacion;
+        $arreglo[$cont]['nombreInstitucion']      = $resultado->nombreInstitucion;
+        $arreglo[$cont]['areaNombre']             = $resultado->areaNombre;
+        $arreglo[$cont]['tipoEvaluacionNombre']   = $resultado->tipoEvaluacionNombre;
+        $cont++;
+      }
+      return $arreglo;
+
+    }
+  }
+
+  /**
+  * esta funcion sirve para listar las propuestas de una convocatoria 
+  * @return
+  * @param 
+  * @author
+  */
   public function listarPropuestaPorEvaluador($idEvaluador)
   {
     $sql="SELECT p.titulo, e.nombre as nombreEstado,o.nombre as nombreOrganizacion,i.nombre as nombreInstitucion,          
@@ -253,6 +295,9 @@
         $this->db->query("INSERT INTO evaluacion_propuesta (Ciudad_idCiudad, Evaluador_idEvaluador, Propuesta_idPropuesta)
                           VALUES (".$arreglo[$i]['ciudad'].", ".$arreglo[$i]['idEvaluador'].", ".$idPropuesta.")");
       } 
+    }else{
+
+      return 'No hay';
     }
   }
 
@@ -280,6 +325,19 @@
   {
     $sql="UPDATE evaluacion_propuesta e SET e.Evaluador_idEvaluador=".$idEvalNuevo." WHERE e.Evaluador_idEvaluador=".$idCambiado." AND e.Propuesta_idPropuesta=".$idPropuesta;
     $query=$this->db->query($sql);
+  }
+
+  public function buscarIdConvocatoria($idPropuesta){
+    $sql="SELECT p.Convocatoria_idConvocatoria as idConvocatoria from propuesta p where p.idPropuesta=".$idPropuesta;
+    $query=$this->db->query($sql);
+
+    if($query->num_rows()>0){
+
+      foreach ($query->result() as $resultado) {       
+        $idConvocatoria = $resultado->idConvocatoria;
+      }
+      return $idConvocatoria;
+    }
   }
 }
 ?>

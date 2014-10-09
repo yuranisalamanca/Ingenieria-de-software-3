@@ -41,17 +41,17 @@ Class Propuesta extends CI_Controller {
        * @author Yurani Alejandra Salamanca 
        */
 
-	public function listaDePropuestas(){
+	public function listaDePropuestasPorConvocatoria($idConvocatoria){
 
 		$this->load->model('Propuesta_model');
 	    
-		$listaPropuesta = $this->Propuesta_model->listarPropuesta();
+		$listaPropuesta = $this->Propuesta_model->listarPropuestaPorConvocatoria($idConvocatoria);
 		$data['listaPropuesta'] = array();
 		for($i=0; $i<count($listaPropuesta);$i++) {
 
 			$idPropuesta = $listaPropuesta[$i]['idPropuesta'];
 			$boolean = $this->Propuesta_model->buscarPropuestaExistente($idPropuesta);
-
+			$data['listaPropuesta'][$i]['idConvocatoria'] 		  = $listaPropuesta[$i]['idConvocatoria'];
 			$data['listaPropuesta'][$i]['idPropuesta'] 			  = $listaPropuesta[$i]['idPropuesta'];
 			$data['listaPropuesta'][$i]['titulo'] 				  = $listaPropuesta[$i]['titulo'];
 			$data['listaPropuesta'][$i]['nombreEstado']		      = $listaPropuesta[$i]['nombreEstado'];
@@ -63,7 +63,17 @@ Class Propuesta extends CI_Controller {
 
 		
 		}
+		
+		$this->load->view('barra');
+	    $this->load->view('listaPropuestasPorConvocatoria',$data);
 
+	}
+
+	public function listaDePropuestas(){
+
+		$this->load->model('Propuesta_model');
+	    
+		$data['listadoPropuestas'] = $this->Propuesta_model->listarPropuesta();
 		$this->load->view('barra');
 	    $this->load->view('listaPropuestas', $data);
 
@@ -82,6 +92,7 @@ Class Propuesta extends CI_Controller {
 		$this->load->model('Propuesta_model');
 
 		if (null !== $this->input->post('select') && $this->input->post('select') == 1) {
+
 			if(count($this->input->post()) > 4) {			
 				if (null != $this->input->post('area')) {
 					$dataSearch['area'] = 1;
@@ -138,8 +149,12 @@ Class Propuesta extends CI_Controller {
 				} else {
 					$dataSearch['select_organizacion'] = 0;
 				}
-				$this->Propuesta_model->buscarEvaluadores($idPropuesta, $dataSearch);
-				$this->listaDePropuestas();
+				if($this->Propuesta_model->buscarEvaluadores($idPropuesta, $dataSearch)=='No hay')
+				{
+					$varError='No existen evaluadores que cumplan con todos los criterios seleccionados';
+					$this->session->set_userdata('varError', $varError);
+				}
+				$idConvocatoria=$this->Propuesta_model->buscarIdConvocatoria($idPropuesta);
 			}
 		}
 

@@ -21,6 +21,7 @@
 						<th width="210" style="text-align: center"> Nombre</th>
 						<th width="210" style="text-align: center"> Tipo </th>
 						<th width="210" style="text-align: center"> Estado</th>
+						<th width="210" style="text-align: center"> Acci&oacute;n</th>
 
 					</tr>
 				</thead>
@@ -30,7 +31,11 @@
 						<td style="text-align: center"> <?php echo utf8_decode($listadoConvocatorias[$i]['convocatoriaNombre']); ?></td>
 	     				<td style="text-align: center"> <?php echo utf8_decode($listadoConvocatorias[$i]['tipoConvocatoria']); ?></td>
 	     				<td style="text-align: center"> <?php echo utf8_decode($listadoConvocatorias[$i]['estadoConvocatoria']); ?></td>
-
+	     				<td style="text-align: center">
+	     					 <a class="" href="<?php echo site_url('propuesta/listaDePropuestasPorConvocatoria/'.$listadoConvocatorias[$i]['idConvocatoria']); ?>">
+                                    <img src="<?php echo base_url(); ?>img/iconos/listarPropuesta.png">
+                             </a>
+                        </td>
 					</tr>
 					<?php } ?>
 				</tbody>
