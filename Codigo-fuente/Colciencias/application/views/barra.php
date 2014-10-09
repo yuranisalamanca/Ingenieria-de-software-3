@@ -1,4 +1,4 @@
-<center><img style="width: 73.2%" src="<?php echo base_url(); ?>img/logo-colciencias.jpg"></center>
+<center><img style="height: 150px" src="<?php echo base_url(); ?>img/logo-colciencias.jpg"></center>
 <div class="row">
     
 <nav class="top-bar" data-topbar style="background-color: #086A87;">
@@ -22,7 +22,7 @@
 
     
     <ul class="left">
-      <li><a href="#"style="background-color: #086A87;">Convocatoria</a></li>
+      <li><a href="<?php echo site_url('convocatoria/listarConvocatorias') ?>"style="background-color: #086A87;">Convocatoria</a></li>
       <li><a href="<?php echo site_url('evaluador/listaDeEvaluadores'); ?>"style="background-color: #086A87;"style="background-color: #086A87;">Evaluador</a></li>
       <li><a href="<?php echo site_url('propuesta/listaDePropuestas'); ?>"style="background-color: #086A87;">Propuesta</a></li>
       <li><a href="#"style="background-color: #086A87;">Panel</a></li>

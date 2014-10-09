@@ -21,7 +21,7 @@ Class Evaluador extends CI_Controller {
 
 
        /**
-       * esta funcion sirve para llamar el va vista las funciones que vienen del modelo evaluadores_model
+       * esta funcion sirve para llamar las funciones que vienen del modelo evaluadores_model
        * @return arreglo de evaluadores
        * @param 
        * @author Karen Daniela Ramirez Montoya 
@@ -65,15 +65,12 @@ Class Evaluador extends CI_Controller {
 		if(!isset($data['idEv1'])){
 			$data['idEv1']=0;
 		}
-		if(!isset($data['idEv1'])){
-			$data['idEv1']=0;
+		if(!isset($data['idEv2'])){
+			$data['idEv2']=0;
 		}
 		$data['idConfirmado'] = $this->propuesta_model->verficarEvaluadorConfirmado($idPropuesta);
-		/*echo "<pre>";
-		print_r($data['idConfirmado']);
-		echo "</pre>";die();*/
 		$this->load->view('barra');
-	    $this->load->view('lista3EvaluadoresPropuesta', $data);
+	    $this->load->view('lista3EvaluadoresPropuesta',$data);
 	}
 
   	public function asignarEvaluador($idPropuesta,$idEvaluador)
@@ -81,8 +78,9 @@ Class Evaluador extends CI_Controller {
 		$this->load->model('propuesta_model');
 
 		$this->propuesta_model->asignarEvaluador($idPropuesta,$idEvaluador);
-	}
+		//$this->load->view('lista3EvaluadoresPropuesta');
 
+	}
 	public function listarPropuestaPorEvaluador($idEvaluador)
 	{
 		$this->load->model('propuesta_model');

@@ -28,8 +28,10 @@
         
     </head>
     <body>
-        
         </br>
+        <?php if($this->session->userdata('varError')!=''){ ?>
+          <div id="varError" class="row" style="background-color: #F5A9BC"> &nbsp;<a style="color: #FF0000;" id="closeError">X</a> &nbsp; <?php echo $this->session->userdata('varError'); ?></div>
+        <?php $this->session->unset_userdata('varError'); } ?>
           <div class="row" style="">
          	</br>
             <label style="text-align: center"><h3> Listado de propuestas</h3></label>
@@ -44,17 +46,30 @@
              				<th width="210" style="text-align: center"> Instituci&oacute;n </th>
              				<th width="210" style="text-align: center"> &Aacute;rea de conocimiento</th>
                             <th width="210" style="text-align: center"> Tipo de evaluaci&oacute;n </th>
-              			</tr>
+              				<th width="210" style="text-align: center"> Acci&oacute;n </th>
+
+             			</tr>
              		</thead>
              		<tbody>
-             			<?php for($i=0; $i<count($listadoPropuestas);$i++) { ?>
+             			<?php for($i=0; $i<count($listaPropuesta);$i++) { ?>
              			<tr>
-             				<td style="text-align: center"> <?php echo utf8_decode($listadoPropuestas[$i]['titulo']); ?></td>
-             				<td style="text-align: center"> <?php echo utf8_decode($listadoPropuestas[$i]['nombreEstado']); ?> </td>
-              				<td style="text-align: center"> <?php echo utf8_decode($listadoPropuestas[$i]['nombreOrganizacion']); ?> </td>
-             				<td style="text-align: center"> <?php echo utf8_decode($listadoPropuestas[$i]['nombreInstitucion']); ?> </td>
-             				<td style="text-align: center"> <?php echo utf8_decode($listadoPropuestas[$i]['areaNombre']);?> </td>
-             				<td style="text-align: center"> <?php echo utf8_decode($listadoPropuestas[$i]['tipoEvaluacionNombre']); ?> </td>
+             				<td style="text-align: center"> <?php echo utf8_decode($listaPropuesta[$i]['titulo']); ?></td>
+             				<td style="text-align: center"> <?php echo utf8_decode($listaPropuesta[$i]['nombreEstado']); ?> </td>
+              				<td style="text-align: center"> <?php echo utf8_decode($listaPropuesta[$i]['nombreOrganizacion']); ?> </td>
+             				<td style="text-align: center"> <?php echo utf8_decode($listaPropuesta[$i]['nombreInstitucion']); ?> </td>
+             				<td style="text-align: center"> <?php echo utf8_decode($listaPropuesta[$i]['areaNombre']);?> </td>
+             				<td style="text-align: center"> <?php echo utf8_decode($listaPropuesta[$i]['tipoEvaluacionNombre']); ?> </td>
+                            <td style="text-align: center">
+                            <?php if($listaPropuesta[$i]['evaluadoresEncontrados']==true){ ?>
+                                 <a class="cambiarEvaluador" href="<?php echo site_url('evaluador/listar3EvaluadoresPorPropuesta/'.$listaPropuesta[$i]['idPropuesta']); ?>">
+                                    <img src="<?php echo base_url(); ?>img/iconos/verInfoEvaluadores.png">                                 
+                                </a>
+                            <?php } else { ?>
+                                  <a class="buscarEvaluadores" href="<?php echo site_url('propuesta/buscarEvaluadores/'.$listaPropuesta[$i]['idPropuesta']); ?>">
+                                    <img src="<?php echo base_url(); ?>img/iconos/search.png">
+                                </a>
+                            <?php } ?>
+                            </td>
              			</tr>
                         <?php } ?>
              		</tbody>
@@ -66,4 +81,9 @@
         <center><h3 class="subheader">Todos los derechos reservados</h3><center>
         <center><h3 class="subheader">2014</h3><center>
     </body>
+    <script type="text/javascript">
+    $('#closeError').click(function (){
+        $('#varError').hide(1000);
+    });
+    </script>
 </html>
