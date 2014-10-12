@@ -34,9 +34,15 @@
         <?php $this->session->unset_userdata('varError'); } ?>
           <div class="row" style="">
          	</br>
-            <label style="text-align: center"><h3> Listado de propuestas</h3></label>
+            <label style="text-align: center"><h3> Listado de propuestas por convocatoria</h3></label>
             <br>
              <div>
+             <label style="text-align: right" >Listado de propuestas y evaluadores:                 
+                <a href="<?php echo site_url('evaluador/listaDePropuestasYEvaluadoresOrdenado/'.$idConvocatoria); ?>" >
+                     <img src="<?php echo base_url(); ?>img/iconos/propuestasYEvaluadores.png">
+                 </a>
+             </label>
+             <br>
              	<table>
              		<thead>
              			<tr> 

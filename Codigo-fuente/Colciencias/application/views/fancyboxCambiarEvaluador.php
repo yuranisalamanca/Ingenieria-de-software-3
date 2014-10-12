@@ -7,25 +7,26 @@
     <script src="<?php echo base_url(); ?>js/vendor/jquery.js"></script>	
 </head>
 <body>
-	<div class="row">
+	<div class="row">        
+	    <label style="text-align: center; margin-top:25%"><h4>Seleccione el nuevo evaluador</h4></label>
 		<br>
-		<form method="post" action="<?php echo site_url('propuesta/cambiarEvaluador/'.$idEv0.'/'.$idEv1.'/'.$idEv2.'/'.$idCambiado.'/'.$idPropuesta); ?>">
+		<form method="post" action="<?php echo site_url('propuesta/listar3EvaluadoresPorPropuestaCambiado/'.$idPropuesta.'/'.$idCambiado); ?>">
 			<input type="hidden" name="select" value="1">
-			<select name="select_evaluador">
+			<select name="select_evaluador" style="margin-top: 8%">
 			<option value="0" selected="selected" disabled="disabled">Seleccione...</option>
-			<?php for ($i=0; $i < count($listarEvaluadoresTodos); $i++) { ?>
-				<option value="<?php echo $listarEvaluadoresTodos[$i]['idEvaluador']; ?>"><?php echo $listarEvaluadoresTodos[$i]['nombre']; ?></option>
+			<?php for ($i=0; $i < count($evaluadoresNuevos); $i++) { ?>
+				<option value="<?php echo $evaluadoresNuevos[$i]['idEvaluador']; ?>"><?php echo $evaluadoresNuevos[$i]['nombre']; ?></option>
 			<?php } ?>
 			</select>
 			<br>
-			<input type="submit" id="send" class="button" style="margin-left: 30%" value="Seleccionar">
+			<input type="submit" id="send" class="button" style="margin-left: 37%" value="Seleccionar">
 		</form>
 	</div>
 </body>
 <script type="text/javascript">
-$("#send").click(function() {
-	parent.$.fancybox.close();
-});
+	$("#send").click(function() {
+		parent.$.fancybox.close();
+	});
 </script>
 </html>
  

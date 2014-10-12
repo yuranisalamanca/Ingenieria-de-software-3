@@ -78,7 +78,7 @@ Class Evaluador extends CI_Controller {
 		$this->load->model('propuesta_model');
 
 		$this->propuesta_model->asignarEvaluador($idPropuesta,$idEvaluador);
-		//$this->load->view('lista3EvaluadoresPropuesta');
+		$this->listar3EvaluadoresPorPropuesta($idPropuesta);
 
 	}
 	public function listarPropuestaPorEvaluador($idEvaluador)
@@ -96,6 +96,28 @@ Class Evaluador extends CI_Controller {
 		$data['listarPropuestasTodosEvaluadores'] = $this->propuesta_model->listarPropuestaPorEvaluador($idEvaluador);
 		$this->load->view('barra');
 		$this->load->view('listaPropuestasTodosEvaluadores',$data);
+	}
+
+	public function listaDePropuestasYEvaluadoresOrdenado($idConvocatoria,$ordenarEvaluador='',$ordenarPropuesta='')
+	{
+		$this->load->model('evaluadores_model');
+		$data['listaPropuestasYEvaluadores'] = $this->evaluadores_model->listaDeEvaluadoresYPropuestasOrdenado($idConvocatoria,$ordenarEvaluador,$ordenarPropuesta);
+		$data['ordenarEvaluador'] = $ordenarEvaluador;
+		$data['ordenarPropuesta'] = $ordenarPropuesta;
+		$data['idConvocatoria']	  = $idConvocatoria;
+		$this->load->view('barra');
+		$this->load->view('listaDePropuestasYEvaluadores',$data);
+	}
+
+	public function iniciarProcesoDeEvaluacion($idPropuesta, $idEvaluador)
+	{
+		$this->load->model('convocatoria_model');
+		$this->load->model('evaluacion_model');
+		$this->load->model('evaluadores_model');
+		$this->evaluacion_model->iniciarProcesoDeEvaluacion($idPropuesta,$idEvaluador);
+		$idConvocatoria = $this->convocatoria_model->buscarConvocatoriaPorPropuesta($idPropuesta);
+		$this->listaDePropuestasYEvaluadoresOrdenado($idConvocatoria);
+		
 	}
 
 }

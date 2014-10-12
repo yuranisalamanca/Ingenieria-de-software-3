@@ -13,9 +13,8 @@
         <script type="text/javascript">
             $(document).ready(function(){
                 $(".cambiarEvaluador").fancybox({
-                'autoSize' : false,
-                'width'     : '30%',
-                'height'    : '30%',
+                'width'     : '50%',
+                'height'    : '50%',
                 'autoScale'     : false,
                 'transitionIn'  : 'none',
                 'transitionOut' : 'none',
@@ -32,7 +31,7 @@
         </br>
           <div class="row" style="">
          	</br>
-            <label style="text-align: center"><h3> Lista de evaluadores asignados a una propuesta</h3></label>
+            <label style="text-align: center"><h3> Lista de evaluadores sugeridos a una propuesta</h3></label>
             <br>
              <div>
              	<table>

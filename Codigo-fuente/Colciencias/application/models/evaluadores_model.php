@@ -104,7 +104,71 @@ Class Evaluadores_model extends CI_Model
 
     
 
+      public function listaDeEvaluadoresYPropuestas($idConvocatoria)
+      {
+        $sql="SELECT  p.idPropuesta, ep.iniciarProceso, p.titulo as nombrePropuesta, e.nombre as nombreEvaluador, e.idEvaluador
+              FROM evaluacion_propuesta ep, convocatoria c, evaluador e, propuesta p
+              WHERE p.idPropuesta=ep.Propuesta_idPropuesta
+              AND p.Convocatoria_idConvocatoria=c.idConvocatoria
+              AND ep.Evaluador_idEvaluador=e.idEvaluador
+              AND ep.esAsignado=1
+              AND ep.esConfirmado=1
+              AND c.idConvocatoria=".$idConvocatoria;
 
+        $query=$this->db->query($sql);
+        if($query->num_rows()>0){
+
+            $arreglo=array();
+            $cont=0;
+            foreach ($query->result() as $resultado) {
+              $arreglo[$cont]['idPropuesta']            = $resultado->idPropuesta;
+              $arreglo[$cont]['nombrePropuesta']        = $resultado->nombrePropuesta;
+              $arreglo[$cont]['nombreEvaluador']        = $resultado->nombreEvaluador;
+              $arreglo[$cont]['idEvaluador']            = $resultado->idEvaluador;
+              $arreglo[$cont]['iniciarProceso']         = $resultado->iniciarProceso;
+              $cont++;
+            }
+            return $arreglo;           
+        }
+      }
+
+      public function listaDeEvaluadoresYPropuestasOrdenado($idConvocatoria,$ordenarEvaluador='',$ordenarPropuesta='')
+      {
+        $orden='';
+        if($ordenarPropuesta==1){
+          $orden='order by nombrePropuesta asc';
+        }else if($ordenarPropuesta==2){
+          $orden='order by nombrePropuesta desc';
+        }else if($ordenarEvaluador==1){
+          $orden='order by nombreEvaluador asc';
+        }else if($ordenarPropuesta==2){
+          $orden='order by nombreEvaluador desc';
+        }
+        $sql="SELECT  p.idPropuesta, ep.iniciarProceso, p.titulo as nombrePropuesta, e.nombre as nombreEvaluador, e.idEvaluador
+              FROM evaluacion_propuesta ep, convocatoria c, evaluador e, propuesta p
+              WHERE p.idPropuesta=ep.Propuesta_idPropuesta
+              AND p.Convocatoria_idConvocatoria=c.idConvocatoria
+              AND ep.Evaluador_idEvaluador=e.idEvaluador
+              AND ep.esAsignado=1
+              AND ep.esConfirmado=1
+              AND c.idConvocatoria=".$idConvocatoria.' '.$orden;
+
+        $query=$this->db->query($sql);
+        if($query->num_rows()>0){
+
+            $arreglo=array();
+            $cont=0;
+            foreach ($query->result() as $resultado) {
+              $arreglo[$cont]['idPropuesta']            = $resultado->idPropuesta;
+              $arreglo[$cont]['nombrePropuesta']        = $resultado->nombrePropuesta;
+              $arreglo[$cont]['nombreEvaluador']        = $resultado->nombreEvaluador;
+              $arreglo[$cont]['idEvaluador']            = $resultado->idEvaluador;
+              $arreglo[$cont]['iniciarProceso']         = $resultado->iniciarProceso;
+              $cont++;
+            }
+            return $arreglo;           
+        }
+      }
             
        
 

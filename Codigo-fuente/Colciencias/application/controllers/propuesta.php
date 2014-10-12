@@ -63,7 +63,7 @@ Class Propuesta extends CI_Controller {
 
 		
 		}
-		
+		$data['idConvocatoria'] = $idConvocatoria;
 		$this->load->view('barra');
 	    $this->load->view('listaPropuestasPorConvocatoria',$data);
 
@@ -172,23 +172,126 @@ Class Propuesta extends CI_Controller {
 
     	$this->load->model('propuesta_model');
     	if (null !== $this->input->post('select') && $this->input->post('select') == 1) {
-			if(count($this->input->post()) > 1) {
-				$idEvalNuevo = $this->input->post('select_evaluador');
-	    		$this->propuesta_model->cambiarEvaluador($idCambiado,$idEvalNuevo,$idPropuesta);
 
+			if(count($this->input->post()) > 4) {		
+				if (null != $this->input->post('nombre')) {
+					$dataSearch['nombre'] = 1;
+				} else {
+					$dataSearch['nombre'] = 0;
+				}
+				if (null != $this->input->post('select_nombre')) {
+					$dataSearch['select_nombre'] = $this->input->post('select_nombre');
+				} else {
+					$dataSearch['select_nombre'] = '';
+				}	
+				if (null != $this->input->post('area')) {
+					$dataSearch['area'] = 1;
+				} else {
+					$dataSearch['area'] = 0;
+				}
+				if (null != $this->input->post('select_area')) {
+					$dataSearch['select_area'] = $this->input->post('select_area');
+				} else {
+					$dataSearch['select_area'] = 0;
+				}
+				if (null != $this->input->post('calificacion')) {
+					$dataSearch['calificacion'] = 1;
+				} else {
+					$dataSearch['calificacion'] = 0;
+				}
+				if (null != $this->input->post('select_calificacion')) {
+					$dataSearch['select_calificacion'] = $this->input->post('select_calificacion');
+				} else {
+					$dataSearch['select_calificacion'] = 0;
+				}
+				if (null != $this->input->post('ciudad')) {
+					$dataSearch['ciudad'] = 1;
+				} else {
+					$dataSearch['ciudad'] = 0;
+				}
+				if (null != $this->input->post('select_ciudad')) {
+					$dataSearch['select_ciudad'] = $this->input->post('select_ciudad');
+				} else {
+					$dataSearch['select_ciudad'] = 0;
+				}
+				if (null != $this->input->post('nivel')) {
+					$dataSearch['nivel'] = 1;
+				} else {
+					$dataSearch['nivel'] = 0;
+				}
+				if (null != $this->input->post('select_nivel')) {
+					$dataSearch['select_nivel'] = $this->input->post('select_nivel');
+				} else {
+					$dataSearch['select_nivel'] = 0;
+				}
+				if (null != $this->input->post('idioma')) {
+					$dataSearch['idioma'] = 1;
+				} else {
+					$dataSearch['idioma'] = 0;
+				}
+				if (null != $this->input->post('select_idioma')) {
+					$dataSearch['select_idioma'] = $this->input->post('select_idioma');
+				} else {
+					$dataSearch['select_idioma'] = 0;
+				}
+				if (null != $this->input->post('select_organizacion')) {
+					$dataSearch['select_organizacion'] = $this->input->post('select_organizacion');
+				} else {
+					$dataSearch['select_organizacion'] = 0;
+				}
+				$data['evaluadoresNuevos'] = $this->propuesta_model->buscarEvaluadoresCambiado($idPropuesta, $dataSearch);
+				if($data['evaluadoresNuevos'] =='No hay')
+				{
+					$varError='No existen evaluadores que cumplan con todos los criterios seleccionados';
+					$this->session->set_userdata('varError', $varError);
+				}
+				$data['idPropuesta'] = $idPropuesta;
+				$data['idCambiado'] = $idCambiado;
+				$idConvocatoria=$this->propuesta_model->buscarIdConvocatoria($idPropuesta);
+				$this->load->view('fancyboxCambiarEvaluador',$data);
+				return ;
 			}
-		}	    
-	    $data['listarEvaluadoresTodos'] = $this->propuesta_model->listarEvaluadoresTodos($idEv0, $idEv1,$idEv2);
+		}
+    
+	   // $data['listarEvaluadoresTodos'] = $this->propuesta_model->listarEvaluadoresTodos($idEv0, $idEv1,$idEv2);
 	    $data['idEv0'] = $idEv0;	    
 	    $data['idEv1'] = $idEv1;	    
 	    $data['idEv2'] = $idEv2;	    
-	    $data['idCambiado'] = $idCambiado;
-	    $data['idPropuesta'] = $idPropuesta;
+	    $data['idCambiado']   = $idCambiado;
+	    $data['idPropuesta']  = $idPropuesta;
+		$data['idiomas']	  = $this->propuesta_model->getIdiomas();
+		$data['niveles']	  = $this->propuesta_model->getNiveles();
+		$data['ciudad']		  = $this->propuesta_model->getCiudadPropuesta($idPropuesta);
+		$data['area']		  = $this->propuesta_model->getAreaPropuesta($idPropuesta);
+		$data['organizacion'] = $this->propuesta_model->getOrganizacionPropuesta($idPropuesta);
 	    /*echo "<pre>";
-		print_r($data['listarEvaluadoresTodos']);
+		print_r($data);
 		echo "</pre>";die();*/
-	    $this->load->view('fancyboxCambiarEvaluador', $data);
-	 }
+	    $this->load->view('seleccionarCriteriosEvaluadorCambiado', $data);
+	}
+
+	
+	public function listar3EvaluadoresPorPropuestaCambiado($idPropuesta,$idViejo){
+
+		$this->load->model('evaluadores_model');   
+		$this->load->model('propuesta_model');   
+		$data['idPropuesta'] = $idPropuesta;
+		$data['listar3EvaluadoresPropuesta'] = $this->evaluadores_model->listar3EvaluadoresPorPropuesta($idPropuesta);
+
+		if (null != $this->input->post('select') && $this->input->post('select') == 1) {
+			if ($this->input->post('select_evaluador') == 0) {
+				//TODO mensaje de error!
+			} else {
+				$idNuevo = $this->input->post('select_evaluador');
+				$this->propuesta_model->cambiarEvaluador($idViejo,$idNuevo,$idPropuesta);
+			}
+		}
+		
+		$data['idConfirmado'] = $this->propuesta_model->verficarEvaluadorConfirmado($idPropuesta);
+		$this->load->view('barra');
+	    $this->load->view('lista3EvaluadoresPropuesta',$data);
+	}
+
 	
 
 }

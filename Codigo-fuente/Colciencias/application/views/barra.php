@@ -30,5 +30,9 @@
     </ul>
   </section>
 </nav>
+<div style="margin-top: 15px; margin-bottom: -30px;">
+  <?php echo set_breadcrumb(); ?>
+</div>
+  
 
 </div>
