@@ -34,7 +34,7 @@
         <?php $this->session->unset_userdata('varError'); } ?>
           <div class="row" style="">
          	</br>
-            <label style="text-align: center"><h3> Listado de propuestas por convocatoria</h3></label>
+            <label style="text-align: center"><h3> Propuestas de la convocatoria:<br><em><?php echo utf8_decode($listaPropuesta[0]['nombreConv']); ?> </em></h3></label>
             <br>
              <div>
              <label style="text-align: right" >Listado de propuestas y evaluadores:                 
@@ -68,11 +68,11 @@
                             <td style="text-align: center">
                             <?php if($listaPropuesta[$i]['evaluadoresEncontrados']==true){ ?>
                                  <a class="cambiarEvaluador" href="<?php echo site_url('evaluador/listar3EvaluadoresPorPropuesta/'.$listaPropuesta[$i]['idPropuesta']); ?>">
-                                    <img src="<?php echo base_url(); ?>img/iconos/verInfoEvaluadores.png">                                 
+                                    <img src="<?php echo base_url(); ?>img/iconos/verInfoEvaluadores.png" title="Informaci&oacute;n evaluadores">                                 
                                 </a>
                             <?php } else { ?>
                                   <a class="buscarEvaluadores" href="<?php echo site_url('propuesta/buscarEvaluadores/'.$listaPropuesta[$i]['idPropuesta']); ?>">
-                                    <img src="<?php echo base_url(); ?>img/iconos/search.png">
+                                    <img src="<?php echo base_url(); ?>img/iconos/search.png" title="Buscar evaluadores">
                                 </a>
                             <?php } ?>
                             </td>

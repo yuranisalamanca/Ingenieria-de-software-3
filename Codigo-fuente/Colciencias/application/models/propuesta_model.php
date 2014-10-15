@@ -60,7 +60,7 @@
   */
   public function listarPropuestaPorConvocatoria($idConvocatoria)
   {
-    $sql="SELECT c.idConvocatoria as idConvocatoria,p.titulo,e.nombre as nombreEstado,o.nombre as nombreOrganizacion,i.nombre as nombreInstitucion,          
+    $sql="SELECT c.idConvocatoria as idConvocatoria,c.nombre as nombreConv,p.titulo,e.nombre as nombreEstado,o.nombre as nombreOrganizacion,i.nombre as nombreInstitucion,          
           a.nombre as areaNombre, te.nombre as tipoEvaluacionNombre, p.idPropuesta 
           FROM propuesta p, organizacion o, institucion i,
           area_conocimiento a, tipo_evaluacion te, estado_propuesta e, convocatoria c 
@@ -80,7 +80,7 @@
       $arreglo=array();
       $cont=0;
       foreach ($query->result() as $resultado) {
-
+        $arreglo[$cont]['nombreConv']             = $resultado->nombreConv;
         $arreglo[$cont]['idConvocatoria']         = $resultado->idConvocatoria;
         $arreglo[$cont]['idPropuesta']            = $resultado->idPropuesta;
         $arreglo[$cont]['titulo']                 = $resultado->titulo;

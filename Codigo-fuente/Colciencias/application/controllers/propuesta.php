@@ -51,6 +51,7 @@ Class Propuesta extends CI_Controller {
 
 			$idPropuesta = $listaPropuesta[$i]['idPropuesta'];
 			$boolean = $this->Propuesta_model->buscarPropuestaExistente($idPropuesta);
+			$data['listaPropuesta'][$i]['nombreConv']             = $listaPropuesta[$i]['nombreConv'];
 			$data['listaPropuesta'][$i]['idConvocatoria'] 		  = $listaPropuesta[$i]['idConvocatoria'];
 			$data['listaPropuesta'][$i]['idPropuesta'] 			  = $listaPropuesta[$i]['idPropuesta'];
 			$data['listaPropuesta'][$i]['titulo'] 				  = $listaPropuesta[$i]['titulo'];

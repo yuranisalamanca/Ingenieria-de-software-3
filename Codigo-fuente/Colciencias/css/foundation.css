@@ -1599,7 +1599,8 @@ form .row .postfix-round.row.collapse .postfix {
 
 input[type="submit"] {
   -webkit-appearance: none;
-  -webkit-border-radius: 0px; }
+  -webkit-border-radius: 0px; 
+  background-color:#086A87; }
 
 /* Respect enforced amount of rows for textarea */
 textarea[rows] {
