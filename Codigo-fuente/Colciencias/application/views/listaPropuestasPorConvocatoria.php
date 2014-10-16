@@ -72,7 +72,7 @@
                                 </a>
                             <?php } else { ?>
                                   <a class="buscarEvaluadores" href="<?php echo site_url('propuesta/buscarEvaluadores/'.$listaPropuesta[$i]['idPropuesta']); ?>">
-                                    <img src="<?php echo base_url(); ?>img/iconos/search.png" title="Buscar evaluadores">
+                                    <img src="<?php echo base_url(); ?>img/iconos/search.png" title="Seleccionar evaluadores">
                                 </a>
                             <?php } ?>
                             </td>
