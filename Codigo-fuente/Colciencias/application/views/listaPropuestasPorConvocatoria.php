@@ -34,7 +34,16 @@
         <?php $this->session->unset_userdata('varError'); } ?>
           <div class="row" style="">
          	</br>
-            <label style="text-align: center"><h3> Propuestas de la convocatoria:<br><em><?php echo utf8_decode($listaPropuesta[0]['nombreConv']); ?> </em></h3></label>
+            
+            <?php if(isset($propuestasEncontradas) == true) {?>
+                <label style="text-align: center"><h3> Propuestas de la convocatoria:<br><em><?php echo utf8_decode($nombreConv); ?> </em></h3></label>
+            <?php } else { ?>
+            <div data-alert class="alert-box alert" id="alerta">
+                    La convocatoria <?php echo utf8_decode(isset($nombreConv)); ?> no tiene propuestas.
+                <a href="#" class="close" data-dismiss="alert" id="closeAlerta">&times;</a>
+            </div>
+
+            <?php } ?>
             <br>
              <div>
              <label style="text-align: right" >Listado de propuestas y evaluadores:                 
@@ -91,5 +100,13 @@
     $('#closeError').click(function (){
         $('#varError').hide(1000);
     });
+
+     $('#closeAlerta').click(
+        function (){
+        $('#alerta').hide(1000);
+    });
+
+
+    
     </script>
 </html>

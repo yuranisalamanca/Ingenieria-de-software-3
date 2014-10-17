@@ -31,7 +31,7 @@
         </br>
           <div class="row" style="">
          	</br>
-            <label style="text-align: center"><h3> Lista de evaluadores sugeridos a una propuesta</h3></label>
+            <label style="text-align: center"><h3> Evaluadores sugeridos de la propuesta: <br><em><?php echo utf8_decode($listar3EvaluadoresPropuesta[0]['tituloPropuesta']) ?></em></h3></label>
             <br>
              <div>
              	<table>

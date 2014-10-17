@@ -67,5 +67,6 @@ class Convocatoria_model extends CI_Model
 		}
 
 	}
+
 }
 ?>
