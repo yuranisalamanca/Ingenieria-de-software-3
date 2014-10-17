@@ -35,7 +35,7 @@
           <div class="row" style="">
          	</br>
             
-            <?php if(isset($propuestasEncontradas) == true) {?>
+            <?php if(($propuestasEncontradas) == true) {?>
                 <label style="text-align: center"><h3> Propuestas de la convocatoria:<br><em><?php echo utf8_decode($nombreConv); ?> </em></h3></label>
             <?php } else { ?>
             <div data-alert class="alert-box alert" id="alerta">
