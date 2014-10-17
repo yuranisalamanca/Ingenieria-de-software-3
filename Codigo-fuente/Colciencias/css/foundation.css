@@ -2302,9 +2302,9 @@ meta.foundation-mq-topbar {
   .alert-box.warning {
 
     color: #8a6d3b;
-  background-color: #fcf8e3;
-  border-color: #f7e1b5;
-  border-top-color: #f7e1b5;
+    background-color: #fcf8e3;
+    border-color: #f7e1b5;
+    border-top-color: #f7e1b5;
 
      }
   .alert-box.info {

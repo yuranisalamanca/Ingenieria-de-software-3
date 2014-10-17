@@ -38,8 +38,8 @@
             <?php if($propuestasEncontradas == true) {?>
                 <label style="text-align: center"><h3> Propuestas de la convocatoria:<br><em><?php echo utf8_decode($nombreConv); ?> </em></h3></label>
             <?php } else { ?>
-            <div data-alert class="alert-box alert" id="alerta">
-                    La convocatoria <?php echo utf8_decode(isset($nombreConv)); ?> no tiene propuestas.
+            <div data-alert class="alert-box warning radius" id="alerta">
+                    La convocatoria <strong><?php echo utf8_decode($nombreConv); ?></strong> no tiene propuestas.
                 <a href="#" class="close" data-dismiss="alert" id="closeAlerta">&times;</a>
             </div>
 
