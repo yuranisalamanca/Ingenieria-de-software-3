@@ -51,13 +51,6 @@ Class Propuesta extends CI_Controller {
 
 			$idPropuesta = $listaPropuesta[$i]['idPropuesta'];
 			$boolean = $this->Propuesta_model->buscarPropuestaExistente($idPropuesta);
-			$data['propuestasEncontradas'] = $this->Propuesta_model->buscarPropuestasDeUnaConvocatoria($idConvocatoria);
-			$data['nombreConv'] = $this->Propuesta_model->buscarConvocatoria($idConvocatoria);
-
-/*echo "<pre>";
-		print_r($idConvocatoria);
-		echo "</pre>";die();*/
-
 			$data['listaPropuesta'][$i]['idConvocatoria'] 		  = $listaPropuesta[$i]['idConvocatoria'];
 			$data['listaPropuesta'][$i]['idPropuesta'] 			  = $listaPropuesta[$i]['idPropuesta'];
 			$data['listaPropuesta'][$i]['titulo'] 				  = $listaPropuesta[$i]['titulo'];
@@ -70,7 +63,8 @@ Class Propuesta extends CI_Controller {
 
 		
 		}
-
+		$data['propuestasEncontradas'] = $this->Propuesta_model->buscarPropuestasDeUnaConvocatoria($idConvocatoria);
+		$data['nombreConv'] = $this->Propuesta_model->buscarConvocatoria($idConvocatoria);
 		$data['idConvocatoria'] = $idConvocatoria;
 		$this->load->view('barra');
 	    $this->load->view('listaPropuestasPorConvocatoria',$data);
