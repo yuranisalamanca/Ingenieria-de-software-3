@@ -142,7 +142,7 @@ Class Evaluadores_model extends CI_Model
           $orden='order by nombrePropuesta desc';
         }else if($ordenarEvaluador==1){
           $orden='order by nombreEvaluador asc';
-        }else if($ordenarPropuesta==2){
+        }else if($ordenarEvaluador==2){
           $orden='order by nombreEvaluador desc';
         }
         $sql="SELECT  p.idPropuesta, ep.iniciarProceso, p.titulo as nombrePropuesta, e.nombre as nombreEvaluador, e.idEvaluador
