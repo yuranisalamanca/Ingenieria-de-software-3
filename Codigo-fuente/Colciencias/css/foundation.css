@@ -2284,7 +2284,7 @@ meta.foundation-mq-topbar {
     .alert-box .close:hover, .alert-box .close:focus {
       opacity: 0.5; }
   .alert-box.radius {
-    border-radius: 3px; }
+    border-radius: 10px; }
   .alert-box.round {
     border-radius: 1000px; }
   .alert-box.success {
@@ -2300,9 +2300,13 @@ meta.foundation-mq-topbar {
     border-color: #c7c7c7;
     color: #4f4f4f; }
   .alert-box.warning {
-    background-color: #f08a24;
-    border-color: #de770f;
-    color: white; }
+
+    color: #8a6d3b;
+  background-color: #fcf8e3;
+  border-color: #f7e1b5;
+  border-top-color: #f7e1b5;
+
+     }
   .alert-box.info {
     background-color: #a0d3e8;
     border-color: #74bfdd;
