@@ -1599,7 +1599,8 @@ form .row .postfix-round.row.collapse .postfix {
 
 input[type="submit"] {
   -webkit-appearance: none;
-  -webkit-border-radius: 0px; }
+  -webkit-border-radius: 0px; 
+  background-color:#086A87; }
 
 /* Respect enforced amount of rows for textarea */
 textarea[rows] {
@@ -2283,7 +2284,7 @@ meta.foundation-mq-topbar {
     .alert-box .close:hover, .alert-box .close:focus {
       opacity: 0.5; }
   .alert-box.radius {
-    border-radius: 3px; }
+    border-radius: 10px; }
   .alert-box.round {
     border-radius: 1000px; }
   .alert-box.success {
@@ -2291,17 +2292,21 @@ meta.foundation-mq-topbar {
     border-color: #3a945b;
     color: white; }
   .alert-box.alert {
-    background-color: #f04124;
-    border-color: #de2d0f;
+    background-color: #FEEFB3;
+    border-color: #9F6000;
     color: white; }
   .alert-box.secondary {
     background-color: #e7e7e7;
     border-color: #c7c7c7;
     color: #4f4f4f; }
   .alert-box.warning {
-    background-color: #f08a24;
-    border-color: #de770f;
-    color: white; }
+
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #f7e1b5;
+    border-top-color: #f7e1b5;
+
+     }
   .alert-box.info {
     background-color: #a0d3e8;
     border-color: #74bfdd;

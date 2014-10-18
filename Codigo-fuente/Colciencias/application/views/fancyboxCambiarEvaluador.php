@@ -7,7 +7,8 @@
     <script src="<?php echo base_url(); ?>js/vendor/jquery.js"></script>	
 </head>
 <body>
-	<div class="row">        
+	<div class="row">   
+
 	    <label style="text-align: center; margin-top:25%"><h4>Seleccione el nuevo evaluador</h4></label>
 		<br>
 		<form method="post" action="<?php echo site_url('propuesta/listar3EvaluadoresPorPropuestaCambiado/'.$idPropuesta.'/'.$idCambiado); ?>">

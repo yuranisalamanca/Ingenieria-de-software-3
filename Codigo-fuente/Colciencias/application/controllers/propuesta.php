@@ -48,7 +48,7 @@ Class Propuesta extends CI_Controller {
 		$listaPropuesta = $this->Propuesta_model->listarPropuestaPorConvocatoria($idConvocatoria);
 		$data['listaPropuesta'] = array();
 		for($i=0; $i<count($listaPropuesta);$i++) {
-
+			
 			$idPropuesta = $listaPropuesta[$i]['idPropuesta'];
 			$boolean = $this->Propuesta_model->buscarPropuestaExistente($idPropuesta);
 			$data['listaPropuesta'][$i]['idConvocatoria'] 		  = $listaPropuesta[$i]['idConvocatoria'];
@@ -59,15 +59,18 @@ Class Propuesta extends CI_Controller {
 			$data['listaPropuesta'][$i]['nombreInstitucion']      = $listaPropuesta[$i]['nombreInstitucion'];
 			$data['listaPropuesta'][$i]['areaNombre']		      = $listaPropuesta[$i]['areaNombre'];
 			$data['listaPropuesta'][$i]['tipoEvaluacionNombre']   = $listaPropuesta[$i]['tipoEvaluacionNombre'];
-			$data['listaPropuesta'][$i]['evaluadoresEncontrados'] = $boolean; 
-
-		
+			$data['listaPropuesta'][$i]['evaluadoresEncontrados'] = $boolean;		
 		}
-		$data['idConvocatoria'] = $idConvocatoria;
+		$data['propuestasEncontradas'] = $this->Propuesta_model->buscarPropuestasDeUnaConvocatoria($idConvocatoria);
+		$data['nombreConv'] 		   = $this->Propuesta_model->buscarConvocatoria($idConvocatoria);
+		$data['idConvocatoria']		   = $idConvocatoria;
+
 		$this->load->view('barra');
 	    $this->load->view('listaPropuestasPorConvocatoria',$data);
 
 	}
+
+
 
 	public function listaDePropuestas(){
 
@@ -239,14 +242,15 @@ Class Propuesta extends CI_Controller {
 				} else {
 					$dataSearch['select_organizacion'] = 0;
 				}
-				$data['evaluadoresNuevos'] = $this->propuesta_model->buscarEvaluadoresCambiado($idPropuesta, $dataSearch);
+				$data['idPropuesta'] = $idPropuesta;
+				$data['idCambiado'] = $idCambiado;
+				$data['evaluadoresNuevos'] = $this->propuesta_model->buscarEvaluadoresCambiado($idPropuesta, $dataSearch,$idEv0, $idEv1,$idEv2);
 				if($data['evaluadoresNuevos'] =='No hay')
 				{
 					$varError='No existen evaluadores que cumplan con todos los criterios seleccionados';
 					$this->session->set_userdata('varError', $varError);
 				}
-				$data['idPropuesta'] = $idPropuesta;
-				$data['idCambiado'] = $idCambiado;
+				
 				$idConvocatoria=$this->propuesta_model->buscarIdConvocatoria($idPropuesta);
 				$this->load->view('fancyboxCambiarEvaluador',$data);
 				return ;

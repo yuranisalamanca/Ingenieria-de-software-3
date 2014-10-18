@@ -80,7 +80,7 @@
       $arreglo=array();
       $cont=0;
       foreach ($query->result() as $resultado) {
-
+       
         $arreglo[$cont]['idConvocatoria']         = $resultado->idConvocatoria;
         $arreglo[$cont]['idPropuesta']            = $resultado->idPropuesta;
         $arreglo[$cont]['titulo']                 = $resultado->titulo;
@@ -244,21 +244,17 @@
        * @author Karen Daniela Ramirez Montoya 
        * @author Yurani Alejandra Salamanca
        */
-      public function buscarPropuestaExistente($idPropuesta){
+  public function buscarPropuestaExistente($idPropuesta){
 
-        $sql="SELECT ep.Propuesta_idPropuesta as idPropuesta from evaluacion_propuesta ep WHERE ep.Propuesta_idPropuesta= ".$idPropuesta;
-        $query=$this->db->query($sql);
-         if($query->num_rows()>0){
-                return true;
-          }else{
-              return false;
-          }  
-      }
+    $sql="SELECT ep.Propuesta_idPropuesta as idPropuesta from evaluacion_propuesta ep WHERE ep.Propuesta_idPropuesta= ".$idPropuesta;
+    $query=$this->db->query($sql);
+    if($query->num_rows()>0){
+      return true;
+    }else{
+     return false;
+    }  
+  }
 
-
-        
-
-         
 
   public function buscarEvaluadores($idPropuesta, $data) {
 
@@ -279,7 +275,10 @@
     if ($data['idioma'] != 0 && $data['select_idioma'] != 0) {
       $where .= ' AND e.idioma_ididioma = ' . $data['select_idioma'];
     }
-
+    if($data['organizacion'] !=0 && $data[select_organizacion]!=0)
+    {
+      $where .= ' AND e.Organizacion_idOrganizacion = ' . $data[select_organizacion];
+    }
     $sql="SELECT e.idEvaluador, e.Ciudad_idCiudad FROM evaluador e WHERE e.Organizacion_idOrganizacion <> ".$data['select_organizacion'].$where." LIMIT 0, 3";
     
     $query= $this->db->query($sql);
@@ -342,7 +341,7 @@
     }
   }
 
-   public function buscarEvaluadoresCambiado($idPropuesta, $data) {
+   public function buscarEvaluadoresCambiado($idPropuesta,$data,$idEv0,$idEv1,$idEv2) {
 
 
     $where = '';
@@ -366,7 +365,7 @@
       $where .= ' AND e.idioma_ididioma = ' . $data['select_idioma'];
     }
 
-    $sql="SELECT e.idEvaluador,e.nombre FROM evaluador e WHERE e.Organizacion_idOrganizacion <> ".$data['select_organizacion'].$where;
+    $sql="SELECT e.idEvaluador,e.nombre FROM evaluador e WHERE e.Organizacion_idOrganizacion <> ".$data['select_organizacion']." AND e.idEvaluador <>".$idEv0." AND e.idEvaluador <>".$idEv1." AND e.idEvaluador <>".$idEv2.$where;
     
     $query= $this->db->query($sql);
     if($query->num_rows()>0){
@@ -385,6 +384,37 @@
       return 'No hay';
     }
   }
+
+  public function buscarConvocatoria($idConvocatoria)
+  {
+    $sql = $this->db->query("SELECT c.nombre as nombreConv
+            FROM Convocatoria c 
+            WHERE c.idConvocatoria =".$idConvocatoria);
+    if($sql->num_rows()>0) {
+      $nombreConv = '';
+      foreach ($sql->result() as $resultado) {
+        $nombreConv = $resultado->nombreConv;
+      }
+
+      return $nombreConv;
+    }
+  
+  }
+
+  public function buscarPropuestasDeUnaConvocatoria($idConvocatoria)
+  {
+    $sql = $this->db->query("SELECT p.idPropuesta as idPropuesta FROM Propuesta p WHERE p.Convocatoria_idConvocatoria = ".$idConvocatoria);
+
+    if($sql->num_rows()>0)
+    {
+      return true;
+    }else {
+      return false;
+    }
+    
+  }
+
+
 
 }
 ?>

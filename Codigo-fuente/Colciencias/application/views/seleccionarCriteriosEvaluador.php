@@ -9,13 +9,13 @@
         <script src="<?php echo base_url(); ?>js/vendor/jquery.js"></script>
     </head>
     <body>
-        <label style="text-align: center"><h3>Seleccione los criterios por los cuales desea buscar los evaluadores</h3></label>
+        <label style="text-align: center"><h4>Seleccione los criterios por los cuales desea buscar los evaluadores</h4></label>
         </br>
             <div class="row">
                 <form method="post" action="<?php echo site_url('propuesta/buscarEvaluadores/'.$idPropuesta); ?>">
                 <input type="hidden" name="select" value="1">
                 <input type="hidden" name="select_organizacion" value="<?php echo $organizacion; ?>">
-                    <table style="margin-left: 25%">
+                    <table align="center">
                         <thead>
                             <tr>
                                 <th style="text-align: center">Criterio</th>
@@ -74,7 +74,8 @@
                             </tr>
                         </tbody>
                     </table>
-                    <input type="submit" id="send" class="button" style="margin-left: 43%" value="Iniciar B&uacute;squeda">
+                    <br><div align="center">
+                    <input type="submit" id="send" class="button"  value="Iniciar B&uacute;squeda"></div>
                 </form>
         </div>
     </body>

@@ -15,6 +15,7 @@
 		<label style="text-align:center"> <h3> Convocatorias Colciencias </h3> </label>	
 		<br>
 		<div>
+
 			<table style="margin:0 auto">
 				<thead>
 					<tr>
@@ -33,7 +34,9 @@
 	     				<td style="text-align: center"> <?php echo utf8_decode($listadoConvocatorias[$i]['estadoConvocatoria']); ?></td>
 	     				<td style="text-align: center">
 	     					 <a class="" href="<?php echo site_url('propuesta/listaDePropuestasPorConvocatoria/'.$listadoConvocatorias[$i]['idConvocatoria']); ?>">
+                                    <span data-tooltip aria-haspopup="true" class="has-tip" data-options="show_on:large" title="Ver propuestas">
                                     <img src="<?php echo base_url(); ?>img/iconos/listarPropuesta.png">
+                                	</span>
                              </a>
                         </td>
 					</tr>

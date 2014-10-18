@@ -70,15 +70,15 @@ Class Evaluadores_model extends CI_Model
        */
       public function listar3EvaluadoresPorPropuesta($idPropuesta){
 
-        $sql="SELECT  e.idEvaluador as idEvaluador, e.nombre, e.cedula, c.nombre as ciudadNombre, e.calificacion, n.nombre as nvNombre, 
+        $sql="SELECT  p.idPropuesta as idPropuesta, p.titulo as tituloPropuesta,e.idEvaluador as idEvaluador, e.nombre, e.cedula, c.nombre as ciudadNombre, e.calificacion, n.nombre as nvNombre, 
                        o.nombre as organizacionNombre, a.nombre as areaNombre
-                      FROM evaluador e, nivel_formacion n, organizacion o, ciudad c, area_conocimiento a, evaluacion_propuesta ep 
+                      FROM evaluador e, nivel_formacion n, organizacion o, ciudad c, area_conocimiento a, evaluacion_propuesta ep, propuesta p
                       WHERE  ep.Evaluador_idEvaluador=e.idEvaluador
                       AND e.Nivel_formacion_idNivel_formacion=n.idNivel_formacion 
                       AND   e.organizacion_idOrganizacion=o.idOrganizacion
                       AND   e.area_conocimiento_idArea_conocimiento=a.idArea_conocimiento
                       AND   e.ciudad_idCiudad=c.idCiudad
-                      AND   ep.Propuesta_idPropuesta=".$idPropuesta;
+                      AND   ep.Propuesta_idPropuesta=".$idPropuesta." AND p.idPropuesta=" .$idPropuesta;
 
           $query=$this->db->query($sql);
          if($query->num_rows()>0){
@@ -86,6 +86,8 @@ Class Evaluadores_model extends CI_Model
                 $arreglo=array();
                 $cont=0;
                 foreach ($query->result() as $resultado) {
+                  $arreglo[$cont]['idPropuesta']            = $resultado->idPropuesta;
+                  $arreglo[$cont]['tituloPropuesta']        = $resultado->tituloPropuesta;
                   $arreglo[$cont]['idEvaluador']            = $resultado->idEvaluador;
                   $arreglo[$cont]['nombre']                 = $resultado->nombre;
                   $arreglo[$cont]['cedula']                 = $resultado->cedula;
@@ -141,7 +143,7 @@ Class Evaluadores_model extends CI_Model
           $orden='order by nombrePropuesta desc';
         }else if($ordenarEvaluador==1){
           $orden='order by nombreEvaluador asc';
-        }else if($ordenarPropuesta==2){
+        }else if($ordenarEvaluador==2){
           $orden='order by nombreEvaluador desc';
         }
         $sql="SELECT  p.idPropuesta, ep.iniciarProceso, p.titulo as nombrePropuesta, e.nombre as nombreEvaluador, e.idEvaluador
@@ -167,6 +169,17 @@ Class Evaluadores_model extends CI_Model
               $cont++;
             }
             return $arreglo;           
+        }
+      }
+
+      public function eliminarEvaluador($idEvaluador,$idPropuesta){
+        $sql="DELETE from evaluacion_propuesta where Evaluador_idEvaluador=".$idEvaluador." AND Propuesta_idPropuesta=".$idPropuesta;
+        $query=$this->db->query($sql);
+
+        if($query){
+          return true;
+        }else{
+          return false;
         }
       }
             

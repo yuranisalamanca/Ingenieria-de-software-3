@@ -49,7 +49,7 @@ Class Evaluador extends CI_Controller {
        * @author Karen Daniela Ramirez Montoya 
        * @author Yurani Alejandra Salamanca 
        */
-	public function listar3EvaluadoresPorPropuesta($idPropuesta){
+	public function listar3EvaluadoresPorPropuesta($idPropuesta,$eliminado=''){
 
 		$this->load->model('evaluadores_model');   
 		$this->load->model('propuesta_model');   
@@ -68,6 +68,7 @@ Class Evaluador extends CI_Controller {
 		if(!isset($data['idEv2'])){
 			$data['idEv2']=0;
 		}
+		$data['evaluadorEliminado']=$eliminado;
 		$data['idConfirmado'] = $this->propuesta_model->verficarEvaluadorConfirmado($idPropuesta);
 		$this->load->view('barra');
 	    $this->load->view('lista3EvaluadoresPropuesta',$data);
@@ -118,6 +119,12 @@ Class Evaluador extends CI_Controller {
 		$idConvocatoria = $this->convocatoria_model->buscarConvocatoriaPorPropuesta($idPropuesta);
 		$this->listaDePropuestasYEvaluadoresOrdenado($idConvocatoria);
 		
+	}
+
+	public function eliminarEvaluador($idEvaluador,$idPropuesta){
+		$this->load->model('evaluadores_model');
+		$eliminado=$this->evaluadores_model->eliminarEvaluador($idEvaluador,$idPropuesta);
+		$this->listar3EvaluadoresPorPropuesta($idPropuesta,$eliminado);
 	}
 
 }

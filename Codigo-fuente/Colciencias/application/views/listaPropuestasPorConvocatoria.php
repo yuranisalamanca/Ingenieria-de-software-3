@@ -34,7 +34,16 @@
         <?php $this->session->unset_userdata('varError'); } ?>
           <div class="row" style="">
          	</br>
-            <label style="text-align: center"><h3> Listado de propuestas por convocatoria</h3></label>
+            
+            <?php if($propuestasEncontradas == true) {?>
+                <label style="text-align: center"><h3> Propuestas de la convocatoria:<br><em><?php echo utf8_decode($nombreConv); ?> </em></h3></label>
+            <?php } else { ?>
+            <div data-alert class="alert-box warning radius" id="alerta">
+                    La convocatoria <strong><?php echo utf8_decode($nombreConv); ?></strong> no tiene propuestas.
+                <a href="#" class="close" data-dismiss="alert" id="closeAlerta">&times;</a>
+            </div>
+
+            <?php } ?>
             <br>
              <div>
              <label style="text-align: right" >Listado de propuestas y evaluadores:                 
@@ -68,11 +77,11 @@
                             <td style="text-align: center">
                             <?php if($listaPropuesta[$i]['evaluadoresEncontrados']==true){ ?>
                                  <a class="cambiarEvaluador" href="<?php echo site_url('evaluador/listar3EvaluadoresPorPropuesta/'.$listaPropuesta[$i]['idPropuesta']); ?>">
-                                    <img src="<?php echo base_url(); ?>img/iconos/verInfoEvaluadores.png">                                 
+                                    <img src="<?php echo base_url(); ?>img/iconos/verInfoEvaluadores.png" title="Informaci&oacute;n evaluadores">                                 
                                 </a>
                             <?php } else { ?>
                                   <a class="buscarEvaluadores" href="<?php echo site_url('propuesta/buscarEvaluadores/'.$listaPropuesta[$i]['idPropuesta']); ?>">
-                                    <img src="<?php echo base_url(); ?>img/iconos/search.png">
+                                    <img src="<?php echo base_url(); ?>img/iconos/search.png" title="Seleccionar evaluadores">
                                 </a>
                             <?php } ?>
                             </td>
@@ -91,5 +100,13 @@
     $('#closeError').click(function (){
         $('#varError').hide(1000);
     });
+
+     $('#closeAlerta').click(
+        function (){
+        $('#alerta').hide(1000);
+    });
+
+
+    
     </script>
 </html>

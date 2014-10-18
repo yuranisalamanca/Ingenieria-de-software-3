@@ -31,7 +31,7 @@
         </br>
           <div class="row" style="">
          	</br>
-            <label style="text-align: center"><h3> Lista de evaluadores sugeridos a una propuesta</h3></label>
+            <label style="text-align: center"><h3> Evaluadores sugeridos para la propuesta: <br><em><?php echo utf8_decode($listar3EvaluadoresPropuesta[0]['tituloPropuesta']) ?></em></h3></label>
             <br>
              <div>
              	<table>
@@ -58,20 +58,22 @@
              				<td style="text-align: center"> <?php echo utf8_decode($listar3EvaluadoresPropuesta[$i]['organizacionNombre']); ?> </td>
                             <td style="text-align: center"> <?php echo utf8_decode($listar3EvaluadoresPropuesta[$i]['areaNombre']); ?> </td>
                             <td style="text-align: center">
-                                <?php if ($listar3EvaluadoresPropuesta[$i]['idEvaluador'] == $idConfirmado) { ?>
-                                        <img src="<?php echo base_url(); ?>img/iconos/check_verde.png">                                   
-                                <?php } else if ($idConfirmado == 0){ ?>
-                                    <a href="<?php echo site_url('evaluador/asignarEvaluador/'.$idPropuesta.'/'.$listar3EvaluadoresPropuesta[$i]['idEvaluador']); ?>">
-                                        <img src="<?php echo base_url(); ?>img/iconos/checkEvaluador.png">                                   
-                                    </a>
-                                <?php } ?>
-                                 <a  class="cambiarEvaluador" href="<?php echo site_url('propuesta/cambiarEvaluador/'.$idEv0.'/'.$idEv1.'/'.$idEv2.'/'.$listar3EvaluadoresPropuesta[$i]['idEvaluador'].'/'.$idPropuesta); ?>">
+                            <?php if ($listar3EvaluadoresPropuesta[$i]['idEvaluador'] == $idConfirmado) { ?>
+                                    <img src="<?php echo base_url(); ?>img/iconos/check_verde.png">                                   
+                            <?php } else if ($idConfirmado == 0){ ?>
+                                <a href="<?php echo site_url('evaluador/asignarEvaluador/'.$idPropuesta.'/'.$listar3EvaluadoresPropuesta[$i]['idEvaluador']); ?>">
+                                    <img src="<?php echo base_url(); ?>img/iconos/checkEvaluador.png">                                   
+                                </a>
+                            <?php } ?>
+                                <a  class="cambiarEvaluador" href="<?php echo site_url('propuesta/cambiarEvaluador/'.$idEv0.'/'.$idEv1.'/'.$idEv2.'/'.$listar3EvaluadoresPropuesta[$i]['idEvaluador'].'/'.$idPropuesta); ?>">
                                     <img src="<?php echo base_url(''); ?>img/iconos/cambiarEvaluador.png">                                   
                                 </a>
                                 <a  class="" href="<?php echo site_url('evaluador/listarPropuestaPorEvaluador/'.$listar3EvaluadoresPropuesta[$i]['idEvaluador']);?>">
                                     <img src="<?php echo base_url(''); ?>img/iconos/listarPropuesta.png">                                   
                                 </a>
-                               
+                                  <a  class="" href="<?php echo site_url('evaluador/eliminarEvaluador/'.$listar3EvaluadoresPropuesta[$i]['idEvaluador'].'/'.$listar3EvaluadoresPropuesta[$i]['idPropuesta']);?>">
+                                    <img src="<?php echo base_url(''); ?>img/iconos/eliminar.png">                                   
+                                </a>                               
                             </td>
              			</tr>
                         <?php } ?>
@@ -84,4 +86,12 @@
         <center><h3 class="subheader">Todos los derechos reservados</h3><center>
         <center><h3 class="subheader">2014</h3><center>
     </body>
+    <script type="text/javascript">
+        $(function() {
+            <?php if($evaluadorEliminado==true) { ?>
+                 alert('El evaluador ya no hace parte del proceso de evaluaci\u00F3n');
+            <?php } ?>
+        });
+
+    </script>
 </html>
