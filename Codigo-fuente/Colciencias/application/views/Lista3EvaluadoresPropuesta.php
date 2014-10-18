@@ -88,8 +88,8 @@
     </body>
     <script type="text/javascript">
         $(function() {
-            <?php if($data['evaluadorEliminado']==1) { ?>
-                 alert('El evaluador fue desasignado correctamente');
+            <?php if($evaluadorEliminado==true) { ?>
+                 alert('El evaluador ya no hace parte del proceso de evaluaci\u00F3n');
             <?php } ?>
         });
 
