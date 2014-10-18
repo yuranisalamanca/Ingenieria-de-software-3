@@ -9,6 +9,9 @@
         <script src="<?php echo base_url(); ?>js/vendor/jquery.js"></script>
     </head>
     <body>
+        <?php if ($this->session->userdata('varErrorCambiar') != '') { ?>
+            <div id="varErrorCambiar" class="row" style="background-color: #F5A9BC"> &nbsp;<a style="color: #FF0000;" id="closeError">X</a> &nbsp; <?php echo $this->session->userdata('varErrorCambiar'); ?></div>
+        <?php $this->session->unset_userdata('varErrorCambiar'); } ?>
         <label style="text-align: center"><h5>Seleccione los criterios por los cuales desea buscar los evaluadores</h5></label>
         </br>
             <div class="row">
@@ -83,4 +86,9 @@
                 </form>
         </div>
     </body>
+    <script type="text/javascript">
+    $('#closeError').click(function (){
+        $('#varErrorCambiar').hide(1000);
+    });
+    </script>
 </html>

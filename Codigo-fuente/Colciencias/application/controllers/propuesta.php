@@ -280,7 +280,8 @@ Class Propuesta extends CI_Controller {
 
 		if (null != $this->input->post('select') && $this->input->post('select') == 1) {
 			if ($this->input->post('select_evaluador') == 0) {
-				//TODO mensaje de error!
+				$varErrorCambiar = 'No existen evaluadores que cumplan con todos los criterios seleccionados';
+				$this->session->set_userdata('varErrorCambiar', $varErrorCambiar);
 			} else {
 				$idNuevo = $this->input->post('select_evaluador');
 				$this->propuesta_model->cambiarEvaluador($idViejo,$idNuevo,$idPropuesta);
