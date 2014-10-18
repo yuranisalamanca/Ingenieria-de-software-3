@@ -242,14 +242,15 @@ Class Propuesta extends CI_Controller {
 				} else {
 					$dataSearch['select_organizacion'] = 0;
 				}
-				$data['evaluadoresNuevos'] = $this->propuesta_model->buscarEvaluadoresCambiado($idPropuesta, $dataSearch);
+				$data['idPropuesta'] = $idPropuesta;
+				$data['idCambiado'] = $idCambiado;
+				$data['evaluadoresNuevos'] = $this->propuesta_model->buscarEvaluadoresCambiado($idPropuesta, $dataSearch,$idEv0, $idEv1,$idEv2);
 				if($data['evaluadoresNuevos'] =='No hay')
 				{
 					$varError='No existen evaluadores que cumplan con todos los criterios seleccionados';
 					$this->session->set_userdata('varError', $varError);
 				}
-				$data['idPropuesta'] = $idPropuesta;
-				$data['idCambiado'] = $idCambiado;
+				
 				$idConvocatoria=$this->propuesta_model->buscarIdConvocatoria($idPropuesta);
 				$this->load->view('fancyboxCambiarEvaluador',$data);
 				return ;

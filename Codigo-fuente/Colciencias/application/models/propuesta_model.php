@@ -341,7 +341,7 @@
     }
   }
 
-   public function buscarEvaluadoresCambiado($idPropuesta, $data) {
+   public function buscarEvaluadoresCambiado($idPropuesta,$data,$idEv0,$idEv1,$idEv2) {
 
 
     $where = '';
@@ -365,7 +365,7 @@
       $where .= ' AND e.idioma_ididioma = ' . $data['select_idioma'];
     }
 
-    $sql="SELECT e.idEvaluador,e.nombre FROM evaluador e WHERE e.Organizacion_idOrganizacion <> ".$data['select_organizacion'].$where;
+    $sql="SELECT e.idEvaluador,e.nombre FROM evaluador e WHERE e.Organizacion_idOrganizacion <> ".$data['select_organizacion']." AND e.idEvaluador <>".$idEv0." AND e.idEvaluador <>".$idEv1." AND e.idEvaluador <>".$idEv2.$where;
     
     $query= $this->db->query($sql);
     if($query->num_rows()>0){

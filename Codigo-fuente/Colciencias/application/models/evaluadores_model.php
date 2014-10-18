@@ -70,7 +70,7 @@ Class Evaluadores_model extends CI_Model
        */
       public function listar3EvaluadoresPorPropuesta($idPropuesta){
 
-        $sql="SELECT  p.titulo as tituloPropuesta,e.idEvaluador as idEvaluador, e.nombre, e.cedula, c.nombre as ciudadNombre, e.calificacion, n.nombre as nvNombre, 
+        $sql="SELECT  p.idPropuesta as idPropuesta, p.titulo as tituloPropuesta,e.idEvaluador as idEvaluador, e.nombre, e.cedula, c.nombre as ciudadNombre, e.calificacion, n.nombre as nvNombre, 
                        o.nombre as organizacionNombre, a.nombre as areaNombre
                       FROM evaluador e, nivel_formacion n, organizacion o, ciudad c, area_conocimiento a, evaluacion_propuesta ep, propuesta p
                       WHERE  ep.Evaluador_idEvaluador=e.idEvaluador
@@ -86,6 +86,7 @@ Class Evaluadores_model extends CI_Model
                 $arreglo=array();
                 $cont=0;
                 foreach ($query->result() as $resultado) {
+                  $arreglo[$cont]['idPropuesta']            = $resultado->idPropuesta;
                   $arreglo[$cont]['tituloPropuesta']        = $resultado->tituloPropuesta;
                   $arreglo[$cont]['idEvaluador']            = $resultado->idEvaluador;
                   $arreglo[$cont]['nombre']                 = $resultado->nombre;
@@ -168,6 +169,17 @@ Class Evaluadores_model extends CI_Model
               $cont++;
             }
             return $arreglo;           
+        }
+      }
+
+      public function eliminarEvaluador($idEvaluador,$idPropuesta){
+        $sql="DELETE from evaluacion_propuesta where Evaluador_idEvaluador=".$idEvaluador." AND Propuesta_idPropuesta=".$idPropuesta;
+        $query=$this->db->query($sql);
+
+        if($query){
+          return true;
+        }else{
+          return false;
         }
       }
             
