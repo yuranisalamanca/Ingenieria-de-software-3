@@ -87,19 +87,8 @@
         </div>
     </body>
     <script type="text/javascript">
-<<<<<<< HEAD
     $('#closeError').click(function (){
         $('#varErrorCambiar').hide(1000);
     });
     </script>
-=======
-    $("#send").click(function() {
-        parent.$.fancybox.close();
-    });
-
-    $('#closeError').click(function (){
-        $('#varError').hide(1000);
-    });
-</script>
->>>>>>> origin/master
 </html>
