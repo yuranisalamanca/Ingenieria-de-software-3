@@ -27,6 +27,10 @@
         </script>
     </head>
     <body>
+    <?php if($this->session->userdata('varSeleccion')!=''){ ?>
+          <div id="varSeleccion" style="margin-top: 10px; width: 74%; margin-left: 13%" class="alert-box warning radius" > &nbsp;<?php echo $this->session->userdata('varSeleccion'); ?><a href="#" class="close" data-dismiss="alert" id="closeVarSeleccion">&times;</a></div>
+    <?php $this->session->unset_userdata('varSeleccion'); } ?>
+
         
         </br>
           <div class="row" style="">
@@ -92,6 +96,12 @@
                  alert('El evaluador ya no hace parte del proceso de evaluaci\u00F3n');
             <?php } ?>
         });
+
+         $('#closeVarSeleccion').click(
+            function (){
+            $('#varSeleccion').hide(1000);
+        });
+
 
     </script>
 </html>

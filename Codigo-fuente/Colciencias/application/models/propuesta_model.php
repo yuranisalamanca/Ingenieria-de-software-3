@@ -381,10 +381,23 @@
     }
   }
 
+  public function validarSeleccionCriterios($data)
+  {
+    if( $data['select_nivel']==0&&$data['select_idioma']==0 &&$data['select_organizacion']==0 &&$data['select_experiencia']==0)
+    {
+      return 'errorSeleccion';
+    }
+    else
+    {
+      return '';
+    }
+  }
+
    public function buscarEvaluadoresCambiado($idPropuesta,$data,$idEv0,$idEv1,$idEv2) {
 
 
     $where = '';
+    
 
     if ($data['nombre'] != 0 && $data['select_nombre'] != '') {
       $where .= ' AND e.nombre LIKE "%' . $data['select_nombre'].'%"';
@@ -392,9 +405,7 @@
     if ($data['area'] != 0 && $data['select_area'] != 0) {
       $where .= ' AND e.area_conocimiento_idarea_conocimiento = ' . $data['select_area'];
     }
-    if ($data['calificacion'] != 0 && $data['select_calificacion'] != 0) {
-      $where .= ' AND e.calificacion = ' . $data['select_calificacion'];
-    }
+    
     if ($data['ciudad'] != 0 && $data['select_ciudad'] != 0) {
       $where .= ' AND e.Ciudad_idCiudad = ' . $data['select_ciudad'];
     }
@@ -404,8 +415,12 @@
     if ($data['idioma'] != 0 && $data['select_idioma'] != 0) {
       $where .= ' AND e.idioma_ididioma = ' . $data['select_idioma'];
     }
+    if($data['organizacion'] != 0 && $data['select_organizacion'] != 0)
+    {
+      $where .= ' AND e.Organizacion_idOrganizacion = ' . $data['select_organizacion'];
+    }
 
-    $sql="SELECT e.idEvaluador,e.nombre FROM evaluador e WHERE e.Organizacion_idOrganizacion <> ".$data['select_organizacion']." AND e.idEvaluador <>".$idEv0." AND e.idEvaluador <>".$idEv1." AND e.idEvaluador <>".$idEv2.$where;
+    $sql="SELECT e.idEvaluador,e.nombre FROM evaluador e WHERE e.grupoinvestigacion_idgrupoInvestigacion <> ".$data['select_grupoinvestigacion']." AND e.idEvaluador <>".$idEv0." AND e.idEvaluador <>".$idEv1." AND e.idEvaluador <>".$idEv2.$where;
     
     $query= $this->db->query($sql);
     if($query->num_rows()>0){

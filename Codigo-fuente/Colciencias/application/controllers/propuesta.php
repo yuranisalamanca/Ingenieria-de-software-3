@@ -173,19 +173,14 @@ Class Propuesta extends CI_Controller {
 					$dataSearch['select_experiencia'] = 0;
 				}
 				
-				if($this->Propuesta_model->buscarEvaluadores($idPropuesta, $dataSearch)=='errorSeleccion')
+				$evaluadores['evaluadores'] =$this->Propuesta_model->buscarEvaluadores($idPropuesta, $dataSearch);
+				if($evaluadores['evaluadores']=='errorSeleccion')
 				{
-					$varSeleccion='Por favor indique el valor del criterio de busqueda seleccionado';
+					$varSeleccion='Por favor indique el valor del criterio de b&uacute;squeda seleccionado';
 					$this->session->set_userdata('varSeleccion', $varSeleccion);
 				}
 
-				if($this->Propuesta_model->buscarEvaluadores($idPropuesta, $dataSearch)=='no busqueda')
-				{
-					$varSeleccion='Por favor seleccione algun criterio de busqueda';
-					$this->session->set_userdata('varNada', $varNada);
-				}
-
-				if($this->Propuesta_model->buscarEvaluadores($idPropuesta, $dataSearch)=='No hay')
+				if($evaluadores['evaluadores']=='No hay')
 				{
 					$varError='No existen evaluadores que cumplan con todos los criterios seleccionados';
 					$this->session->set_userdata('varError', $varError);
@@ -209,6 +204,7 @@ Class Propuesta extends CI_Controller {
     public function cambiarEvaluador($idEv0, $idEv1,$idEv2,$idCambiado,$idPropuesta){
 
     	$this->load->model('propuesta_model');
+    	$this->load->model('evaluadores_model');
     	if (null !== $this->input->post('select') && $this->input->post('select') == 1) {
 
 			if(count($this->input->post()) > 4) {		
@@ -232,16 +228,6 @@ Class Propuesta extends CI_Controller {
 				} else {
 					$dataSearch['select_area'] = 0;
 				}
-				if (null != $this->input->post('calificacion')) {
-					$dataSearch['calificacion'] = 1;
-				} else {
-					$dataSearch['calificacion'] = 0;
-				}
-				if (null != $this->input->post('select_calificacion')) {
-					$dataSearch['select_calificacion'] = $this->input->post('select_calificacion');
-				} else {
-					$dataSearch['select_calificacion'] = 0;
-				}
 				if (null != $this->input->post('ciudad')) {
 					$dataSearch['ciudad'] = 1;
 				} else {
@@ -262,6 +248,26 @@ Class Propuesta extends CI_Controller {
 				} else {
 					$dataSearch['select_nivel'] = 0;
 				}
+				if (null != $this->input->post('organizacion')) {
+					$dataSearch['organizacion'] = 1;
+				} else {
+					$dataSearch['organizacion'] = 0;
+				}
+				if (null != $this->input->post('select_organizacion')) {
+					$dataSearch['select_organizacion'] = $this->input->post('select_organizacion');
+				} else {
+					$dataSearch['select_organizacion'] = 0;
+				}
+				if (null != $this->input->post('experiencia')) {
+					$dataSearch['experiencia'] = 1;
+				} else {
+					$dataSearch['experiencia'] = 0;
+				}
+				if (null != $this->input->post('select_experiencia')){
+					$dataSearch['select_experiencia'] = $this->input->post('select_experiencia');
+				} else {
+					$dataSearch['select_experiencia'] = 0;
+				}
 				if (null != $this->input->post('idioma')) {
 					$dataSearch['idioma'] = 1;
 				} else {
@@ -272,15 +278,19 @@ Class Propuesta extends CI_Controller {
 				} else {
 					$dataSearch['select_idioma'] = 0;
 				}
-				if (null != $this->input->post('select_organizacion')) {
-					$dataSearch['select_organizacion'] = $this->input->post('select_organizacion');
+				if (null != $this->input->post('select_grupoinvestigacion')) {
+					$dataSearch['select_grupoinvestigacion'] = $this->input->post('select_grupoinvestigacion');
 				} else {
-					$dataSearch['select_organizacion'] = 0;
+					$dataSearch['select_grupoinvestigacion'] = 0;
 				}
+				
 
 				$data['idPropuesta'] = $idPropuesta;
 				$data['idCambiado'] = $idCambiado;
 				$data['evaluadoresNuevos'] = $this->propuesta_model->buscarEvaluadoresCambiado($idPropuesta, $dataSearch,$idEv0, $idEv1,$idEv2);
+				
+				
+
 				if($data['evaluadoresNuevos'] =='No hay')
 				{
 					$varError='No existen evaluadores que cumplan con los criterios seleccionados';
@@ -295,7 +305,6 @@ Class Propuesta extends CI_Controller {
 			}
 		}
     
-	   // $data['listarEvaluadoresTodos'] = $this->propuesta_model->listarEvaluadoresTodos($idEv0, $idEv1,$idEv2);
 	    $data['idEv0'] = $idEv0;	    
 	    $data['idEv1'] = $idEv1;	    
 	    $data['idEv2'] = $idEv2;	    
@@ -305,10 +314,8 @@ Class Propuesta extends CI_Controller {
 		$data['niveles']	  = $this->propuesta_model->getNiveles();
 		$data['ciudad']		  = $this->propuesta_model->getCiudadPropuesta($idPropuesta);
 		$data['area']		  = $this->propuesta_model->getAreaPropuesta($idPropuesta);
+		$data['grupoinvestigacion']  		 = $this->propuesta_model->getGrupoInvestigacionPropuesta($idPropuesta);
 		$data['organizacion'] = $this->propuesta_model->getOrganizacionPropuesta($idPropuesta);
-	    /*echo "<pre>";
-		print_r($data);
-		echo "</pre>";die();*/
 	    $this->load->view('seleccionarCriteriosEvaluadorCambiado', $data);
 	}
 
