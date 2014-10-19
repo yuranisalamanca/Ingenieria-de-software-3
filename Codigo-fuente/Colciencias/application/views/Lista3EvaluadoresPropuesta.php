@@ -63,22 +63,28 @@
                             <td style="text-align: center"> <?php echo utf8_decode($listar3EvaluadoresPropuesta[$i]['areaNombre']); ?> </td>
                             <td style="text-align: center">
                             <?php if ($listar3EvaluadoresPropuesta[$i]['idEvaluador'] == $idConfirmado) { ?>
-                                    <img src="<?php echo base_url(); ?>img/iconos/check_verde.png">                                   
+                                    <img src="<?php echo base_url(); ?>img/iconos/check_verde.png" title="Evaluador confirmado">                                   
                             <?php } else if ($idConfirmado == 0){ ?>
                                 <a href="<?php echo site_url('evaluador/asignarEvaluador/'.$idPropuesta.'/'.$listar3EvaluadoresPropuesta[$i]['idEvaluador']); ?>">
                                     <img src="<?php echo base_url(); ?>img/iconos/checkEvaluador.png">                                   
                                 </a>
+                            <?php }else if($listar3EvaluadoresPropuesta[$i]['idEvaluador'] == $idSuplente){?>
+                                   <img src="<?php echo base_url(); ?>img/iconos/esSuplente.png" title="Evaluador suplente"> 
+                            <?php }else if($idSuplente==0){ ?>
+                                <a href="<?php echo site_url('evaluador/marcarComoSuplente/'.$listar3EvaluadoresPropuesta[$i]['idEvaluador'].'/'.$idPropuesta); ?>">
+                                    <img src="<?php echo base_url(); ?>img/iconos/suplente.png" title="Marcar como suplente">                                   
+                                </a> 
                             <?php } ?>
                                 <a  class="cambiarEvaluador" href="<?php echo site_url('propuesta/cambiarEvaluador/'.$idEv0.'/'.$idEv1.'/'.$idEv2.'/'.$listar3EvaluadoresPropuesta[$i]['idEvaluador'].'/'.$idPropuesta); ?>">
-                                    <img src="<?php echo base_url(''); ?>img/iconos/cambiarEvaluador.png">                                   
+                                    <img src="<?php echo base_url(''); ?>img/iconos/cambiarEvaluador.png" title="Cambiar evaluador">                                   
                                 </a>
                                 <a  class="" href="<?php echo site_url('evaluador/listarPropuestaPorEvaluador/'.$listar3EvaluadoresPropuesta[$i]['idEvaluador']);?>">
-                                    <img src="<?php echo base_url(''); ?>img/iconos/listarPropuesta.png">                                   
+                                    <img src="<?php echo base_url(''); ?>img/iconos/listarPropuesta.png" title="Lista de propuestas asigandas">                                   
                                 </a>
                                   <a  class="" href="<?php echo site_url('evaluador/eliminarEvaluador/'.$listar3EvaluadoresPropuesta[$i]['idEvaluador'].'/'.$listar3EvaluadoresPropuesta[$i]['idPropuesta']);?>">
-                                    <img src="<?php echo base_url(''); ?>img/iconos/eliminar.png">                                   
-                                </a>                               
-                            </td>
+                                    <img src="<?php echo base_url(''); ?>img/iconos/eliminar.png" title="Eliminar evaluador">                                   
+                                </a>                            
+                            </td>  
              			</tr>
                         <?php } ?>
              		</tbody>

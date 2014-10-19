@@ -264,6 +264,19 @@
     }
   }
 
+  public function verficarEvaluadorSuplente($idPropuesta)
+  {
+     $sql="SELECT ep.Evaluador_idEvaluador as idEvaluador FROM evaluacion_propuesta ep WHERE ep.Propuesta_idPropuesta=".$idPropuesta." AND ep.esSuplente=1";
+     $query=$this->db->query($sql);
+     if($query->num_rows()>0) {
+      $idEvaluador = 0;
+      foreach ($query->result() as $resultado) {
+        $idEvaluador = $resultado->idEvaluador;
+      }
+      return $idEvaluador;
+    }
+  }
+
        /**
        * esta funcion sirve para buscar si la propuesta seleccionada se encuentra en la tabla evaluacion_propuesta
        * @return $idPropuesta
@@ -291,8 +304,6 @@
     {
       return 'errorSeleccion';
     }
-
-
     if ($data['area'] != 0 && $data['select_area'] != 0) {
       $where .= ' AND e.area_conocimiento_idarea_conocimiento = ' . $data['select_area'];
     }

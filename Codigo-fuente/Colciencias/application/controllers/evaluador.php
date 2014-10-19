@@ -53,8 +53,9 @@ Class Evaluador extends CI_Controller {
 
 		$this->load->model('evaluadores_model');   
 		$this->load->model('propuesta_model');   
-		$data['idPropuesta']=$idPropuesta;
+		$data['idPropuesta']                 = $idPropuesta;
 		$data['listar3EvaluadoresPropuesta'] = $this->evaluadores_model->listar3EvaluadoresPorPropuesta($idPropuesta);
+
 		for($i=0; $i<count($data['listar3EvaluadoresPropuesta']);$i++) {
 			$data['idEv'.$i] = $data['listar3EvaluadoresPropuesta'][$i]['idEvaluador'];
 		}
@@ -68,8 +69,10 @@ Class Evaluador extends CI_Controller {
 		if(!isset($data['idEv2'])){
 			$data['idEv2']=0;
 		}
-		$data['evaluadorEliminado']=$eliminado;
-		$data['idConfirmado'] = $this->propuesta_model->verficarEvaluadorConfirmado($idPropuesta);
+
+		$data['evaluadorEliminado'] = $eliminado;
+		$data['idConfirmado']       = $this->propuesta_model->verficarEvaluadorConfirmado($idPropuesta);
+		$data['idSuplente']         = $this->propuesta_model->verficarEvaluadorSuplente($idPropuesta);
 		$this->load->view('barra');
 	    $this->load->view('lista3EvaluadoresPropuesta',$data);
 	}
@@ -102,6 +105,9 @@ Class Evaluador extends CI_Controller {
 	public function listaDePropuestasYEvaluadoresOrdenado($idConvocatoria,$ordenarEvaluador='',$ordenarPropuesta='')
 	{
 		$this->load->model('evaluadores_model');
+		$this->load->model('convocatoria_model');
+		$data['nombreConvocatoria']=$this->convocatoria_model->getConvocatoria($idConvocatoria);
+		$data['evaluadoresYPropuestasEncontrados']=$this->evaluadores_model->buscarEvaluadoresYPropuestasPorConvocatoria($idConvocatoria);
 		$data['listaPropuestasYEvaluadores'] = $this->evaluadores_model->listaDeEvaluadoresYPropuestasOrdenado($idConvocatoria,$ordenarEvaluador,$ordenarPropuesta);
 		$data['ordenarEvaluador'] = $ordenarEvaluador;
 		$data['ordenarPropuesta'] = $ordenarPropuesta;
@@ -144,6 +150,15 @@ Class Evaluador extends CI_Controller {
 		$data['listarEvaluadores'] = $this->evaluadores_model->listarEvaluadoresPorConvocatoria($idConvocatoria);
 		$this->load->view('barra');
 	    $this->load->view('listaEvaluadoresPorConvocatoria', $data);
+
+	}
+
+	public function marcarComoSuplente($idEvaluador, $idPropuesta){
+
+		$this->load->model('evaluadores_model');
+		$this->evaluadores_model-> marcarEvaluadorSuplente($idEvaluador, $idPropuesta);
+		$this->listar3EvaluadoresPorPropuesta($idPropuesta);
+
 
 	}
 

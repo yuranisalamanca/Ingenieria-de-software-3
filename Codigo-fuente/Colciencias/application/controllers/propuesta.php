@@ -10,7 +10,7 @@ Class Propuesta extends CI_Controller {
 	 *	- or -  
 	 * 		http://example.com/index.php/welcome/index
 	 *	- or -
-	 * Since this controller is set as the default controller in 
+	 * Since this controller is set as the default controller in 	
 	 * config/routes.php, it's displayed at http://example.com/
 	 *
 	 * So any other public methods not prefixed with an underscore will
@@ -31,7 +31,7 @@ Class Propuesta extends CI_Controller {
 		$this->load->view('barra');
 	    $this->load->view('homeUsuarioColciencias');
 
-	}
+	}	
 
 	  /**
        * esta funcion sirve para llamar el va vista las funciones que vienen del modelo propuesta_model
@@ -288,7 +288,7 @@ Class Propuesta extends CI_Controller {
 				$data['idPropuesta'] = $idPropuesta;
 				$data['idCambiado'] = $idCambiado;
 				$data['evaluadoresNuevos'] = $this->propuesta_model->buscarEvaluadoresCambiado($idPropuesta, $dataSearch,$idEv0, $idEv1,$idEv2);
-				
+				$idConvocatoria = $this->propuesta_model->buscarIdConvocatoria($idPropuesta);
 				
 
 				if($data['evaluadoresNuevos'] =='No hay')
@@ -297,10 +297,9 @@ Class Propuesta extends CI_Controller {
 					$this->session->set_userdata('varErrorCambiar', $varError);
 					unset($_POST);
 					$this->cambiarEvaluador($idEv0, $idEv1,$idEv2,$idCambiado,$idPropuesta);
+				}else{
+					$this->load->view('fancyboxCambiarEvaluador',$data);
 				}
-				
-				$idConvocatoria = $this->propuesta_model->buscarIdConvocatoria($idPropuesta);
-				$this->load->view('fancyboxCambiarEvaluador',$data);
 				return ;
 			}
 		}

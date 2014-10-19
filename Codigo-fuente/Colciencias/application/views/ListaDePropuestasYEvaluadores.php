@@ -12,7 +12,14 @@
 	<br>
 	<div class="row">
 		<br>
-		<label style="text-align:center"> <h3> Lista de propuestas y evaluadores </h3> </label>	
+		 <?php if($evaluadoresYPropuestasEncontrados == true) {?>
+		<label style="text-align: center"><h3> Lista de evaluadores y propuestas de la convocatoria:<br><em><?php echo utf8_decode($nombreConvocatoria); ?> </em></h3></label>	
+		<?php } else { ?>
+            <div data-alert class="alert-box warning radius" id="alerta">
+                    La convocatoria <strong><?php echo utf8_decode($nombreConvocatoria); ?></strong> no tiene propuestas y evaluadores confirmados.
+                <a href="#" class="close" data-dismiss="alert" id="closeAlerta">&times;</a>
+            </div>
+            <?php } ?>
 		<br>
 		<div>
 			<table style="margin:0 auto">
@@ -63,7 +70,7 @@
 	     				<td style="text-align: center">
 	     				<?php if($listaPropuestasYEvaluadores[$i]['iniciarProceso']==0){?>
 	     					 <a class="" href="<?php echo site_url('evaluador/iniciarProcesoDeEvaluacion/'.$listaPropuestasYEvaluadores[$i]['idPropuesta'].'/'.$listaPropuestasYEvaluadores[$i]['idEvaluador']);?>">
-                                    <img src="<?php echo base_url(); ?>img/iconos/iniciarProcesoDeEvaluacion.png">
+                                    <img src="<?php echo base_url(); ?>img/iconos/iniciarProcesoDeEvaluacion.png" title="Iniciar proceso de evaluaci&oacute;n">
                              </a>
                         <?php }else{?>
                                     <img src="<?php echo base_url(); ?>img/iconos/procesoIniciado.png">
@@ -87,4 +94,10 @@
 	<center><h3 class="subheader">Todos los derechos reservados</h3><center>
     <center><h3 class="subheader">2014</h3><center>
 </body>
+ <script type="text/javascript">
+   $('#closeAlerta').click(
+            function (){
+            $('#alerta').hide(1000);
+    });   
+  </script>
 </html>
