@@ -68,5 +68,23 @@ class Convocatoria_model extends CI_Model
 
 	}
 
+	public function getConvocatoria($idConvocatoria)
+	{
+		$sql="SELECT c.nombre from convocatoria c, propuesta 
+			  WHERE c.idConvocatoria=".$idConvocatoria;
+		$query=$this->db->query($sql);
+		if($query->num_rows()>0)
+		{
+			$nombreConvocatoria='';
+			foreach ($query->result() as $resultado) {
+				$nombreConvocatoria = $resultado->nombre;
+			}
+			return $nombreConvocatoria;
+		}
+
+	}
+
+	
+
 }
 ?>

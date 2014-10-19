@@ -146,7 +146,7 @@ Class Evaluadores_model extends CI_Model
         }else if($ordenarEvaluador==2){
           $orden='order by nombreEvaluador desc';
         }
-        $sql="SELECT  p.idPropuesta, ep.iniciarProceso, p.titulo as nombrePropuesta, e.nombre as nombreEvaluador, e.idEvaluador
+        $sql="SELECT  p.idPropuesta, ep.iniciarProceso, p.titulo as nombrePropuesta,e.idEvaluador, e.nombre as nombreEvaluador, e.idEvaluador
               FROM evaluacion_propuesta ep, convocatoria c, evaluador e, propuesta p
               WHERE p.idPropuesta=ep.Propuesta_idPropuesta
               AND p.Convocatoria_idConvocatoria=c.idConvocatoria
@@ -163,6 +163,7 @@ Class Evaluadores_model extends CI_Model
             foreach ($query->result() as $resultado) {
               $arreglo[$cont]['idPropuesta']            = $resultado->idPropuesta;
               $arreglo[$cont]['nombrePropuesta']        = $resultado->nombrePropuesta;
+              $arreglo[$cont]['idEvaluador']            = $resultado->idEvaluador;
               $arreglo[$cont]['nombreEvaluador']        = $resultado->nombreEvaluador;
               $arreglo[$cont]['idEvaluador']            = $resultado->idEvaluador;
               $arreglo[$cont]['iniciarProceso']         = $resultado->iniciarProceso;
@@ -181,6 +182,95 @@ Class Evaluadores_model extends CI_Model
         }else{
           return false;
         }
+      }
+
+         public function getEvaluador($idEvaluador)
+        {
+            $sql="SELECT e.idEvaluador,e.nombre, e.cedula, c.nombre as ciudadNombre, e.calificacion, n.nombre as nvNombre, 
+                          o.nombre as organizacionNombre, a.nombre as areaNombre
+                  FROM evaluador e, nivel_formacion n, organizacion o, ciudad c, area_conocimiento a
+                  WHERE e.Nivel_formacion_idNivel_formacion=n.idNivel_formacion 
+                  AND   e.organizacion_idOrganizacion=o.idOrganizacion
+                  AND   e.area_conocimiento_idArea_conocimiento=a.idArea_conocimiento
+                  AND   e.ciudad_idCiudad=c.idCiudad
+                  AND   e.idEvaluador=".$idEvaluador;
+
+
+            $query = $this->db->query($sql);
+            if($query->num_rows()>0){
+
+                $arreglo=array();
+                $cont=0;
+                foreach ($query->result() as $resultado) {
+                  $arreglo[$cont]['idEvaluador']            = $resultado->idEvaluador;
+                  $arreglo[$cont]['nombre']                 = $resultado->nombre;
+                  $arreglo[$cont]['cedula']                 = $resultado->cedula;
+                  $arreglo[$cont]['ciudadNombre']           = $resultado->ciudadNombre;
+                  $arreglo[$cont]['calificacion']           = $resultado->calificacion;
+                  $arreglo[$cont]['nvNombre']               = $resultado->nvNombre;
+                  $arreglo[$cont]['organizacionNombre']     = $resultado->organizacionNombre;
+                  $arreglo[$cont]['areaNombre']             = $resultado->areaNombre;
+                  $cont++;
+                }
+                return $arreglo;
+               
+            }
+        }
+
+         public function listarEvaluadoresPorConvocatoria($idConvocatoria)
+       {
+            $sql="SELECT e.idEvaluador,e.nombre, e.cedula, c.nombre as ciudadNombre, e.calificacion, n.nombre as nvNombre, 
+                          o.nombre as organizacionNombre, a.nombre as areaNombre
+                  FROM evaluador e, nivel_formacion n, organizacion o, ciudad c, area_conocimiento a, evaluacion_propuesta ep
+                  WHERE e.Nivel_formacion_idNivel_formacion=n.idNivel_formacion 
+                  AND   e.organizacion_idOrganizacion=o.idOrganizacion
+                  AND   e.area_conocimiento_idArea_conocimiento=a.idArea_conocimiento
+                  AND   e.ciudad_idCiudad=c.idCiudad
+                  AND   e.idEvaluador=ep.Evaluador_idEvaluador
+                  AND   ep.esConfirmado=1
+                  AND   e.Convocatoria_idConvocatoria=".$idConvocatoria;
+
+
+            $query = $this->db->query($sql);
+            if($query->num_rows()>0){
+
+                $arreglo=array();
+                $cont=0;
+                foreach ($query->result() as $resultado) {
+                  $arreglo[$cont]['idEvaluador']            = $resultado->idEvaluador;
+                  $arreglo[$cont]['nombre']                 = $resultado->nombre;
+                  $arreglo[$cont]['cedula']                 = $resultado->cedula;
+                  $arreglo[$cont]['ciudadNombre']           = $resultado->ciudadNombre;
+                  $arreglo[$cont]['calificacion']           = $resultado->calificacion;
+                  $arreglo[$cont]['nvNombre']               = $resultado->nvNombre;
+                  $arreglo[$cont]['organizacionNombre']     = $resultado->organizacionNombre;
+                  $arreglo[$cont]['areaNombre']             = $resultado->areaNombre;
+                  $cont++;
+                }
+                return $arreglo;
+               
+            }
+      }
+
+      public function buscarEvaluadoresPorConvocatoria($idConvocatoria){
+        $sql="SELECT e.idEvaluador,e.nombre, e.cedula, c.nombre as ciudadNombre, e.calificacion, n.nombre as nvNombre, 
+                          o.nombre as organizacionNombre, a.nombre as areaNombre
+                  FROM evaluador e, nivel_formacion n, organizacion o, ciudad c, area_conocimiento a, evaluacion_propuesta ep
+                  WHERE e.Nivel_formacion_idNivel_formacion=n.idNivel_formacion 
+                  AND   e.organizacion_idOrganizacion=o.idOrganizacion
+                  AND   e.area_conocimiento_idArea_conocimiento=a.idArea_conocimiento
+                  AND   e.ciudad_idCiudad=c.idCiudad
+                  AND   e.idEvaluador=ep.Evaluador_idEvaluador
+                  AND   ep.esConfirmado=1
+                  AND   e.Convocatoria_idConvocatoria=".$idConvocatoria;
+        $query = $this->db->query($sql);
+        if($query->num_rows()>0){
+          return true;
+        }else{
+          return false;
+        }             
+
+
       }
             
        

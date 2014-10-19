@@ -335,6 +335,14 @@ Class Propuesta extends CI_Controller {
 	    $this->load->view('lista3EvaluadoresPropuesta',$data);
 	}
 
+	public function verPropuesta($idPropuesta){
+		$this->load->model('propuesta_model');
+		$data['infoPropuesta']=$this->propuesta_model->getPropuesta($idPropuesta);
+		$this->load->view('barra');
+		$this->load->view('infoPropuesta',$data);
+
+	}
+
 	
 
 }

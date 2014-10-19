@@ -454,6 +454,40 @@
     
   }
 
+  public function getPropuesta($idPropuesta){
+
+    $sql="SELECT p.idPropuesta, p.titulo, o.nombre as nombreOrganizacion, i.nombre as nombreInstitucion,
+          te.nombre as tipoEvaluacionNombre, a.nombre as nombreArea, g.nombre as nombreGrupo
+          FROM propuesta p, organizacion o, institucion i, tipo_evaluacion te, area_conocimiento a, grupoinvestigacion g
+          where p.Organizacion_idOrganizacion= o.idOrganizacion
+          AND p.Institucion_idInstitucion= i.idInstitucion
+          AND p.tipo_evaluacion_idtipo_evaluacion=te.idTipo_evaluacion
+          AND p.area_conocimiento_idarea_conocimiento= a.idarea_conocimiento
+          AND p.grupoinvestigacion_idgrupoInvestigacion=g.idgrupoInvestigacion
+          AND p.idPropuesta=".$idPropuesta;
+
+    $query=$this->db->query($sql);
+
+    if($query->num_rows()>0){
+
+      $arreglo=array();
+      $cont=0;
+      foreach ($query->result() as $resultado) {
+
+        $arreglo[$cont]['idPropuesta']            = $resultado->idPropuesta;
+        $arreglo[$cont]['titulo']                 = $resultado->titulo;
+        $arreglo[$cont]['nombreOrganizacion']     = $resultado->nombreOrganizacion;
+        $arreglo[$cont]['nombreInstitucion']      = $resultado->nombreInstitucion;
+        $arreglo[$cont]['tipoEvaluacionNombre']   = $resultado->tipoEvaluacionNombre;
+        $arreglo[$cont]['nombreArea']             = $resultado->nombreArea;
+        $arreglo[$cont]['nombreGrupo']            = $resultado->nombreGrupo;
+        $cont++;
+      }
+      return $arreglo;
+    }
+
+  }
+
 
 
 }

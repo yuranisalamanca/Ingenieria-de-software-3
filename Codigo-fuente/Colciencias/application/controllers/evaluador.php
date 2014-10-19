@@ -127,6 +127,26 @@ Class Evaluador extends CI_Controller {
 		$this->listar3EvaluadoresPorPropuesta($idPropuesta,$eliminado);
 	}
 
+	public function verEvaluador($idEvaluador){
+		$this->load->model('evaluadores_model');
+		$data['infoEvaluador']=$this->evaluadores_model->getEvaluador($idEvaluador);
+		$this->load->view('barra');
+		$this->load->view('infoEvaluador',$data);
+
+	}
+
+	public function listaDeEvaluadoresPorConvocatoria($idConvocatoria){
+
+		$this->load->model('evaluadores_model');
+		$this->load->model('convocatoria_model');
+		$data['evaluadoresEncontrados']=$this->evaluadores_model->buscarEvaluadoresPorConvocatoria($idConvocatoria);
+		$data['nombreConvocatoria']=$this->convocatoria_model->getConvocatoria($idConvocatoria);	    
+		$data['listarEvaluadores'] = $this->evaluadores_model->listarEvaluadoresPorConvocatoria($idConvocatoria);
+		$this->load->view('barra');
+	    $this->load->view('listaEvaluadoresPorConvocatoria', $data);
+
+	}
+
 }
 
 /* End of file welcome.php */

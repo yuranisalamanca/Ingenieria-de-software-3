@@ -70,10 +70,10 @@
                         <?php } ?>                                         
                         </td>
                         <td style="text-align: center">
-                        	<a class="" href="<?php echo site_url();?>">
+                        	<a class="" href="<?php echo site_url('evaluador/verEvaluador/'.$listaPropuestasYEvaluadores[$i]['idEvaluador']);?>">
                                    <img src="<?php echo base_url(); ?>img/iconos/verInfoEvaluadores.png" title="Informaci&oacute;n Evaluador">
                             </a>
-                            <a class="" href="<?php echo site_url();?>">
+                            <a class="" href="<?php echo site_url('propuesta/verPropuesta/'.$listaPropuestasYEvaluadores[$i]['idPropuesta']);?>">
                                    <img src="<?php echo base_url(); ?>img/iconos/infoPropuesta.png" title="Informaci&oacute;n propuesta">
                             </a>
                         </td> 

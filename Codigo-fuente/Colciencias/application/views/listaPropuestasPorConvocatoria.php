@@ -55,12 +55,16 @@
             <?php } ?>
             <br>
              <div>
-             <label style="text-align: right" >Listado de propuestas y evaluadores:                 
+             <label style="text-align: right" >Listado de propuestas y evaluadores confirmados:                 
                 <a href="<?php echo site_url('evaluador/listaDePropuestasYEvaluadoresOrdenado/'.$idConvocatoria); ?>" >
                      <img src="<?php echo base_url(); ?>img/iconos/propuestasYEvaluadores.png">
-                 </a>
+                </a>
+                |
+                Evaluadores pendientes de confirmacion:
+                <a href="<?php echo site_url('evaluador/listaDeEvaluadoresPorConvocatoria/'.$idConvocatoria); ?>" >
+                     <img src="<?php echo base_url(); ?>img/iconos/listaEvaluadores.png">
+                </a>
              </label>
-             <br>
              	<table>
              		<thead>
              			<tr> 
