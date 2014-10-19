@@ -10,15 +10,15 @@
     </head>
     <body>
         <?php if ($this->session->userdata('varErrorCambiar') != '') { ?>
-            <div id="varErrorCambiar" style="margin-top: 10px; width: 74%; margin-left: 13%" class="alert-box warning radius" > &nbsp;<?php echo $this->session->userdata('varErrorCambiar'); ?><a href="#" class="close" data-dismiss="alert" id="closeVarErrorCambiar">x</a></div>
+            <div id="varErrorCambiar" style="margin-top: 10px; width: 74%; margin-left: 13%" class="alert-box warning radius" > &nbsp;<?php echo $this->session->userdata('varErrorCambiar'); ?><a href="#" class="close" data-dismiss="alert" id="closeVarErrorCambiar">&times;</a></div>
         <?php $this->session->unset_userdata('varErrorCambiar'); } ?>
         <label style="text-align: center"><h4>Seleccione los criterios por los cuales desea buscar los evaluadores</h4></label>
         </br>
             <div class="row">
                 <form method="post" action="<?php echo site_url('propuesta/cambiarEvaluador/'.$idEv0.'/'.$idEv1.'/'.$idEv2.'/'.$idCambiado.'/'.$idPropuesta); ?>">
                 <input type="hidden" name="select" value="1">
-                <input type="hidden" name="select_organizacion" value="<?php echo $organizacion; ?>">
-                    <table style="margin-left: 15%">
+            
+                    <table align="center">
                         <thead>
                             <tr>
                                 <th style="text-align: center">Criterio</th>
@@ -38,18 +38,7 @@
                                 <input type="hidden" value="<?php echo $area['id']; ?>" name="select_area">
                                 <td style="text-align: center"><input name="area" type="checkbox"></td>
                             </tr>
-                            <tr>
-                                <td style="text-align: center"><label>Calificaci&oacute;n</label></td>
-                                <td style="text-align: center">
-                                    <select name="select_calificacion">
-                                        <option value="0" selected="selected" disabled="disabled">Seleccione...</option>
-                                        <?php for ($i=1; $i < 11; $i++) { ?>
-                                            <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </td>
-                                <td style="text-align: center"><input name="calificacion" type="checkbox"></td>
-                            </tr>
+                            
                             <tr>
                                 <td style="text-align: center"><label>Ciudad</label></td>
                                 <td style="text-align: center"><label><?php echo $ciudad['nombre']; ?></label></td>
@@ -69,6 +58,30 @@
                                 <td style="text-align: center"><input name="nivel" type="checkbox"></td>
                             </tr>
                             <tr>
+                                <td style="text-align: center"><label>Organizaci&oacute;n</label></td>
+                                <td style="text-align: center">
+                                    <select name="select_organizacion">
+                                        <option value="0" selected="selected" disabled="disabled">Seleccione...</option>
+                                        <?php for ($i=0; $i < count($organizaciones); $i++) { ?>
+                                            <option value="<?php echo $organizaciones[$i]['idOrganizacion']; ?>"><?php echo $organizaciones[$i]['nombre']; ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </td>
+                                <td style="text-align: center"><input name="organizacion" type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center">  <label>Experiencia</label></td>
+                                <td style="text-align: center">
+                                    <select name="select_experiencia">
+                                        <option value="0" selected="selected" disabled="disabled">Seleccione...</option>
+                                        <?php for ($i=1; $i < 11; $i++) { ?>
+                                            <option value="<?php echo $i; ?>"> <?php echo $i; ?> </option>
+                                        <?php }  ?>
+                                    </select>
+                                </td>
+                                <td style="text-align: center"><input name="experiencia" type="checkbox"></td>
+                            </tr>
+                            <tr>
                                 <td style="text-align: center"><label>Idioma</label></td>
                                 <td style="text-align: center">
                                     <select name="select_idioma">
@@ -82,7 +95,8 @@
                             </tr>
                         </tbody>
                     </table>
-                    <input type="submit" class="button" style="margin-left: 37%" value="Iniciar B&uacute;squeda">
+                    <div align="center">
+                    <input type="submit" class="button"  value="Iniciar B&uacute;squeda"></div>
                 </form>
         </div>
     </body>

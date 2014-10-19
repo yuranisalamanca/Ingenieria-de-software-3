@@ -98,7 +98,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <br><div align="center">
+                    <div align="center">
                     <input type="submit" id="send" class="button"  value="Iniciar B&uacute;squeda"></div>
                 </form>
         </div>
