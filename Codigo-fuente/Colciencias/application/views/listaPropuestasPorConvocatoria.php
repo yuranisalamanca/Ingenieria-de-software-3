@@ -30,7 +30,7 @@
     <body>
         </br>
         <?php if($this->session->userdata('varError')!=''){ ?>
-          <div id="varError" style="margin-top: 10px; width: 74%; margin-left: 13%" class="alert-box warning radius" > &nbsp;<?php echo $this->session->userdata('varError'); ?><a href="#" class="close" data-dismiss="alert" id="closeVarError">x</a></div>
+          <div id="varError" style="margin-top: 10px; width: 74%; margin-left: 13%" class="alert-box warning radius" > &nbsp;<?php echo $this->session->userdata('varError'); ?><a href="#" class="close" data-dismiss="alert" id="closeVarError">&times;</a></div>
         <?php $this->session->unset_userdata('varError'); } ?>
           <div class="row" style="">
          	</br>

@@ -269,7 +269,7 @@ Class Propuesta extends CI_Controller {
 				$data['evaluadoresNuevos'] = $this->propuesta_model->buscarEvaluadoresCambiado($idPropuesta, $dataSearch,$idEv0, $idEv1,$idEv2);
 				if($data['evaluadoresNuevos'] =='No hay')
 				{
-					$varError='No existen evaluadores que cumplan con todos los criterios seleccionados';
+					$varError='No existen evaluadores que cumplan con los criterios seleccionados';
 					$this->session->set_userdata('varErrorCambiar', $varError);
 					unset($_POST);
 					$this->cambiarEvaluador($idEv0, $idEv1,$idEv2,$idCambiado,$idPropuesta);
