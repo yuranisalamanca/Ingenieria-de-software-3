@@ -218,11 +218,11 @@
 
   public function getGrupoInvestigacionPropuesta($idPropuesta)
   {
-    $query = $this->db->query("SELECT idgrupoinvestigacion FROM propuesta WHERE idPropuesta = " . $idPropuesta);
+    $query = $this->db->query("SELECT grupoinvestigacion_idgrupoInvestigacion FROM propuesta WHERE idPropuesta = " . $idPropuesta);
     if($query->num_rows()>0) {
       $id = '';
       foreach ($query->result() as $resultado) {
-        $id = $resultado->idgrupoinvestigacion;
+        $id = $resultado->grupoinvestigacion_idgrupoInvestigacion;
         }
       return $id;
     }
@@ -311,7 +311,7 @@
       $where .= ' AND e.experiencia = ' . $data['select_experiencia'];
     }
 
-    $sql="SELECT e.idEvaluador, e.Ciudad_idCiudad FROM evaluador e WHERE e.idgrupoinvestigacion <> ".$data['select_grupoinvestigacion'].$where." LIMIT 0, 3";
+    $sql="SELECT e.idEvaluador, e.Ciudad_idCiudad FROM evaluador e WHERE e.grupoinvestigacion_idgrupoInvestigacion <> ".$data['select_grupoinvestigacion'].$where." LIMIT 0, 3";
     
     $query= $this->db->query($sql);
     if($query->num_rows()>0){
