@@ -286,6 +286,12 @@
   public function buscarEvaluadores($idPropuesta, $data) {
 
     $where = '';
+    if($data['select_calificacion'] == 0 && $data['select_nivel']==0
+      &&$data['select_idioma']==0 &&$data['select_organizacion']==0 &&$data['select_experiencia']==0)
+    {
+      return 'errorSeleccion';
+    }
+
 
     if ($data['area'] != 0 && $data['select_area'] != 0) {
       $where .= ' AND e.area_conocimiento_idarea_conocimiento = ' . $data['select_area'];
@@ -310,28 +316,30 @@
     {
       $where .= ' AND e.experiencia = ' . $data['select_experiencia'];
     }
+ 
+      $sql="SELECT e.idEvaluador, e.Ciudad_idCiudad FROM evaluador e WHERE e.grupoinvestigacion_idgrupoInvestigacion <> ".$data['select_grupoinvestigacion'].$where." LIMIT 0, 3";
+      
 
-    $sql="SELECT e.idEvaluador, e.Ciudad_idCiudad FROM evaluador e WHERE e.grupoinvestigacion_idgrupoInvestigacion <> ".$data['select_grupoinvestigacion'].$where." LIMIT 0, 3";
-    
-    $query= $this->db->query($sql);
-    if($query->num_rows()>0){
+      $query= $this->db->query($sql);
+      if($query->num_rows()>0){
 
-      $arreglo=array();
-      $cont=0;
-      foreach ($query->result() as $resultado) {
+        $arreglo=array();
+        $cont=0;
+        foreach ($query->result() as $resultado) {
 
-        $arreglo[$cont]['idEvaluador'] = $resultado->idEvaluador;
-        $arreglo[$cont]['ciudad'] = $resultado->Ciudad_idCiudad;
-        $cont++;
+          $arreglo[$cont]['idEvaluador'] = $resultado->idEvaluador;
+          $arreglo[$cont]['ciudad'] = $resultado->Ciudad_idCiudad;
+          $cont++;
+        }
+        for ($i=0; $i < count($arreglo); $i++) { 
+          $this->db->query("INSERT INTO evaluacion_propuesta (Ciudad_idCiudad, Evaluador_idEvaluador, Propuesta_idPropuesta)
+                            VALUES (".$arreglo[$i]['ciudad'].", ".$arreglo[$i]['idEvaluador'].", ".$idPropuesta.")");
+        } 
+      }else{
+
+        return 'No hay';
       }
-      for ($i=0; $i < count($arreglo); $i++) { 
-        $this->db->query("INSERT INTO evaluacion_propuesta (Ciudad_idCiudad, Evaluador_idEvaluador, Propuesta_idPropuesta)
-                          VALUES (".$arreglo[$i]['ciudad'].", ".$arreglo[$i]['idEvaluador'].", ".$idPropuesta.")");
-      } 
-    }else{
-
-      return 'No hay';
-    }
+    
   }
 
 

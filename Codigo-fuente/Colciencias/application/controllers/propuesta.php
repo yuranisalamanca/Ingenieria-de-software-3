@@ -172,6 +172,19 @@ Class Propuesta extends CI_Controller {
 				} else {
 					$dataSearch['select_experiencia'] = 0;
 				}
+				
+				if($this->Propuesta_model->buscarEvaluadores($idPropuesta, $dataSearch)=='errorSeleccion')
+				{
+					$varSeleccion='Por favor indique el valor del criterio de busqueda seleccionado';
+					$this->session->set_userdata('varSeleccion', $varSeleccion);
+				}
+
+				if($this->Propuesta_model->buscarEvaluadores($idPropuesta, $dataSearch)=='no busqueda')
+				{
+					$varSeleccion='Por favor seleccione algun criterio de busqueda';
+					$this->session->set_userdata('varNada', $varNada);
+				}
+
 				if($this->Propuesta_model->buscarEvaluadores($idPropuesta, $dataSearch)=='No hay')
 				{
 					$varError='No existen evaluadores que cumplan con todos los criterios seleccionados';
@@ -264,6 +277,7 @@ Class Propuesta extends CI_Controller {
 				} else {
 					$dataSearch['select_organizacion'] = 0;
 				}
+
 				$data['idPropuesta'] = $idPropuesta;
 				$data['idCambiado'] = $idCambiado;
 				$data['evaluadoresNuevos'] = $this->propuesta_model->buscarEvaluadoresCambiado($idPropuesta, $dataSearch,$idEv0, $idEv1,$idEv2);

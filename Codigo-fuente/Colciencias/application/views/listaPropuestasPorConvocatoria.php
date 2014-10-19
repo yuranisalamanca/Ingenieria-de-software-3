@@ -32,6 +32,15 @@
         <?php if($this->session->userdata('varError')!=''){ ?>
           <div id="varError" style="margin-top: 10px; width: 74%; margin-left: 13%" class="alert-box warning radius" > &nbsp;<?php echo $this->session->userdata('varError'); ?><a href="#" class="close" data-dismiss="alert" id="closeVarError">&times;</a></div>
         <?php $this->session->unset_userdata('varError'); } ?>
+
+        <?php if($this->session->userdata('varSeleccion')!=''){ ?>
+          <div id="varSeleccion" style="margin-top: 10px; width: 74%; margin-left: 13%" class="alert-box warning radius" > &nbsp;<?php echo $this->session->userdata('varSeleccion'); ?><a href="#" class="close" data-dismiss="alert" id="closeVarSeleccion">&times;</a></div>
+        <?php $this->session->unset_userdata('varSeleccion'); } ?>
+
+        <?php if($this->session->userdata('varNada')!=''){ ?>
+          <div id="varNada" style="margin-top: 10px; width: 74%; margin-left: 13%" class="alert-box warning radius" > &nbsp;<?php echo $this->session->userdata('varNada'); ?><a href="#" class="close" data-dismiss="alert" id="closeVarNada">&times;</a></div>
+        <?php $this->session->unset_userdata('varNada'); } ?>
+
           <div class="row" style="">
          	</br>
             
@@ -107,6 +116,15 @@
             $('#alerta').hide(1000);
     });
 
+    $('#closeVarSeleccion').click(
+            function (){
+            $('#varSeleccion').hide(1000);
+    });
+
+    $('#closeVarNada').click(
+            function (){
+            $('#varNada').hide(1000);
+    });
     
     </script>
 </html>
