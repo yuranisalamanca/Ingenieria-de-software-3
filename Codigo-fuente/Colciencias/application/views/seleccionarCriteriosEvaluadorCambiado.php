@@ -12,7 +12,7 @@
         <?php if ($this->session->userdata('varErrorCambiar') != '') { ?>
             <div id="varErrorCambiar" class="row" style="background-color: #F5A9BC"> &nbsp;<a style="color: #FF0000;" id="closeError">X</a> &nbsp; <?php echo $this->session->userdata('varErrorCambiar'); ?></div>
         <?php $this->session->unset_userdata('varErrorCambiar'); } ?>
-        <label style="text-align: center"><h5>Seleccione los criterios por los cuales desea buscar los evaluadores</h5></label>
+        <label style="text-align: center"><h4>Seleccione los criterios por los cuales desea buscar los evaluadores</h4></label>
         </br>
             <div class="row">
                 <form method="post" action="<?php echo site_url('propuesta/cambiarEvaluador/'.$idEv0.'/'.$idEv1.'/'.$idEv2.'/'.$idCambiado.'/'.$idPropuesta); ?>">

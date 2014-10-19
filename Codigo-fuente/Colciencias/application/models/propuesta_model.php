@@ -306,6 +306,11 @@
     {
       $where .= ' AND e.Organizacion_idOrganizacion = ' . $data['select_organizacion'];
     }
+    if($data['experiencia'] != 0 && $data['select_experiencia'] != 0)
+    {
+      $where .= ' AND e.experiencia = ' . $data['select_experiencia'];
+    }
+
     $sql="SELECT e.idEvaluador, e.Ciudad_idCiudad FROM evaluador e WHERE e.idgrupoinvestigacion <> ".$data['select_grupoinvestigacion'].$where." LIMIT 0, 3";
     
     $query= $this->db->query($sql);

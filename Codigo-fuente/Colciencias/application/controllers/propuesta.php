@@ -162,6 +162,16 @@ Class Propuesta extends CI_Controller {
 				} else {
 					$dataSearch['select_grupoinvestigacion'] = 0;
 				}
+				if (null != $this->input->post('experiencia')) {
+					$dataSearch['experiencia'] = 1;
+				} else {
+					$dataSearch['experiencia'] = 0;
+				}
+				if (null != $this->input->post('select_experiencia')){
+					$dataSearch['select_experiencia'] = $this->input->post('select_experiencia');
+				} else {
+					$dataSearch['select_experiencia'] = 0;
+				}
 				if($this->Propuesta_model->buscarEvaluadores($idPropuesta, $dataSearch)=='No hay')
 				{
 					$varError='No existen evaluadores que cumplan con todos los criterios seleccionados';

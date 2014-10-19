@@ -84,6 +84,18 @@
                                 </td>
                                 <td style="text-align: center"><input name="organizacion" type="checkbox"></td>
                             </tr>
+                            <tr>
+                                <td style="text-align: center">  <label>Experiencia</label></td>
+                                <td style="text-align: center">
+                                    <select name="select_experiencia">
+                                        <option value="0" selected="selected" disabled="disabled">Seleccione...</option>
+                                        <?php for ($i=1; $i < 11; $i++) { ?>
+                                            <option value="<?php echo $i; ?>"> <?php echo $i; ?> </option>
+                                        <?php }  ?>
+                                    </select>
+                                </td>
+                                <td style="text-align: center"><input name="experiencia" type="checkbox"></td>
+                            </tr>
                         </tbody>
                     </table>
                     <br><div align="center">
@@ -93,7 +105,7 @@
     </body>
     <script type="text/javascript">
     $("#send").click(function() {
-        //parent.$.fancybox.close();
+        parent.$.fancybox.close();
     });
     </script>
 </html>
