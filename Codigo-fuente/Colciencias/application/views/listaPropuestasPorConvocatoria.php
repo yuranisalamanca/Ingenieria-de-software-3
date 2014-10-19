@@ -102,6 +102,10 @@
         $('#varError').hide(1000);
     });
 
+     $('#closeAlerta').click(
+            function (){
+            $('#alerta').hide(1000);
+    });
 
     
     </script>

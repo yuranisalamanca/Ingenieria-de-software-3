@@ -10,7 +10,7 @@
     </head>
     <body>
         <?php if ($this->session->userdata('varErrorCambiar') != '') { ?>
-            <div id="varErrorCambiar" class="row" style="background-color: #F5A9BC"> &nbsp;<a style="color: #FF0000;" id="closeError">X</a> &nbsp; <?php echo $this->session->userdata('varErrorCambiar'); ?></div>
+            <div id="varErrorCambiar" style="margin-top: 10px; width: 74%; margin-left: 13%" class="alert-box warning radius" > &nbsp;<?php echo $this->session->userdata('varErrorCambiar'); ?><a href="#" class="close" data-dismiss="alert" id="closeVarErrorCambiar">x</a></div>
         <?php $this->session->unset_userdata('varErrorCambiar'); } ?>
         <label style="text-align: center"><h4>Seleccione los criterios por los cuales desea buscar los evaluadores</h4></label>
         </br>
@@ -87,7 +87,7 @@
         </div>
     </body>
     <script type="text/javascript">
-    $('#closeError').click(function (){
+    $('#closeVarErrorCambiar').click(function (){
         $('#varErrorCambiar').hide(1000);
     });
     </script>

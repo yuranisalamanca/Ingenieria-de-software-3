@@ -50,6 +50,7 @@
 						<?php } ?>
 						</th>
 						<th width="210" style="text-align: center"> Iniciar proceso de evaluaci&oacute;n</th>
+						<th width="210" style="text-align: center"> Acci&oacute;n</th>
 
 					</tr>
 				</thead>
@@ -68,6 +69,14 @@
                                     <img src="<?php echo base_url(); ?>img/iconos/procesoIniciado.png">
                         <?php } ?>                                         
                         </td>
+                        <td style="text-align: center">
+                        	<a class="" href="<?php echo site_url();?>">
+                                   <img src="<?php echo base_url(); ?>img/iconos/verInfoEvaluadores.png" title="Informaci&oacute;n Evaluador">
+                            </a>
+                            <a class="" href="<?php echo site_url();?>">
+                                   <img src="<?php echo base_url(); ?>img/iconos/infoPropuesta.png" title="Informaci&oacute;n propuesta">
+                            </a>
+                        </td> 
 					</tr>
 					<?php } ?>
 				</tbody>
