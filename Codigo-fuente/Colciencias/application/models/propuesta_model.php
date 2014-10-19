@@ -206,14 +206,41 @@
 
   public function getOrganizacionPropuesta($idPropuesta)
   {
-    $query = $this->db->query("SELECT o.idOrganizacion FROM organizacion o, propuesta p 
-                      WHERE o.idOrganizacion = p.Organizacion_idOrganizacion AND p.idPropuesta = " . $idPropuesta);
+    $query = $this->db->query("SELECT Organizacion_idOrganizacion FROM propuesta WHERE idPropuesta = " . $idPropuesta);
     if($query->num_rows()>0) {
       $id = '';
       foreach ($query->result() as $resultado) {
-        $id = $resultado->idOrganizacion;
+        $id = $resultado->Organizacion_idOrganizacion;
         }
       return $id;
+    }
+  }
+
+  public function getGrupoInvestigacionPropuesta($idPropuesta)
+  {
+    $query = $this->db->query("SELECT idgrupoinvestigacion FROM propuesta WHERE idPropuesta = " . $idPropuesta);
+    if($query->num_rows()>0) {
+      $id = '';
+      foreach ($query->result() as $resultado) {
+        $id = $resultado->idgrupoinvestigacion;
+        }
+      return $id;
+    }
+  }
+
+  public function getOrganizacionesDiferenteAPropuesta($idOrganizacion)
+  {
+    $query = $this->db->query("SELECT o.idOrganizacion, o.nombre FROM organizacion o 
+                      WHERE o.idOrganizacion <> " . $idOrganizacion);
+    if($query->num_rows()>0) {
+      $arreglo = array();
+      $i = 0;
+      foreach ($query->result() as $resultado) {
+        $arreglo[$i]['idOrganizacion'] = $resultado->idOrganizacion;
+        $arreglo[$i]['nombre']         = $resultado->nombre;
+        $i++;
+        }
+      return $arreglo;
     }
   }
 
@@ -275,11 +302,11 @@
     if ($data['idioma'] != 0 && $data['select_idioma'] != 0) {
       $where .= ' AND e.idioma_ididioma = ' . $data['select_idioma'];
     }
-    if($data['organizacion'] !=0 && $data[select_organizacion]!=0)
+    if($data['organizacion'] != 0 && $data['select_organizacion'] != 0)
     {
-      $where .= ' AND e.Organizacion_idOrganizacion = ' . $data[select_organizacion];
+      $where .= ' AND e.Organizacion_idOrganizacion = ' . $data['select_organizacion'];
     }
-    $sql="SELECT e.idEvaluador, e.Ciudad_idCiudad FROM evaluador e WHERE e.Organizacion_idOrganizacion <> ".$data['select_organizacion'].$where." LIMIT 0, 3";
+    $sql="SELECT e.idEvaluador, e.Ciudad_idCiudad FROM evaluador e WHERE e.idgrupoinvestigacion <> ".$data['select_grupoinvestigacion'].$where." LIMIT 0, 3";
     
     $query= $this->db->query($sql);
     if($query->num_rows()>0){

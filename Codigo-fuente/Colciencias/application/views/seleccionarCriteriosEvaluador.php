@@ -14,7 +14,7 @@
             <div class="row">
                 <form method="post" action="<?php echo site_url('propuesta/buscarEvaluadores/'.$idPropuesta); ?>">
                 <input type="hidden" name="select" value="1">
-                <input type="hidden" name="select_organizacion" value="<?php echo $organizacion; ?>">
+                <input type="hidden" name="select_grupoinvestigacion" value="<?php echo $grupoinvestigacion; ?>">
                     <table align="center">
                         <thead>
                             <tr>
@@ -49,6 +49,18 @@
                                 <td style="text-align: center"><input name="ciudad" type="checkbox"></td>
                             </tr>
                             <tr>
+                                <td style="text-align: center"><label>Idioma</label></td>
+                                <td style="text-align: center">
+                                    <select name="select_idioma">
+                                        <option value="0" selected="selected" disabled="disabled">Seleccione...</option>
+                                        <?php for ($i=0; $i < count($idiomas); $i++) { ?>
+                                            <option value="<?php echo $idiomas[$i]['ididioma']; ?>"><?php echo $idiomas[$i]['nombre']; ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </td>
+                                <td style="text-align: center"><input name="idioma" type="checkbox"></td>
+                            </tr>
+                            <tr>
                                 <td style="text-align: center"><label>Nivel de formaci&oacute;n</label></td>
                                 <td style="text-align: center">
                                     <select name="select_nivel">
@@ -61,16 +73,16 @@
                                 <td style="text-align: center"><input name="nivel" type="checkbox"></td>
                             </tr>
                             <tr>
-                                <td style="text-align: center"><label>Idioma</label></td>
+                                <td style="text-align: center"><label>Organizaci&oacute;n</label></td>
                                 <td style="text-align: center">
-                                    <select name="select_idioma">
+                                    <select name="select_organizacion">
                                         <option value="0" selected="selected" disabled="disabled">Seleccione...</option>
-                                        <?php for ($i=0; $i < count($idiomas); $i++) { ?>
-                                            <option value="<?php echo $idiomas[$i]['ididioma']; ?>"><?php echo $idiomas[$i]['nombre']; ?></option>
+                                        <?php for ($i=0; $i < count($organizaciones); $i++) { ?>
+                                            <option value="<?php echo $organizaciones[$i]['idOrganizacion']; ?>"><?php echo $organizaciones[$i]['nombre']; ?></option>
                                         <?php } ?>
                                     </select>
                                 </td>
-                                <td style="text-align: center"><input name="idioma" type="checkbox"></td>
+                                <td style="text-align: center"><input name="organizacion" type="checkbox"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -81,7 +93,7 @@
     </body>
     <script type="text/javascript">
     $("#send").click(function() {
-        parent.$.fancybox.close();
+        //parent.$.fancybox.close();
     });
     </script>
 </html>

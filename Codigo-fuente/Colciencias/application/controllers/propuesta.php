@@ -147,10 +147,20 @@ Class Propuesta extends CI_Controller {
 				} else {
 					$dataSearch['select_idioma'] = 0;
 				}
+				if (null != $this->input->post('organizacion')) {
+					$dataSearch['organizacion'] = 1;
+				} else {
+					$dataSearch['organizacion'] = 0;
+				}
 				if (null != $this->input->post('select_organizacion')) {
 					$dataSearch['select_organizacion'] = $this->input->post('select_organizacion');
 				} else {
 					$dataSearch['select_organizacion'] = 0;
+				}
+				if (null != $this->input->post('select_grupoinvestigacion')) {
+					$dataSearch['select_grupoinvestigacion'] = $this->input->post('select_grupoinvestigacion');
+				} else {
+					$dataSearch['select_grupoinvestigacion'] = 0;
 				}
 				if($this->Propuesta_model->buscarEvaluadores($idPropuesta, $dataSearch)=='No hay')
 				{
@@ -161,12 +171,14 @@ Class Propuesta extends CI_Controller {
 			}
 		}
 
-		$data['idPropuesta']  = $idPropuesta;
-		$data['idiomas']	  = $this->Propuesta_model->getIdiomas();
-		$data['niveles']	  = $this->Propuesta_model->getNiveles();
-		$data['ciudad']		  = $this->Propuesta_model->getCiudadPropuesta($idPropuesta);
-		$data['area']		  = $this->Propuesta_model->getAreaPropuesta($idPropuesta);
-		$data['organizacion'] = $this->Propuesta_model->getOrganizacionPropuesta($idPropuesta);
+		$data['idPropuesta']   				 = $idPropuesta;
+		$data['idiomas']	   				 = $this->Propuesta_model->getIdiomas();
+		$data['niveles']	   				 = $this->Propuesta_model->getNiveles();
+		$data['ciudad']		  				 = $this->Propuesta_model->getCiudadPropuesta($idPropuesta);
+		$data['area']		  				 = $this->Propuesta_model->getAreaPropuesta($idPropuesta);
+		$data['grupoinvestigacion']  		 = $this->Propuesta_model->getGrupoInvestigacionPropuesta($idPropuesta);
+		$organizacion 						 = $this->Propuesta_model->getOrganizacionPropuesta($idPropuesta);
+		$data['organizaciones'] 			 = $this->Propuesta_model->getOrganizacionesDiferenteAPropuesta($organizacion);
 		$this->load->view('seleccionarCriteriosEvaluador', $data);
 	}
 
@@ -248,10 +260,12 @@ Class Propuesta extends CI_Controller {
 				if($data['evaluadoresNuevos'] =='No hay')
 				{
 					$varError='No existen evaluadores que cumplan con todos los criterios seleccionados';
-					$this->session->set_userdata('varError', $varError);
+					$this->session->set_userdata('varErrorCambiar', $varError);
+					unset($_POST);
+					$this->cambiarEvaluador($idEv0, $idEv1,$idEv2,$idCambiado,$idPropuesta);
 				}
 				
-				$idConvocatoria=$this->propuesta_model->buscarIdConvocatoria($idPropuesta);
+				$idConvocatoria = $this->propuesta_model->buscarIdConvocatoria($idPropuesta);
 				$this->load->view('fancyboxCambiarEvaluador',$data);
 				return ;
 			}
