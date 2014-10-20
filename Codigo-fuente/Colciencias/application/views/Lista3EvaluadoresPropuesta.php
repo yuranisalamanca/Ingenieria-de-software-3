@@ -68,7 +68,7 @@
                                     </span>                                   
                             <?php } else if ($idConfirmado == 0){ ?>
                                 <a href="<?php echo site_url('evaluador/asignarEvaluador/'.$idPropuesta.'/'.$listar3EvaluadoresPropuesta[$i]['idEvaluador']); ?>">
-                                    <span data-tooltip aria-haspopup="true" class="has-tip" data-options="show_on:large" title="Asignar evaluador">
+                                    <span data-tooltip aria-haspopup="true" class="has-tip" data-options="show_on:large" title="Confirmar evaluador">
                                     <img src="<?php echo base_url(); ?>img/iconos/checkEvaluador.png">  
                                     </span>                                 
                                 </a>
@@ -89,7 +89,7 @@
                                     </span>                               
                                 </a>
                                 <a  class="" href="<?php echo site_url('evaluador/listarPropuestaPorEvaluador/'.$listar3EvaluadoresPropuesta[$i]['idEvaluador']);?>">
-                                    <span data-tooltip aria-haspopup="true" class="has-tip" data-options="show_on:large" title="Lista de propuestas asigandas">
+                                    <span data-tooltip aria-haspopup="true" class="has-tip" data-options="show_on:large" title="Ver lista de propuestas asigandas">
                                     <img src="<?php echo base_url(''); ?>img/iconos/listarPropuesta.png" >          
                                     </span>                         
                                 </a>
