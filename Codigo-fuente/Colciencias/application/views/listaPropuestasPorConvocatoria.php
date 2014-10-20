@@ -87,11 +87,15 @@
                             <td style="text-align: center">
                             <?php if($listaPropuesta[$i]['evaluadoresEncontrados']==true){ ?>
                                  <a class="cambiarEvaluador" href="<?php echo site_url('evaluador/listar3EvaluadoresPorPropuesta/'.$listaPropuesta[$i]['idPropuesta']); ?>">
-                                    <img src="<?php echo base_url(); ?>img/iconos/verInfoEvaluadores.png" title="Informaci&oacute;n evaluadores">                                 
+                                    <span data-tooltip aria-haspopup="true" class="has-tip" data-options="show_on:large" title="Informaci&oacute;n evaluadores">
+                                    <img src="<?php echo base_url(); ?>img/iconos/verInfoEvaluadores.png">                                 
+                                    </span>
                                 </a>
                             <?php } else { ?>
                                   <a class="buscarEvaluadores" href="<?php echo site_url('propuesta/buscarEvaluadores/'.$listaPropuesta[$i]['idPropuesta']); ?>">
-                                    <img src="<?php echo base_url(); ?>img/iconos/search.png" title="Seleccionar evaluadores">
+                                    <span data-tooltip aria-haspopup="true" class="has-tip" data-options="show_on:large" title="Buscar evaluadores">
+                                    <img src="<?php echo base_url(); ?>img/iconos/search.png">
+                                    </span>
                                 </a>
                             <?php } ?>
                             </td>

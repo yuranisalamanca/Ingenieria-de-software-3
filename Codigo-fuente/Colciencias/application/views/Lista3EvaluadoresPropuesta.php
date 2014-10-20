@@ -63,26 +63,40 @@
                             <td style="text-align: center"> <?php echo utf8_decode($listar3EvaluadoresPropuesta[$i]['areaNombre']); ?> </td>
                             <td style="text-align: center">
                             <?php if ($listar3EvaluadoresPropuesta[$i]['idEvaluador'] == $idConfirmado) { ?>
-                                    <img src="<?php echo base_url(); ?>img/iconos/check_verde.png" title="Evaluador confirmado">                                   
+                                    <span data-tooltip aria-haspopup="true" class="has-tip" data-options="show_on:large" title="Evaluador confirmado">
+                                    <img src="<?php echo base_url(); ?>img/iconos/check_verde.png" >
+                                    </span>                                   
                             <?php } else if ($idConfirmado == 0){ ?>
                                 <a href="<?php echo site_url('evaluador/asignarEvaluador/'.$idPropuesta.'/'.$listar3EvaluadoresPropuesta[$i]['idEvaluador']); ?>">
-                                    <img src="<?php echo base_url(); ?>img/iconos/checkEvaluador.png">                                   
+                                    <span data-tooltip aria-haspopup="true" class="has-tip" data-options="show_on:large" title="Asignar evaluador">
+                                    <img src="<?php echo base_url(); ?>img/iconos/checkEvaluador.png">  
+                                    </span>                                 
                                 </a>
                             <?php }else if($listar3EvaluadoresPropuesta[$i]['idEvaluador'] == $idSuplente){?>
-                                   <img src="<?php echo base_url(); ?>img/iconos/esSuplente.png" title="Evaluador suplente"> 
+                                    <span data-tooltip aria-haspopup="true" class="has-tip" data-options="show_on:large" title="Evaluador suplente">
+                                    <img src="<?php echo base_url(); ?>img/iconos/esSuplente.png">
+                                    </span> 
                             <?php }else if($idSuplente==0){ ?>
                                 <a href="<?php echo site_url('evaluador/marcarComoSuplente/'.$listar3EvaluadoresPropuesta[$i]['idEvaluador'].'/'.$idPropuesta); ?>">
-                                    <img src="<?php echo base_url(); ?>img/iconos/suplente.png" title="Marcar como suplente">                                   
+                                    <span data-tooltip aria-haspopup="true" class="has-tip" data-options="show_on:large" title="Marcar como suplente">
+                                    <img src="<?php echo base_url(); ?>img/iconos/suplente.png">
+                                    </span>                                   
                                 </a> 
                             <?php } ?>
                                 <a  class="cambiarEvaluador" href="<?php echo site_url('propuesta/cambiarEvaluador/'.$idEv0.'/'.$idEv1.'/'.$idEv2.'/'.$listar3EvaluadoresPropuesta[$i]['idEvaluador'].'/'.$idPropuesta); ?>">
-                                    <img src="<?php echo base_url(''); ?>img/iconos/cambiarEvaluador.png" title="Cambiar evaluador">                                   
+                                    <span data-tooltip aria-haspopup="true" class="has-tip" data-options="show_on:large" title="Cambiar evaluador">
+                                    <img src="<?php echo base_url(''); ?>img/iconos/cambiarEvaluador.png">    
+                                    </span>                               
                                 </a>
                                 <a  class="" href="<?php echo site_url('evaluador/listarPropuestaPorEvaluador/'.$listar3EvaluadoresPropuesta[$i]['idEvaluador']);?>">
-                                    <img src="<?php echo base_url(''); ?>img/iconos/listarPropuesta.png" title="Lista de propuestas asigandas">                                   
+                                    <span data-tooltip aria-haspopup="true" class="has-tip" data-options="show_on:large" title="Lista de propuestas asigandas">
+                                    <img src="<?php echo base_url(''); ?>img/iconos/listarPropuesta.png" >          
+                                    </span>                         
                                 </a>
                                   <a  class="" href="<?php echo site_url('evaluador/eliminarEvaluador/'.$listar3EvaluadoresPropuesta[$i]['idEvaluador'].'/'.$listar3EvaluadoresPropuesta[$i]['idPropuesta']);?>">
-                                    <img src="<?php echo base_url(''); ?>img/iconos/eliminar.png" title="Eliminar evaluador">                                   
+                                    <span data-tooltip aria-haspopup="true" class="has-tip" data-options="show_on:large" title="Eliminar evaluador">           
+                                    <img src="<?php echo base_url(''); ?>img/iconos/eliminar.png" >
+                                    </span>                                   
                                 </a>                            
                             </td>  
              			</tr>
