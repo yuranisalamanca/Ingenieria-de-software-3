@@ -89,7 +89,7 @@
                                     </span>                               
                                 </a>
                                 <a  class="" href="<?php echo site_url('evaluador/listarPropuestaPorEvaluador/'.$listar3EvaluadoresPropuesta[$i]['idEvaluador']);?>">
-                                    <span data-tooltip aria-haspopup="true" class="has-tip" data-options="show_on:large" title="Ver lista de propuestas asigandas">
+                                    <span data-tooltip aria-haspopup="true" class="has-tip" data-options="show_on:large" title="Ver lista de propuestas asignadas">
                                     <img src="<?php echo base_url(''); ?>img/iconos/listarPropuesta.png" >          
                                     </span>                         
                                 </a>
