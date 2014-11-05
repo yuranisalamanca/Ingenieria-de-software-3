@@ -395,11 +395,11 @@
   public function buscarEvaluadores($idPropuesta, $data) {
 
     $where = '';
-    if($data['select_calificacion'] == 0 && $data['select_nivel']==0
-      &&$data['select_idioma']==0 &&$data['select_organizacion']==0 &&$data['select_experiencia']==0)
-    {
-      return 'errorSeleccion';
-    }
+   // if($data['select_calificacion'] == 0 && $data['select_nivel']==0
+   //   &&$data['select_idioma']==0 &&$data['select_organizacion']==0 &&$data['select_experiencia']==0)
+  //{
+  //    return 'errorSeleccion';
+  //  }
     if ($data['area'] != 0 && $data['select_area'] != 0) {
       $where .= ' AND e.area_conocimiento_idarea_conocimiento = ' . $data['select_area'];
     }

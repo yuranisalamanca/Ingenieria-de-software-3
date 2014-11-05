@@ -174,6 +174,9 @@ Class Propuesta extends CI_Controller {
 				}
 				
 				$evaluadores['evaluadores'] =$this->Propuesta_model->buscarEvaluadores($idPropuesta, $dataSearch);
+				echo "pre";
+				print_r($evaluadores);
+				echo "/pre";
 				if($evaluadores['evaluadores']=='errorSeleccion')
 				{
 					$varSeleccion='Por favor indique el valor del criterio de b&uacute;squeda seleccionado';
