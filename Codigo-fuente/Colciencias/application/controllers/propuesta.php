@@ -70,7 +70,13 @@ Class Propuesta extends CI_Controller {
 
 	}
 
-
+  /**
+       * esta funcion sirve para listar las propuestas del modelo propuesta_model
+       * @return arreglo de propuestas
+       * @param 
+       * @author Karen Daniela Ramirez Montoya 
+       * @author Yurani Alejandra Salamanca 
+       */
 
 	public function listaDePropuestas(){
 
@@ -83,9 +89,9 @@ Class Propuesta extends CI_Controller {
 	}
 
 /**
-       * esta funcion sirve para llamar el va vista las funciones que vienen del modelo propuesta_model
+       * Esta funcion sirve para buscar los evaluadores de una propuesta
        * @return evaluadores
-       * @param 
+       * @param $idPropuesta que representa el id de una de las propuestas
        * @author Karen Daniela Ramirez Montoya 
        * @author Yurani Alejandra Salamanca 
        */
@@ -201,9 +207,17 @@ Class Propuesta extends CI_Controller {
 		$organizacion 						 = $this->Propuesta_model->getOrganizacionPropuesta($idPropuesta);
 		$data['organizaciones'] 			 = $this->Propuesta_model->getOrganizacionesDiferenteAPropuesta($organizacion);
 		$this->load->view('seleccionarCriteriosEvaluador', $data);
-	}
+	} 
 
-
+	  /** 
+	   * Esta funcion sirve para realizar la busqueda de un evaluador por que el se desea cambiar
+       * @return evaluadores
+       * @param  $idEv0, $idEv1,$idEv2 que representan los id de los evaluadores que fueron buscados anteriormente, 
+       * @param  $idCambiado que es el evaluador que se desea cambiar.
+       * @param  $idPropuesta que representa el id de la propuesta a la cual se le desea cambiar el evaluador. 
+       * @author Karen Daniela Ramirez Montoya 
+       * @author Yurani Alejandra Salamanca 
+       */
     public function cambiarEvaluador($idEv0, $idEv1,$idEv2,$idCambiado,$idPropuesta){
 
     	$this->load->model('propuesta_model');
@@ -321,6 +335,15 @@ Class Propuesta extends CI_Controller {
 	    $this->load->view('seleccionarCriteriosEvaluadorCambiado', $data);
 	}
 
+
+	/** 
+	   * Esta funcion sirve para listar 3 evaluadores por convocatoria de acuerdo a ciertos criterios, con el evaluador que fue cambiado.
+       * @return evaluadores 
+       * @param  $idViejo que representa el evaluador que se desea cambiar. 
+       * @param  $idPropuesta que representa el id de la propuesta a la cual se le desea listar los evaluadores. 
+       * @author Karen Daniela Ramirez Montoya 
+       * @author Yurani Alejandra Salamanca 
+       */
 	
 	public function listar3EvaluadoresPorPropuestaCambiado($idPropuesta,$idViejo){
 
@@ -343,6 +366,13 @@ Class Propuesta extends CI_Controller {
 		$this->load->view('barra');
 	    $this->load->view('lista3EvaluadoresPropuesta',$data);
 	}
+
+	/** 
+	   * Esta funcion sirve para mostrar los datos de una propuesta existente
+       * @param  $idPropuesta que representa el id de la propuesta a la cual se le desea listar la informacion. 
+       * @author Karen Daniela Ramirez Montoya 
+       * @author Yurani Alejandra Salamanca 
+       */
 
 	public function verPropuesta($idPropuesta){
 		$this->load->model('propuesta_model');
