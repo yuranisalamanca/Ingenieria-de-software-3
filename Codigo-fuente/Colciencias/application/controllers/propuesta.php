@@ -348,10 +348,9 @@ Class Propuesta extends CI_Controller {
 		$this->load->view('infoPropuesta',$data);
 
 	}
-
-	
-
 }
+
+
 
 /* End of file welcome.php */
 /* Location: ./application/controllers/welcome.php */
