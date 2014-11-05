@@ -9,6 +9,7 @@ sonar.projectVersion=1.0
 # If not set, SonarQube starts looking for source code from the directory containing 
 # the sonar-project.properties file.
 sonar.sources=C:\xampp\htdocs\Ingenieria-de-software-3\Codigo-fuente\Colciencias
+sonar.lenguage=php
 
 # Encoding of the source code
 sonar.sourceEncoding=UTF-8
