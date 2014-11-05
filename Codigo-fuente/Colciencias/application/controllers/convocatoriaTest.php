@@ -1,5 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+///////////////////////////////////////////////////////////////////////////
+//	Esta clase es la responsable de los test de Convocatoria_Model
+//  Autor: Yurani Alejandra Salamanca Lotero
+//  Autor: Karen Daniela Ramirez Ramirez
+//
+//////////////////////////////////////////////////////////////////////////
 Class ConvocatoriaTest extends CI_Controller {
 
 	

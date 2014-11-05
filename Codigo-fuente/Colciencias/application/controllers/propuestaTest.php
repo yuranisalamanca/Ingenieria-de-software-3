@@ -28,7 +28,7 @@ Class PropuestaTest extends CI_Controller {
 		$this->unit->run($this->Propuesta_model->getOrganizacionPropuesta(1),'is_string','getOrganizacionPropuesta test','Se probo buscando la organizacion de la propuesta con id 1');
 		$this->unit->run($this->Propuesta_model->getOrganizacionPropuesta(78),'is_null','getOrganizacionPropuesta test','Se probo buscando la organizacion de una propuesta que no existe');
 
-		$this->unit->run($this->Propuesta_model->getGrupoInvestigacionPropuesta(1),'is_array','getGrupoInvestigacionPropuesta test','Se probo buscando el grupo de investigacion de la propuesta con id 1');
+		$this->unit->run($this->Propuesta_model->getGrupoInvestigacionPropuesta(1),'is_string','getGrupoInvestigacionPropuesta test','Se probo buscando el grupo de investigacion de la propuesta con id 1');
 		$this->unit->run($this->Propuesta_model->getGrupoInvestigacionPropuesta(78),'is_null','getGrupoInvestigacionPropuesta test','Se probo buscando el grupo de investigacion de una propuesta que no existe');
 
 		$this->unit->run($this->Propuesta_model->getOrganizacionesDiferenteAPropuesta(1),'is_array','getOrganizacionesDiferenteAPropuesta test','Se probo buscando las organizaciones diferentes a la organizacion de id 1');

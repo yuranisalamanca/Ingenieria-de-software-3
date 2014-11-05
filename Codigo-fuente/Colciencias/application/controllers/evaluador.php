@@ -1,5 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+
+///////////////////////////////////////////////////////////////////////////
+//	Esta clase es la responsable de controlar y comunicar la vista con el modelo
+//  Autor: Yurani Alejandra Salamanca Lotero
+//  Autor: Karen Daniela Ramirez Ramirez
+//
+//////////////////////////////////////////////////////////////////////////
 Class Evaluador extends CI_Controller {
 
 	/**
@@ -23,11 +30,9 @@ Class Evaluador extends CI_Controller {
        /**
        * esta funcion sirve para llamar las funciones que vienen del modelo evaluadores_model
        * @return arreglo de evaluadores
-       * @param 
        * @author Karen Daniela Ramirez Montoya 
        * @author Yurani Alejandra Salamanca 
        */
-
 	public function listaDeEvaluadores(){
 
 		$this->load->model('evaluadores_model');
@@ -76,7 +81,13 @@ Class Evaluador extends CI_Controller {
 		$this->load->view('barra');
 	    $this->load->view('lista3EvaluadoresPropuesta',$data);
 	}
-
+	/**
+       * esta funcion sirve para llamar al modelo la funcion asignarEvaluador
+       * @param $idPropuesta El cual representa la propuesta que va a ser asignada a cierto evaluador
+       * @param $idEvaluador. El cual representa el evaluador que va a ser asignado a cierta propuesta
+       * @author Karen Daniela Ramirez Montoya 
+       * @author Yurani Alejandra Salamanca 
+    */
   	public function asignarEvaluador($idPropuesta,$idEvaluador)
 	{
 		$this->load->model('propuesta_model');
@@ -85,6 +96,13 @@ Class Evaluador extends CI_Controller {
 		$this->listar3EvaluadoresPorPropuesta($idPropuesta);
 
 	}
+
+	/**
+       * esta funcion sirve para llamar al modelo la funcion listarPropuestasPorEvaluador
+       * @param $idEvaluador. El cual representa el evaluador del cual se quieren obtener las propuestas
+       * @author Karen Daniela Ramirez Montoya 
+       * @author Yurani Alejandra Salamanca 
+    */
 	public function listarPropuestaPorEvaluador($idEvaluador)
 	{
 		$this->load->model('propuesta_model');
@@ -93,7 +111,12 @@ Class Evaluador extends CI_Controller {
 		$this->load->view('listaPropuestasPorEvaluador', $data);
 	}
 
-
+	/**
+       * esta funcion sirve para llamar al modelo la funcion listarPropuestasTodosEvaluadores
+       * @param $idEvaluador. El cual representa el evaluador del cual se quieren obtener las propuestas
+       * @author Karen Daniela Ramirez Montoya 
+       * @author Yurani Alejandra Salamanca 
+    */
 	public function listarPropuestasTodosEvaluadores($idEvaluador)
 	{
 		$this->load->model('propuesta_model');
@@ -102,6 +125,14 @@ Class Evaluador extends CI_Controller {
 		$this->load->view('listaPropuestasTodosEvaluadores',$data);
 	}
 
+	/**
+       * esta funcion sirve para mostrar las propuestas y evaluadores de una convocatoria
+       * @param $idConvocatoria. Representa el id de la convocatoria del cual se quieren obtener las propuestas y los evaluadores
+       * @param $ordenarEvaluador. Variable para ordenar los evaluadores
+       * @param $ordenarPropuesta. Variable para ordenar las propuestas
+       * @author Karen Daniela Ramirez Montoya 
+       * @author Yurani Alejandra Salamanca 
+    */
 	public function listaDePropuestasYEvaluadoresOrdenado($idConvocatoria,$ordenarEvaluador='',$ordenarPropuesta='')
 	{
 		$this->load->model('evaluadores_model');
@@ -116,6 +147,13 @@ Class Evaluador extends CI_Controller {
 		$this->load->view('listaDePropuestasYEvaluadores',$data);
 	}
 
+	/**
+       * esta funcion sirve para llamar la funcion iniciarProcesoDeEvaluacion 
+       * @param $idPropuesta. Representa la propuesta de la cual se quiere iniciar el proceso de evaluacion
+       * @param $idEvaluador. Representa el evaluador que tiene asignado la propuesta que va iniciar proceso de evaluacion 
+       * @author Karen Daniela Ramirez Montoya 
+       * @author Yurani Alejandra Salamanca 
+    */
 	public function iniciarProcesoDeEvaluacion($idPropuesta, $idEvaluador)
 	{
 		$this->load->model('convocatoria_model');
@@ -127,12 +165,26 @@ Class Evaluador extends CI_Controller {
 		
 	}
 
+	/**
+       * esta funcion sirve para llamar la funcion eliminar evaluador de Evaluadores_model
+       * @param $idEvaluador. Representa el evaluador que se va a eliminar de la asignacion a una propuesta 
+       * @param $idPropuesta. Representa la propuesta que tenia el evaluador asignada
+       * @author Karen Daniela Ramirez Montoya 
+       * @author Yurani Alejandra Salamanca 
+    */
 	public function eliminarEvaluador($idEvaluador,$idPropuesta){
 		$this->load->model('evaluadores_model');
 		$eliminado=$this->evaluadores_model->eliminarEvaluador($idEvaluador,$idPropuesta);
 		$this->listar3EvaluadoresPorPropuesta($idPropuesta,$eliminado);
 	}
 
+	/**
+       * esta funcion sirve para ver la informacion de un evaluador, para esto se debe llama la funcion getEvaluador
+       * del modelo evaluadores_model
+       * @param $idEvaluador. Representa el evaluador del cual se quiere obtener la informacion
+       * @author Karen Daniela Ramirez Montoya 
+       * @author Yurani Alejandra Salamanca 
+    */
 	public function verEvaluador($idEvaluador){
 		$this->load->model('evaluadores_model');
 		$data['infoEvaluador']=$this->evaluadores_model->getEvaluador($idEvaluador);
@@ -141,6 +193,13 @@ Class Evaluador extends CI_Controller {
 
 	}
 
+	/**
+       * esta funcion sirve para listar los evaluadores de una convocatoria, para esto se debe llamar la funcion 
+       * buscarEvaluadoresPorConvocatoria del modelo evaluadores_model
+       * @param $idConvocatoria. Representa la convocatoria de la cual se quiere obtener los evaluadores
+       * @author Karen Daniela Ramirez Montoya 
+       * @author Yurani Alejandra Salamanca 
+    */
 	public function listaDeEvaluadoresPorConvocatoria($idConvocatoria){
 
 		$this->load->model('evaluadores_model');
@@ -153,6 +212,14 @@ Class Evaluador extends CI_Controller {
 
 	}
 
+	/**
+       * esta funcion sirve para marcar un evaluador como suplente, para esto se debe llamar a la funcion marcarEvaluadorSuplente
+       * del modelo evaluadores_model
+       * @param $idEvaluador. Representa el evaluador que se quiere marcar como suplente
+       * @param $idPropuesta. Representa la propuesta a la cual se le va a asignar un evaluador suplente
+       * @author Karen Daniela Ramirez Montoya 
+       * @author Yurani Alejandra Salamanca 
+    */
 	public function marcarComoSuplente($idEvaluador, $idPropuesta){
 
 		$this->load->model('evaluadores_model');
