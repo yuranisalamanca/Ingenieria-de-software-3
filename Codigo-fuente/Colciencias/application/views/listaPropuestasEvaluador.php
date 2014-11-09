@@ -68,6 +68,7 @@
               			</tr>
              		</thead>
              		<tbody>
+                        <?php if(count($listadoPropuestas>0)){ ?>
              			<?php for($i=0; $i<count($listadoPropuestas);$i++) { ?>
              			<tr>
                             <td style="text-align: center"> <?php echo utf8_decode($listadoPropuestas[$i]['nombreConvocatoria']); ?></td>
@@ -89,6 +90,13 @@
                         </td>
              			</tr>
                         <?php } ?>
+                        <?php }else{ ?>
+                        <tr>
+                            <td colspan='9' style='text-align: center'>
+                                No se encontraron propuestas para este evaluador, con los criterios seleccionados
+                            </td>
+                        </tr>
+                        <?php }?>
              		</tbody>
              	</table>
 

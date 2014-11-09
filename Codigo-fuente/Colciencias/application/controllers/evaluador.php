@@ -283,7 +283,7 @@ Class Evaluador extends CI_Controller {
              		<tbody>';
          if($listaDePropuesta=='No hay'){
          	$html.="<tr>";
-         		$html.="<td colspan='7' style='text-align: center'>";
+         		$html.="<td colspan='9' style='text-align: center'>";
 					$html.="No se encontraron propuestas con los criterios seleccionados";
 				$html.="</td>";
          	$html.="</tr>";
