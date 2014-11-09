@@ -68,7 +68,7 @@
               			</tr>
              		</thead>
              		<tbody>
-                        <?php if(count($listadoPropuestas>0)){ ?>
+                        <?php if($listadoPropuestas != 'No hay'){ ?>
              			<?php for($i=0; $i<count($listadoPropuestas);$i++) { ?>
              			<tr>
                             <td style="text-align: center"> <?php echo utf8_decode($listadoPropuestas[$i]['nombreConvocatoria']); ?></td>
