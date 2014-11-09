@@ -9,8 +9,7 @@
 Class ConvocatoriaTest extends CI_Controller {
 
 	
-	public function test()
-	{
+	public function test(){
 		$this->load->library('unit_test');
 		$this->load->model('convocatoria_model');
 

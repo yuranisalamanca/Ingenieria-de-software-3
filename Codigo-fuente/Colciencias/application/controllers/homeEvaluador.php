@@ -7,26 +7,21 @@ class HomeEvaluador extends CI_Controller {
    parent::__construct();
  }
  
- function index()
- {
-   if($this->session->userdata('logged_in'))
-   {
+ function index(){
+   if($this->session->userdata('logged_in')){
 
      $session_data = $this->session->userdata('logged_in');
      $data['username'] = $session_data['username']; 
 
       $this->load->view('barraEvaluador');
       $this->load->view('homeEvaluador');  
-   }
-   else
-   {
+   }else{
      //If no session, redirect to login page
      redirect('login', 'refresh');
    }
  }
  
- function logout()
- {
+ function logout(){
    $this->session->unset_userdata('logged_in');
    session_destroy();
    redirect('login', 'refresh');

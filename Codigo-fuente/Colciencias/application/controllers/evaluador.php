@@ -33,18 +33,15 @@ Class Evaluador extends CI_Controller {
        * @author Karen Daniela Ramirez Montoya 
        * @author Yurani Alejandra Salamanca 
        */
-	public function listaDeEvaluadores(){
+		public function listaDeEvaluadores(){
 
-		$this->load->model('evaluadores_model');
-	    
-		$data['listarEvaluadores'] = $this->evaluadores_model->listarEvaluadores();
-		/*echo "<pre>";
-		print_r($data['listaPropuesta']);
-		echo "</pre>";die();*/
-		$this->load->view('barra');
-	    $this->load->view('listaEvaluadores', $data);
+			$this->load->model('evaluadores_model');
+		    
+			$data['listarEvaluadores'] = $this->evaluadores_model->listarEvaluadores();
+			$this->load->view('barra');
+		    $this->load->view('listaEvaluadores', $data);
 
-	}
+		}
 
 
 	 /**
@@ -88,8 +85,7 @@ Class Evaluador extends CI_Controller {
        * @author Karen Daniela Ramirez Montoya 
        * @author Yurani Alejandra Salamanca 
     */
-  	public function asignarEvaluador($idPropuesta,$idEvaluador)
-	{
+  	public function asignarEvaluador($idPropuesta,$idEvaluador){
 		$this->load->model('propuesta_model');
 
 		$this->propuesta_model->asignarEvaluador($idPropuesta,$idEvaluador);
@@ -103,8 +99,7 @@ Class Evaluador extends CI_Controller {
        * @author Karen Daniela Ramirez Montoya 
        * @author Yurani Alejandra Salamanca 
     */
-	public function listarPropuestaPorEvaluador($idEvaluador)
-	{
+	public function listarPropuestaPorEvaluador($idEvaluador){
 		$this->load->model('propuesta_model');
 		$data['listarPropuestasEvaluador'] = $this->propuesta_model->listarPropuestaPorEvaluador($idEvaluador);
 		$this->load->view('barra');
@@ -117,8 +112,7 @@ Class Evaluador extends CI_Controller {
        * @author Karen Daniela Ramirez Montoya 
        * @author Yurani Alejandra Salamanca 
     */
-	public function listarPropuestasTodosEvaluadores($idEvaluador)
-	{
+	public function listarPropuestasTodosEvaluadores($idEvaluador){
 		$this->load->model('propuesta_model');
 		$data['listarPropuestasTodosEvaluadores'] = $this->propuesta_model->listarPropuestaPorEvaluador($idEvaluador);
 		$this->load->view('barra');
@@ -133,8 +127,7 @@ Class Evaluador extends CI_Controller {
        * @author Karen Daniela Ramirez Montoya 
        * @author Yurani Alejandra Salamanca 
     */
-	public function listaDePropuestasYEvaluadoresOrdenado($idConvocatoria,$ordenarEvaluador='',$ordenarPropuesta='')
-	{
+	public function listaDePropuestasYEvaluadoresOrdenado($idConvocatoria,$ordenarEvaluador='',$ordenarPropuesta=''){
 		$this->load->model('evaluadores_model');
 		$this->load->model('convocatoria_model');
 		$data['nombreConvocatoria']=$this->convocatoria_model->getConvocatoria($idConvocatoria);
@@ -154,8 +147,7 @@ Class Evaluador extends CI_Controller {
        * @author Karen Daniela Ramirez Montoya 
        * @author Yurani Alejandra Salamanca 
     */
-	public function iniciarProcesoDeEvaluacion($idPropuesta, $idEvaluador)
-	{
+	public function iniciarProcesoDeEvaluacion($idPropuesta, $idEvaluador){
 		$this->load->model('convocatoria_model');
 		$this->load->model('evaluacion_model');
 		$this->load->model('evaluadores_model');
