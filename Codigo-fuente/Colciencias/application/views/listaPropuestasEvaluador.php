@@ -105,7 +105,7 @@
         var select_estado=$("#select_estado").val();
         $.ajax({
           type: "POST",
-          url: "<?php echo base_url().'index.php/propuesta/actualizarListaDePropuestas'; ?>",
+          url: "<?php echo base_url().'index.php/evaluador/actualizarListaDePropuestasEvaluador'; ?>",
           data: "titulo="+titulo+"&select_convocatoria="+select_convocatoria+"&select_estado="+select_estado,
           dataType: "html",
           success: function(msg){

@@ -24,5 +24,9 @@ class Convocatoria extends CI_Controller
 		$this->load->view('barra');
 		$this->load->view('listaConvocatorias',$data);
 	}
+
+	
+
+	
 }
  ?>

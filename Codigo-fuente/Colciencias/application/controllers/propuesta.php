@@ -25,13 +25,7 @@ Class Propuesta extends CI_Controller {
        * @param 
        * @author Karen Daniela Ramirez Montoya 
        * @author Yurani Alejandra Salamanca 
-       */
-	public function index(){
-
-		$this->load->view('barra');
-	    $this->load->view('homeUsuarioColciencias');
-
-	}	
+       */	
 
 	  /**
        * esta funcion sirve para llamar el va vista las funciones que vienen del modelo propuesta_model
@@ -81,13 +75,87 @@ Class Propuesta extends CI_Controller {
 	public function listaDePropuestas(){
 
 		$this->load->model('Propuesta_model');
-	    
+		$this->load->model('convocatoria_model');
+		$data['listadoConvocatoriasBusqueda'] = $this->convocatoria_model->listaConvocatorias();	    
 		$data['listadoPropuestas'] = $this->Propuesta_model->listarPropuesta();
+		$data['listadoEstadoPropuesta'] = $this->Propuesta_model->listarEstadoPropuesta();
 		$this->load->view('barra');
 	    $this->load->view('listaPropuestas', $data);
 
 	}
 
+	public function actualizarListaDePropuestas(){
+
+		$this->load->model('propuesta_model');
+		if($this->input->post('select_convocatoria') !== null){
+			$select_convocatoria=$this->input->post('select_convocatoria');
+		}else{
+			$select_convocatoria='';
+		}
+		if($this->input->post('titulo') !== null){
+			$titulo=$this->input->post('titulo');
+		}else{
+			$titulo='';
+		}
+		if($this->input->post('select_estado') !== null){
+			$select_estado=$this->input->post('select_estado');
+		}else{
+			$select_estado='';
+		}
+
+		$listaDePropuesta= $this->propuesta_model->listarPropuesta($titulo, $select_convocatoria, $select_estado);
+
+		$html='<table>
+             		<thead>
+             			<tr> 
+                            <th width="210" style="text-align: center"> Convocatoria </th>
+             				<th width="210" style="text-align: center"> T&iacute;tulo </th>
+             				<th width="210" style="text-align: center"> Estado </th>
+             				<th width="210" style="text-align: center"> Organizaci&oacute;n </th> 
+             				<th width="210" style="text-align: center"> Instituci&oacute;n </th>
+             				<th width="210" style="text-align: center"> &Aacute;rea de conocimiento</th>
+                            <th width="210" style="text-align: center"> Tipo de evaluaci&oacute;n </th>
+              			</tr>
+             		</thead>
+             		<tbody>';
+         if($listaDePropuesta=='No hay'){
+         	$html.="<tr>";
+         		$html.="<td colspan='7' style='text-align: center'>";
+					$html.="No se encontraron propuestas con los criterios seleccionados";
+				$html.="</td>";
+         	$html.="</tr>";
+         }else{
+	   		foreach ($listaDePropuesta as $resultado) {
+				$html.="<tr>";
+					$html.="<td style='text-align: center'>";
+						$html.=$resultado['nombreConvocatoria'];
+					$html.="</td>";
+					$html.="<td style='text-align: center'>";
+						$html.=$resultado['titulo'];
+					$html.="</td>";
+					$html.="<td style='text-align: center'>";
+						$html.=$resultado['nombreEstado'];
+					$html.="</td>";
+					$html.="<td style='text-align: center'>";
+						$html.=$resultado['nombreOrganizacion'];
+					$html.="</td>";
+					$html.="<td style='text-align: center'>";
+						$html.=$resultado['nombreInstitucion'];
+					$html.="</td>";
+					$html.="<td style='text-align: center'>";
+						$html.=$resultado['areaNombre'];
+					$html.="</td>";
+					$html.="<td style='text-align: center'>";
+						$html.=$resultado['tipoEvaluacionNombre'];
+					$html.="</td>";
+				$html.="</tr>";
+			}
+		}
+		$html.='</tbody>
+		</table>';
+
+		echo $html;
+	}
 /**
        * Esta funcion sirve para buscar los evaluadores de una propuesta
        * @return evaluadores

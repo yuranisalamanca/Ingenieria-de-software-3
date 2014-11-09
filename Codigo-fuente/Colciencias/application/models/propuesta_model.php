@@ -19,17 +19,18 @@
   * @author Karen Daniela Ramirez Montoya 
   * @author Yurani Alejandra Salamanca
   */
-  public function listarPropuesta()
+  /**public function listarPropuesta()
   {
     $sql = "SELECT p.titulo, e.nombre as nombreEstado,o.nombre as nombreOrganizacion,i.nombre as nombreInstitucion,          
-                   a.nombre as areaNombre, te.nombre as tipoEvaluacionNombre, p.idPropuesta 
+                   a.nombre as areaNombre, te.nombre as tipoEvaluacionNombre, p.idPropuesta, c.nombre as nombreConvocatoria 
             FROM propuesta p, organizacion o, institucion i,
-                 area_conocimiento a, tipo_evaluacion te, estado_propuesta e 
+                 area_conocimiento a, tipo_evaluacion te, estado_propuesta e, convocatoria c 
             WHERE p.Organizacion_idOrganizacion=o.idOrganizacion 
             AND p.Estado_propuesta_idEstado_propuesta=e.idEstado_propuesta 
             AND p.tipo_evaluacion_idtipo_evaluacion=te.idTipo_evaluacion 
             AND p.Institucion_idInstitucion=i.idInstitucion 
-            AND p.area_conocimiento_idArea_conocimiento=a.idArea_conocimiento";
+            AND c.idConvocatoria = p.Convocatoria_idConvocatoria
+            AND p.area_conocimiento_idArea_conocimiento=a.idArea_conocimiento order by c.idConvocatoria";
 
     $query = $this->db->query($sql);
     if($query->num_rows() > 0){
@@ -45,11 +46,12 @@
         $arreglo[$cont]['nombreInstitucion']    = $resultado->nombreInstitucion;
         $arreglo[$cont]['areaNombre']           = $resultado->areaNombre;
         $arreglo[$cont]['tipoEvaluacionNombre'] = $resultado->tipoEvaluacionNombre;
+        $arreglo[$cont]['nombreConvocatoria']   = $resultado->nombreConvocatoria;
         $cont++;
       }
       return $arreglo;
     }
-  }
+  }*/
 
   /**
   * esta funcion sirve para listar las propuestas de una convocatoria 
@@ -683,5 +685,86 @@
     }
 
   }
+
+  /**
+  * Esta función sirve para obtener los estados de una propuesta
+  * @param 
+  * @return un arreglo con los nombres de los estados que puede tener una propuesta
+  * @author Karen Daniela Ramirez Montoya
+  * @author Yurani Alejandra Salamanca
+  */
+  public function listarEstadoPropuesta(){
+
+    $sql="SELECT ep.nombre, ep.idEstado_propuesta from estado_propuesta ep";
+    $query=$this->db->query($sql);
+    if($query->num_rows()>0){
+      $arreglo= array();
+      $cont=0;
+      foreach ($query->result() as $resultado) {
+        $arreglo[$cont]['idEstado'] = $resultado->idEstado_propuesta;
+        $arreglo[$cont]['nombre']   = $resultado->nombre;
+        $cont++;
+       }
+       return $arreglo;
+    }
+  }
+
+    /**
+  * Esta función sirve para buscar una propuesta
+  * @param $titulo, $idConvocatoria, $idEstado
+  * @return un arreglo con los nombres de los estados que puede tener una propuesta
+  * @author Karen Daniela Ramirez Montoya
+  * @author Yurani Alejandra Salamanca
+  */
+  public function listarPropuesta($titulo='', $idConvocatoria='', $idEstado=''){
+
+    $where='';
+    if ($titulo != '') {
+      $where .= ' AND p.titulo LIKE "%' . $titulo.'%"';
+    }
+    if ($idConvocatoria != '' && $idConvocatoria != 'null' && $idConvocatoria != 0) {
+      $where .= ' AND p.Convocatoria_idConvocatoria= ' . $idConvocatoria;
+    }
+    if ($idEstado != '' && $idEstado != 'null' && $idEstado != 0) {
+      $where .= ' AND p.Estado_propuesta_idEstado_propuesta = ' . $idEstado;
+    }
+
+    $sql = "SELECT p.titulo, e.nombre as nombreEstado,o.nombre as nombreOrganizacion,i.nombre as nombreInstitucion,          
+                   a.nombre as areaNombre, te.nombre as tipoEvaluacionNombre, p.idPropuesta, c.nombre as nombreConvocatoria 
+            FROM propuesta p, organizacion o, institucion i,
+                 area_conocimiento a, tipo_evaluacion te, estado_propuesta e, convocatoria c
+            WHERE p.Organizacion_idOrganizacion=o.idOrganizacion 
+            AND p.Estado_propuesta_idEstado_propuesta=e.idEstado_propuesta 
+            AND p.tipo_evaluacion_idtipo_evaluacion=te.idTipo_evaluacion 
+            AND p.Institucion_idInstitucion=i.idInstitucion 
+            AND c.idConvocatoria = p.Convocatoria_idConvocatoria
+            AND p.area_conocimiento_idArea_conocimiento=a.idArea_conocimiento".$where." order by c.idConvocatoria";
+      
+  
+      $query = $this->db->query($sql);
+      if($query->num_rows() > 0){
+
+        $arreglo = array();
+        $cont = 0;
+        foreach ($query->result() as $resultado) {
+          $arreglo[$cont]['idPropuesta']          = $resultado->idPropuesta;
+          $arreglo[$cont]['titulo']               = $resultado->titulo;
+          $arreglo[$cont]['nombreEstado']         = $resultado->nombreEstado;
+          $arreglo[$cont]['nombreOrganizacion']   = $resultado->nombreOrganizacion;
+          $arreglo[$cont]['nombreInstitucion']    = $resultado->nombreInstitucion;
+          $arreglo[$cont]['areaNombre']           = $resultado->areaNombre;
+          $arreglo[$cont]['tipoEvaluacionNombre'] = $resultado->tipoEvaluacionNombre;
+          $arreglo[$cont]['nombreConvocatoria']   = $resultado->nombreConvocatoria;
+          $cont++;
+         
+        }
+        return $arreglo;     
+      } else {
+
+        return 'No hay';
+      }      
+  }
+
+
 }
 ?>

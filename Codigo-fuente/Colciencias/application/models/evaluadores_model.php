@@ -270,8 +270,9 @@ Class Evaluadores_model extends CI_Model
             AND   e.area_conocimiento_idArea_conocimiento = a.idArea_conocimiento
             AND   e.ciudad_idCiudad = c.idCiudad
             AND   e.idEvaluador = ep.Evaluador_idEvaluador
-            AND   ep.esConfirmado = 1
-            AND   e.Convocatoria_idConvocatoria = ".$idConvocatoria;
+            AND   ep.esConfirmado=1
+            AND   ep.esAsignado<>1
+            AND   e.Convocatoria_idConvocatoria =".$idConvocatoria;
 
     $query = $this->db->query($sql);
     if($query->num_rows()>0) {
@@ -364,6 +365,72 @@ Class Evaluadores_model extends CI_Model
     } else {
       return false;
     }
+  }
+
+  public function login($username, $password){
+    $sql="SELECT e.idEvaluador,e.username, e.password from evaluador e where e.username=".$username." AND e.password=".$password;
+    $query = $this -> db -> get();
+ 
+   if($query -> num_rows() == 1)
+   {
+     return $query->result();
+   }
+   else
+   {
+     return false;
+   }
+  }
+
+    public function listarPropuestaEvaluador($idEvaluador,$titulo='', $idConvocatoria='', $idEstado=''){
+
+    $where='';
+    if ($titulo != '') {
+      $where .= ' AND p.titulo LIKE "%' . $titulo.'%"';
+    }
+    if ($idConvocatoria != '' && $idConvocatoria != 'null' && $idConvocatoria != 0) {
+      $where .= ' AND p.Convocatoria_idConvocatoria= ' . $idConvocatoria;
+    }
+    if ($idEstado != '' && $idEstado != 'null' && $idEstado != 0) {
+      $where .= ' AND p.Estado_propuesta_idEstado_propuesta = ' . $idEstado;
+    }
+
+    $sql = "SELECT cv.nombre as nombreConvocatoria, ep.Evaluador_idEvaluador as idEvaluador, p.titulo, e.nombre as nombreEstado,o.nombre as nombreOrganizacion,i.nombre as nombreInstitucion,          
+                   a.nombre as areaNombre, te.nombre as tipoEvaluacionNombre, p.idPropuesta,ep.Evaluador_idEvaluador as idEvaluador 
+            FROM propuesta p, organizacion o, institucion i, area_conocimiento a, tipo_evaluacion te, 
+                 estado_propuesta e, evaluacion_propuesta ep, convocatoria cv
+            WHERE p.Organizacion_idOrganizacion = o.idOrganizacion 
+            AND p.Estado_propuesta_idEstado_propuesta = e.idEstado_propuesta 
+            AND p.tipo_evaluacion_idtipo_evaluacion = te.idTipo_evaluacion 
+            AND p.Institucion_idInstitucion = i.idInstitucion 
+            AND p.area_conocimiento_idArea_conocimiento = a.idArea_conocimiento
+            AND p.idPropuesta = ep.Propuesta_idPropuesta
+            AND ep.esConfirmado = 1
+            AND ep.esAsignado = 1
+            AND cv.idConvocatoria=p.Convocatoria_idConvocatoria
+            AND ep.Evaluador_idEvaluador =".$idEvaluador.$where." order by cv.idConvocatoria";
+  
+      $query = $this->db->query($sql);
+      if($query->num_rows() > 0){
+
+        $arreglo = array();
+        $cont = 0;
+        foreach ($query->result() as $resultado) {
+          $arreglo[$cont]['idPropuesta']          = $resultado->idPropuesta;
+          $arreglo[$cont]['titulo']               = $resultado->titulo;
+          $arreglo[$cont]['nombreEstado']         = $resultado->nombreEstado;
+          $arreglo[$cont]['nombreOrganizacion']   = $resultado->nombreOrganizacion;
+          $arreglo[$cont]['nombreInstitucion']    = $resultado->nombreInstitucion;
+          $arreglo[$cont]['areaNombre']           = $resultado->areaNombre;
+          $arreglo[$cont]['tipoEvaluacionNombre'] = $resultado->tipoEvaluacionNombre;
+          $arreglo[$cont]['nombreConvocatoria']   = $resultado->nombreConvocatoria;
+          $arreglo[$cont]['idEvaluador']          = $resultado->idEvaluador;
+          $cont++;         
+        }
+        return $arreglo;     
+      } else {
+
+        return 'No hay';
+      }      
   }
 }
 ?>

@@ -229,7 +229,95 @@ Class Evaluador extends CI_Controller {
 
 	}
 
-}
+	public function listaPropuestasEvaluador(){
 
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
+		$this->load->model('evaluadores_model');
+		$this->load->model('Propuesta_model');
+		$this->load->model('convocatoria_model');
+
+		$session_data = $this->session->userdata('logged_in');
+		$idEvaluador=$session_data['id'];
+
+		$data['listadoConvocatoriasBusqueda'] = $this->convocatoria_model->listaConvocatorias();
+
+		$data['listadoPropuestas'] = $this->evaluadores_model->listarPropuestaEvaluador($idEvaluador);
+		$data['listadoEstadoPropuesta'] = $this->Propuesta_model->listarEstadoPropuesta();
+		$this->load->view('barraEvaluador');
+		$this->load->view('listaPropuestasEvaluador',$data);
+	}
+
+	public function actualizarListaDePropuestasEvaluador(){
+
+		$this->load->model('evaluadores_model');
+		if($this->input->post('select_convocatoria') !== null){
+			$select_convocatoria=$this->input->post('select_convocatoria');
+		}else{
+			$select_convocatoria='';
+		}
+		if($this->input->post('titulo') !== null){
+			$titulo=$this->input->post('titulo');
+		}else{
+			$titulo='';
+		}
+		if($this->input->post('select_estado') !== null){
+			$select_estado=$this->input->post('select_estado');
+		}else{
+			$select_estado='';
+		}
+		$session_data = $this->session->userdata('logged_in');
+		$idEvaluador=$session_data['id'];
+		$listaDePropuesta= $this->evaluadores_model->listarPropuestaEvaluador($idEvaluador,$titulo, $select_convocatoria, $select_estado);
+
+		$html='<table>
+             		<thead>
+             			<tr> 
+                            <th width="210" style="text-align: center"> Convocatoria </th>
+             				<th width="210" style="text-align: center"> T&iacute;tulo </th>
+             				<th width="210" style="text-align: center"> Estado </th>
+             				<th width="210" style="text-align: center"> Organizaci&oacute;n </th> 
+             				<th width="210" style="text-align: center"> Instituci&oacute;n </th>
+             				<th width="210" style="text-align: center"> &Aacute;rea de conocimiento</th>
+                            <th width="210" style="text-align: center"> Tipo de evaluaci&oacute;n </th>
+              			</tr>
+             		</thead>
+             		<tbody>';
+         if($listaDePropuesta=='No hay'){
+         	$html.="<tr>";
+         		$html.="<td colspan='7' style='text-align: center'>";
+					$html.="No se encontraron propuestas con los criterios seleccionados";
+				$html.="</td>";
+         	$html.="</tr>";
+         }else{
+	   		foreach ($listaDePropuesta as $resultado) {
+				$html.="<tr>";
+					$html.="<td style='text-align: center'>";
+						$html.=$resultado['nombreConvocatoria'];
+					$html.="</td>";
+					$html.="<td style='text-align: center'>";
+						$html.=$resultado['titulo'];
+					$html.="</td>";
+					$html.="<td style='text-align: center'>";
+						$html.=$resultado['nombreEstado'];
+					$html.="</td>";
+					$html.="<td style='text-align: center'>";
+						$html.=$resultado['nombreOrganizacion'];
+					$html.="</td>";
+					$html.="<td style='text-align: center'>";
+						$html.=$resultado['nombreInstitucion'];
+					$html.="</td>";
+					$html.="<td style='text-align: center'>";
+						$html.=$resultado['areaNombre'];
+					$html.="</td>";
+					$html.="<td style='text-align: center'>";
+						$html.=$resultado['tipoEvaluacionNombre'];
+					$html.="</td>";
+				$html.="</tr>";
+			}
+		}
+		$html.='</tbody>
+		</table>';
+
+		echo $html;
+	}
+
+}
