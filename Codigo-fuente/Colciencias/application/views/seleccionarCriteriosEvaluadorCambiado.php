@@ -51,7 +51,9 @@
                                     <select name="select_nivel">
                                         <option value="0" selected="selected" disabled="disabled">Seleccione...</option>
                                         <?php for ($i=0; $i < count($niveles); $i++) { ?>
-                                            <option value="<?php echo $niveles[$i]['idNivel_Formacion']; ?>"><?php echo $niveles[$i]['Nombre']; ?></option>
+                                            <option value="<?php echo $niveles[$i]['idNivel_Formacion']; ?>">
+                                                <?php echo $niveles[$i]['Nombre']; ?>
+                                            </option>
                                         <?php } ?>
                                     </select>
                                 </td>
@@ -63,7 +65,9 @@
                                     <select name="select_organizacion">
                                         <option value="0" selected="selected" disabled="disabled">Seleccione...</option>
                                         <?php for ($i=0; $i < count($organizaciones); $i++) { ?>
-                                            <option value="<?php echo $organizaciones[$i]['idOrganizacion']; ?>"><?php echo $organizaciones[$i]['nombre']; ?></option>
+                                            <option value="<?php echo $organizaciones[$i]['idOrganizacion']; ?>">
+                                                <?php echo $organizaciones[$i]['nombre']; ?>
+                                            </option>
                                         <?php } ?>
                                     </select>
                                 </td>
@@ -75,7 +79,9 @@
                                     <select name="select_experiencia">
                                         <option value="0" selected="selected" disabled="disabled">Seleccione...</option>
                                         <?php for ($i=1; $i < 11; $i++) { ?>
-                                            <option value="<?php echo $i; ?>"> <?php echo $i; ?> </option>
+                                            <option value="<?php echo $i; ?>"> 
+                                                <?php echo $i; ?> 
+                                            </option>
                                         <?php }  ?>
                                     </select>
                                 </td>
@@ -87,7 +93,9 @@
                                     <select name="select_idioma">
                                         <option value="0" selected="selected" disabled="disabled">Seleccione...</option>
                                         <?php for ($i=0; $i < count($idiomas); $i++) { ?>
-                                            <option value="<?php echo $idiomas[$i]['ididioma']; ?>"><?php echo $idiomas[$i]['nombre']; ?></option>
+                                            <option value="<?php echo $idiomas[$i]['ididioma']; ?>">
+                                                <?php echo $idiomas[$i]['nombre']; ?>
+                                            </option>
                                         <?php } ?>
                                     </select>
                                 </td>
