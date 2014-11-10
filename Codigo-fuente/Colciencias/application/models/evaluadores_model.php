@@ -250,6 +250,8 @@ Class Evaluadores_model extends CI_Model{
             AND   e.idEvaluador = ep.Evaluador_idEvaluador
             AND   ep.esConfirmado=1
             AND   ep.esAsignado<>1
+            AND   ep.iniciarProceso<>1
+            AND   ep.Evaluador_idEvaluador=e.idEvaluador
             AND   e.Convocatoria_idConvocatoria =".$idConvocatoria;
     $query = $this->db->query($sql);
     if($query->num_rows()>0) {
@@ -333,9 +335,9 @@ Class Evaluadores_model extends CI_Model{
             AND   e.Convocatoria_idConvocatoria=".$idConvocatoria;
     $query = $this->db->query($sql);
     if($query->num_rows() > 0) {
-      return true;
+      return 'Hay';
     } else {
-      return false;
+      return 'No hay';
     }
   }
 

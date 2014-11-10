@@ -12,14 +12,7 @@
 	<br>
 	<div class="row">
 		<br>
-		 <?php if($evaluadoresYPropuestasEncontrados == true) {?>
-		<label style="text-align: center"><h3> Lista de evaluadores y propuestas de la convocatoria:<br><em><?php echo utf8_decode($nombreConvocatoria); ?> </em></h3></label>	
-		<?php } else { ?>
-            <div data-alert class="alert-box warning radius" id="alerta">
-                    La convocatoria <strong><?php echo utf8_decode($nombreConvocatoria); ?></strong> no tiene propuestas y evaluadores confirmados.
-                <a href="#" class="close" data-dismiss="alert" id="closeAlerta">&times;</a>
-            </div>
-            <?php } ?>
+				<label style="text-align: center"><h3> Lista de evaluadores y propuestas de la convocatoria<br></h3></label>	
 		<br>
 		<div>
 			<table style="margin:0 auto">
