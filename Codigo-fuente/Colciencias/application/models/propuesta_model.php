@@ -589,7 +589,7 @@
     }
   }
 
-    /**
+  /**
   * Esta función sirve para buscar una propuesta
   * @param $titulo, $idConvocatoria, $idEstado
   * @return un arreglo con los nombres de los estados que puede tener una propuesta
@@ -638,6 +638,13 @@
       }      
   }
 
+  /**
+  * Esta funcion lista las propuestas que ya han sido evaluadas
+  * @param $anio, $idConvocatoria
+  * @return $arreglo. Lista de convocatorias
+  * @author Karen Daniela Ramirez Montoya
+  * @author Yurani Alejandra Salamanca
+  */
   public function listarPropuestasConEvaluaciones($anio='', $idConvocatoria=''){
     $where='';
     if($anio!=''){
@@ -646,7 +653,8 @@
     if($idConvocatoria!='' && $idConvocatoria!=null && $idConvocatoria!=0){
       $where .=' AND c.idConvocatoria='.$idConvocatoria;
     }
-    $sql = "SELECT p.titulo, pro.nombre, i.nombre FROM Convocatoria c, Propuesta p, Proponente pro, Institucion i, Evaluacion_Final ef, evaluacion_propuesta ep
+    $sql = "SELECT p.titulo as titulo, pro.nombre as proponente, i.nombre as institucion, ef.calificacion_final as calificacion
+            FROM Convocatoria c, Propuesta p, Proponente pro, Institucion i, Evaluacion_Final ef, evaluacion_propuesta ep
             WHERE p.Convocatoria_idConvocatoria = c.idConvocatoria
             AND pro.idProponente = p.proponente_idProponente
             AND i.idInstitucion = p.Institucion_idInstitucion 
@@ -655,9 +663,35 @@
             AND ep.esAsignado =1
             AND ep.esConfirmado = 1
             AND ep.iniciarProceso = 1
-            AND ep.esEvaluado = 1
-          ".$where."ORDER BY c.idConvocatoria";
+            AND ep.esEvaluado = 1".$where." ORDER BY c.idConvocatoria";
+  }
 
+  /**
+  * Esta funcion lista los anios de las convocatorias que ya tienen propuestas evaluadas
+  * @return $arreglo. Lista de anios de creacion de las convocatorias
+  * @author Karen Daniela Ramirez Montoya
+  * @author Yurani Alejandra Salamanca
+  */
+  public function listaAniosPropuestasEvaluacion()
+  {
+     $sql = "SELECT p.anioCreacion as anio FROM convocatoria c, Propuesta p, evaluacion_propuesta ep
+            WHERE p.Convocatoria_idConvocatoria=c.idConvocatoria
+            AND ep.Propuesta_idPropuesta=p.idPropuesta
+            AND ep.esAsignado =1
+            AND ep.esConfirmado = 1
+            AND ep.iniciarProceso = 1
+            AND ep.esEvaluado = 1";
+
+      $query = $this->db->query($sql);
+      if($query->num_rows()>0){
+        $arreglo = array();
+        $cont = 0;
+        foreach ($query->result() as $resultado) {
+          $arreglo[$cont]['anioCreacion'] = $resultado->anio;
+          $cont++;
+        }
+        return $arreglo;
+      }
   }
 }
 ?>
