@@ -662,7 +662,6 @@
             AND ep.iniciarProceso = 1
             AND ep.esEvaluado = 1
             AND e.idEstado = c.Estado_idEstado".$where." ORDER BY c.idConvocatoria";
-            //die($sql);
     $query = $this->db->query($sql);
       if($query->num_rows()>0){
         $arreglo = array();

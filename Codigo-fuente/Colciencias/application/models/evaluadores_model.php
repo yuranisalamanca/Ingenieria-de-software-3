@@ -339,16 +339,6 @@ Class Evaluadores_model extends CI_Model{
     }
   }
 
-  public function login($username, $password){
-    $sql="SELECT e.idEvaluador,e.username, e.password from evaluador e where e.username=".$username." AND e.password=".$password;
-    $query = $this -> db -> get(); 
-   if($query -> num_rows() == 1){
-     return $query->result();
-   }else{
-     return false;
-   }
-  }
-
     public function listarPropuestaEvaluador($idEvaluador,$titulo='', $idConvocatoria='', $idEstado=''){
     $where='';
     if ($titulo != '') {
