@@ -653,7 +653,7 @@
     if($idConvocatoria!='' && $idConvocatoria!=null && $idConvocatoria!=0){
       $where .=' AND c.idConvocatoria='.$idConvocatoria;
     }
-    $sql = "SELECT p.titulo as titulo, pro.nombre as proponente, i.nombre as institucion, ef.calificacion_final as calificacion
+    $sql = "SELECT p.idConvocatoria as idConvocatoria, p.titulo as titulo, pro.nombre as proponente, i.nombre as institucion, ef.calificacion_final as calificacion
             FROM Convocatoria c, Propuesta p, Proponente pro, Institucion i, Evaluacion_Final ef, evaluacion_propuesta ep
             WHERE p.Convocatoria_idConvocatoria = c.idConvocatoria
             AND pro.idProponente = p.proponente_idProponente
@@ -664,6 +664,20 @@
             AND ep.esConfirmado = 1
             AND ep.iniciarProceso = 1
             AND ep.esEvaluado = 1".$where." ORDER BY c.idConvocatoria";
+    $query = $this->db->query($sql);
+      if($query->num_rows()>0){
+        $arreglo = array();
+        $cont = 0;
+        foreach ($query->result() as $resultado) {
+          $arreglo[$cont]['idConvocatoria'] = $resultado->idConvocatoria;
+          $arreglo[$cont]['titulo'] = $resultado->titlo;
+          $arreglo[$cont]['proponente'] = $resultado->proponente;
+          $arreglo[$cont]['institucion'] = $resultado->institucion;
+          $arreglo[$cont]['calificacion'] = $resultado->calificacion;
+          $cont++;
+        }
+        return $arreglo;
+      }
   }
 
   /**

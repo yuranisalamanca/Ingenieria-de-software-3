@@ -66,7 +66,10 @@ Class Propuesta extends CI_Controller {
 
 	public function listaPropuestasConEvaluaciones(){
 		$this->load->model('Propuesta_model');
-
+		$this->load->model('convocatoria_model');
+		$data['listaConvocatoriasPorAnio'] = $this->convocatoria_model->convocatoriasPorAnio();
+		$data['listaAnios']= $this->propuesta_model->listaAniosPropuestasEvaluacion();
+		$data['listarPropuestas']= $this->propuesta_model->listarPropuestasConEvaluaciones();
 		$this->load->view('barra');
 		$this->load->view('listaPropuestasConEvaluaciones', $data);
 	}
