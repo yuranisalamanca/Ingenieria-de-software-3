@@ -711,14 +711,15 @@
   }
 
   public function evaluacionPropuesta($idPropuesta){
-  $sql="SELECT c.nombre as nombreConv, c.idConvocatoria as idConvocatoria, p.titulo as titulo, pro.nombre as proponente, i.nombre as institucion, ef.calificacion_final as calificacion
-            FROM Convocatoria c, Propuesta p, Proponente pro, Institucion i, Evaluacion_Final ef, evaluacion_propuesta ep, parametros_evaluacion pe
+  $sql="SELECT c.nombre as nombreConv, c.idConvocatoria as idConvocatoria, p.titulo as titulo, pro.nombre as proponente, i.nombre as institucion, ef.calificacion_final as calificacion, te.nombre as tipoevaluacion
+            FROM Convocatoria c, Propuesta p, Proponente pro, Institucion i, Evaluacion_Final ef, evaluacion_propuesta ep, parametros_evaluacion pe, tipo_evaluacion te
             WHERE p.Convocatoria_idConvocatoria = c.idConvocatoria
             AND pro.idProponente = p.proponente_idProponente
             AND i.idInstitucion = p.Institucion_idInstitucion 
             AND ep.Propuesta_idPropuesta = p.idPropuesta
             AND ep.Evaluacion_Final_idEvaluacion_Final=ef.idEvaluacion_Final
             AND pe.idParametros_Evaluacion = c.Parametros_evaluacion_idParametros_evaluacion
+            AND te.Parametros_evaluacion_idParametros_evaluacion =pe.idParametros_Evaluacion
             AND ep.esAsignado =1
             AND ep.esConfirmado = 1
             AND ep.iniciarProceso = 1
