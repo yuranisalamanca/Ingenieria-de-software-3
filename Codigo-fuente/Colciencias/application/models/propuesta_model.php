@@ -679,7 +679,7 @@
   }
 
   public function listarPropuestasConEvaluaciones($idConvocatoria=''){
-  $sql="SELECT c.idConvocatoria as idConvocatoria, p.titulo as titulo, pro.nombre as proponente, i.nombre as institucion, ef.calificacion_final as calificacion
+  $sql="SELECT c.nombre as nombreConv, c.idConvocatoria as idConvocatoria, p.titulo as titulo, pro.nombre as proponente, i.nombre as institucion, ef.calificacion_final as calificacion
             FROM Convocatoria c, Propuesta p, Proponente pro, Institucion i, Evaluacion_Final ef, evaluacion_propuesta ep
             WHERE p.Convocatoria_idConvocatoria = c.idConvocatoria
             AND pro.idProponente = p.proponente_idProponente
@@ -696,6 +696,7 @@
         $arreglo = array();
         $cont = 0;
         foreach ($query->result() as $resultado) {
+          $arreglo[$cont]['nombreConv'] = $resultado->nombreConv;
           $arreglo[$cont]['idConvocatoria'] = $resultado->idConvocatoria;
           $arreglo[$cont]['titulo'] = $resultado->titulo;
           $arreglo[$cont]['proponente'] = $resultado->proponente;
