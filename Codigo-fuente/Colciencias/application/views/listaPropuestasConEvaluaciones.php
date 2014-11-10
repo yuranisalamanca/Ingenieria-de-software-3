@@ -9,8 +9,12 @@
         <script src="<?php echo base_url(); ?>js/vendor/modernizr.js"></script>
         <script src="<?php echo base_url(); ?>js/vendor/jquery.js"></script>
     </head>
-    <body>   
-             <div id="tabla" >
+    <body>  
+    <br>
+    <br> 
+    <label style="text-align: center"><h3> Propuestas de la convocatoria:<br><em><?php echo utf8_decode($listaPropuestas[0]['nombreConv']); ?> </em></h3></label>
+
+            <div id="tabla" >
             <br>
             <br>
             <div class="row" style="">
@@ -34,7 +38,7 @@
               				<td style="text-align: center"> <?php echo utf8_decode($listaPropuestas[$i]['calificacion']); ?></td>
                             <td style="text-align: center">
                                 <a class="" href="">
-                                       <img src="<?php echo base_url(); ?>img/iconos/listarPropuesta.png" title="Ver evaluacion">
+                                       <img src="<?php echo base_url(); ?>img/iconos/listarPropuesta.png" title="Ver evaluaci&oacute;n">
                                 </a>
                             </td>
              			</tr>
