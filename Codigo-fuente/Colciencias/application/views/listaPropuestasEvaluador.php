@@ -23,7 +23,9 @@
                         <select id="select_convocatoria"> 
                            <option value="0" selected="selected">Todas</option> 
                            <?php for ($i=0; $i < count($listadoConvocatoriasBusqueda); $i++) { ?>
-                                <option value="<?php echo $listadoConvocatoriasBusqueda[$i]['idConvocatoria']; ?>"><?php echo utf8_decode ($listadoConvocatoriasBusqueda[$i]['convocatoriaNombre']); ?></option>
+                                <option value="<?php echo $listadoConvocatoriasBusqueda[$i]['idConvocatoria']; ?>">
+                                    <?php echo utf8_decode ($listadoConvocatoriasBusqueda[$i]['convocatoriaNombre']); ?>
+                                </option>
                            <?php } ?>
                         </select>
                      </label> 
@@ -38,7 +40,9 @@
                             <select id="select_estado"> 
                                 <option value="0" selected="selected">Todos</option>
                                 <?php for ($i=0; $i < count($listadoEstadoPropuesta); $i++) { ?>
-                                      <option value="<?php echo $listadoEstadoPropuesta[$i]['idEstado']; ?>"><?php echo utf8_decode ($listadoEstadoPropuesta[$i]['nombre']); ?></option>
+                                      <option value="<?php echo $listadoEstadoPropuesta[$i]['idEstado']; ?>">
+                                        <?php echo utf8_decode ($listadoEstadoPropuesta[$i]['nombre']); ?>
+                                    </option>
                                 <?php } ?>
                             </select>
                          </label> 

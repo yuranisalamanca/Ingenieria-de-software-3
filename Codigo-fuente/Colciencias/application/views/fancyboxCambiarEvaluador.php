@@ -16,7 +16,9 @@
 			<select name="select_evaluador" style="margin-top: 8%">
 			<option value="0" selected="selected" disabled="disabled">Seleccione...</option>
 			<?php for ($i=0; $i < count($evaluadoresNuevos); $i++) { ?>
-				<option value="<?php echo $evaluadoresNuevos[$i]['idEvaluador']; ?>"><?php echo $evaluadoresNuevos[$i]['nombre']; ?></option>
+				<option value="<?php echo $evaluadoresNuevos[$i]['idEvaluador']; ?>">
+					<?php echo $evaluadoresNuevos[$i]['nombre']; ?>
+				</option>
 			<?php } ?>
 			</select>
 			<br>
