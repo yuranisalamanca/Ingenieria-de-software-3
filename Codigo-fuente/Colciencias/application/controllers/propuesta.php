@@ -435,7 +435,7 @@ Class Propuesta extends CI_Controller {
 
 				$data['idPropuesta'] = $idPropuesta;
 				$data['idCambiado'] = $idCambiado;
-				$data['evaluadoresNuevos'] = $this->propuesta_model->buscarEvaluadoresCambiado($idPropuesta, $dataSearch,$idEv0, $idEv1,$idEv2);
+				$data['evaluadoresNuevos'] = $this->propuesta_model->buscarEvaluadoresCambiado($dataSearch,$idEv0, $idEv1,$idEv2);
 				$this->propuesta_model->buscarIdConvocatoria($idPropuesta);
 				
 
