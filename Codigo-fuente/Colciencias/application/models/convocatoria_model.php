@@ -99,7 +99,7 @@ class Convocatoria_model extends CI_Model{
      */
 	public function convocatoriasPorAnio($anio)
 	{
-		$sql = "SELECT titulo FROM Convocatorias WHERE anioCreacion =".$anio." AND Estado_idEstado= 2"
+		$sql = "SELECT titulo FROM Convocatorias WHERE anioCreacion =".$anio." AND Estado_idEstado= 2";
 		$query = $this->db->query($sql);
 		if($query->num_rows()>0){
 			$arreglo = array();
