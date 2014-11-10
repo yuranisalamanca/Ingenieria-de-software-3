@@ -61,8 +61,7 @@ Class Evaluador extends CI_Controller {
 		for($i=0; $i<count($data['listar3EvaluadoresPropuesta']);$i++) {
 			$data['idEv'.$i] = $data['listar3EvaluadoresPropuesta'][$i]['idEvaluador'];
 		}
-		if(!isset($data['idEv0']))
-		{
+		if(!isset($data['idEv0'])){
 			$data['idEv0']=0;
 		}
 		if(!isset($data['idEv1'])){
@@ -87,7 +86,6 @@ Class Evaluador extends CI_Controller {
     */
   	public function asignarEvaluador($idPropuesta,$idEvaluador){
 		$this->load->model('propuesta_model');
-
 		$this->propuesta_model->asignarEvaluador($idPropuesta,$idEvaluador);
 		$this->listar3EvaluadoresPorPropuesta($idPropuesta);
 
@@ -153,8 +151,7 @@ Class Evaluador extends CI_Controller {
 		$this->load->model('evaluadores_model');
 		$this->evaluacion_model->iniciarProcesoDeEvaluacion($idPropuesta,$idEvaluador);
 		$idConvocatoria = $this->convocatoria_model->buscarConvocatoriaPorPropuesta($idPropuesta);
-		$this->listaDePropuestasYEvaluadoresOrdenado($idConvocatoria);
-		
+		$this->listaDePropuestasYEvaluadoresOrdenado($idConvocatoria);		
 	}
 
 	/**
@@ -182,7 +179,6 @@ Class Evaluador extends CI_Controller {
 		$data['infoEvaluador']=$this->evaluadores_model->getEvaluador($idEvaluador);
 		$this->load->view('barra');
 		$this->load->view('infoEvaluador',$data);
-
 	}
 
 	/**
@@ -201,7 +197,6 @@ Class Evaluador extends CI_Controller {
 		$data['listarEvaluadores'] = $this->evaluadores_model->listarEvaluadoresPorConvocatoria($idConvocatoria);
 		$this->load->view('barra');
 	    $this->load->view('listaEvaluadoresPorConvocatoria', $data);
-
 	}
 
 	/**
@@ -213,12 +208,9 @@ Class Evaluador extends CI_Controller {
        * @author Yurani Alejandra Salamanca 
     */
 	public function marcarComoSuplente($idEvaluador, $idPropuesta){
-
 		$this->load->model('evaluadores_model');
 		$this->evaluadores_model-> marcarEvaluadorSuplente($idEvaluador, $idPropuesta);
 		$this->listar3EvaluadoresPorPropuesta($idPropuesta);
-
-
 	}
 
 	public function listaPropuestasEvaluador(){
@@ -229,10 +221,8 @@ Class Evaluador extends CI_Controller {
 
 		$session_data = $this->session->userdata('logged_in');
 		$idEvaluador=$session_data['id'];
-
-		$data['listadoConvocatoriasBusqueda'] = $this->convocatoria_model->listaConvocatorias();
-
 		$data['listadoPropuestas'] = $this->evaluadores_model->listarPropuestaEvaluador($idEvaluador);
+		$data['listadoConvocatoriasBusqueda'] = $this->convocatoria_model->listaConvocatorias();
 		$data['listadoEstadoPropuesta'] = $this->Propuesta_model->listarEstadoPropuesta();
 		$this->load->view('barraEvaluador');
 		$this->load->view('listaPropuestasEvaluador',$data);
