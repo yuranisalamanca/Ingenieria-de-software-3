@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php 
 
 Class PropuestaTest extends CI_Controller {
 	public function test()
@@ -32,14 +32,6 @@ Class PropuestaTest extends CI_Controller {
 		$this->unit->run($this->Propuesta_model->getGrupoInvestigacionPropuesta(78),'is_null','getGrupoInvestigacionPropuesta test','Se probo buscando el grupo de investigacion de una propuesta que no existe');
 
 		$this->unit->run($this->Propuesta_model->getOrganizacionesDiferenteAPropuesta(1),'is_array','getOrganizacionesDiferenteAPropuesta test','Se probo buscando las organizaciones diferentes a la organizacion de id 1');
-		//$this->unit->run($this->Propuesta_model->getOrganizacionesDiferenteAPropuesta(78),'is_null','getOrganizacionesDiferenteAPropuesta test','Se probo buscando las organizaciones diferentes a una organzacion que no existe');
-
-		//$this->unit->run($this->Propuesta_model->asignarEvaluador(),'','asignarEvaluador test','');
-
-//verficarEvaluadorConfirmado
-
-
-
 
 	echo $this->unit->report();
 	}
