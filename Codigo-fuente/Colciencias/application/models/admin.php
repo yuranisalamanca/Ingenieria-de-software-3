@@ -16,7 +16,7 @@ class Admin extends CI_Model{
   	
 	public function loginAdministrador($username, $password){
     $sql="SELECT e.id, e.nombre, e.password from administrador e where e.nombre='".$username."' AND e.password='".$password."'";
-    $query = $this ->db->query($sql 
+    $query = $this ->db->query($sql);
    if($query -> num_rows() == 1){
      return $query->result();
    }else{
