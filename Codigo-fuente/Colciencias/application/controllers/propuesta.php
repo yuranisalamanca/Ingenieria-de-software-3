@@ -262,14 +262,11 @@ Class Propuesta extends CI_Controller {
 				echo "pre";
 				print_r($evaluadores);
 				echo "/pre";
-				if($evaluadores['evaluadores']=='errorSeleccion')
-				{
+				if($evaluadores['evaluadores']=='errorSeleccion'){
 					$varSeleccion='Por favor indique el valor del criterio de b&uacute;squeda seleccionado';
 					$this->session->set_userdata('varSeleccion', $varSeleccion);
 				}
-
-				if($evaluadores['evaluadores']=='No hay')
-				{
+				if($evaluadores['evaluadores']=='No hay'){
 					$varError='No existen evaluadores que cumplan con todos los criterios seleccionados';
 					$this->session->set_userdata('varError', $varError);
 				}
@@ -387,8 +384,7 @@ Class Propuesta extends CI_Controller {
 				$idConvocatoria = $this->propuesta_model->buscarIdConvocatoria($idPropuesta);
 				
 
-				if($data['evaluadoresNuevos'] =='No hay')
-				{
+				if($data['evaluadoresNuevos'] =='No hay'){
 					$varError='No existen evaluadores que cumplan con los criterios seleccionados';
 					$this->session->set_userdata('varErrorCambiar', $varError);
 					unset($_POST);
