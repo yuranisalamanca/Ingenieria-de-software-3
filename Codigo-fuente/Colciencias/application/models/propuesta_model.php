@@ -640,5 +640,23 @@
         return 'No hay';
       }      
   }
+
+  public function listarPropuestasConEvaluaciones($anio='', $idConvocatoria=''){
+    $where='';
+    if($anio!=''){
+      $where .=' AND c.anioCreacion='.$anio;
+    }
+    if($idConvocatoria!='' && $idConvocatoria!=null && $idConvocatoria!=0){
+      $where .=' AND c.idConvocatoria='.$idConvocatoria;
+    }
+    $sql = "SELECT p.titulo, pro.nombre, i.nombre FROM Convocatoria c, Propuesta p, Proponente pro, Institucion i, Evaluacion_Final ef, evaluacion_propuesta ep
+            WHERE p.Convocatoria_idConvocatoria = c.idConvocatoria
+            AND pro.idProponente = p.proponente_idProponente
+            AND i.idInstitucion = p.Institucion_idInstitucion 
+            AND ep.Propuesta_idPropuesta = p.idPropuesta
+            AND ep.Evaluacion_Final_idEvaluacion_Final=ef.idEvaluacion_Final
+          ".$where."ORDER BY c.idConvocatoria";
+
+  }
 }
 ?>
