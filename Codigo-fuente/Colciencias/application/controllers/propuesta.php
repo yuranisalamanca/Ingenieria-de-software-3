@@ -231,7 +231,6 @@ Class Propuesta extends CI_Controller {
        */
 
 	public function buscarEvaluadores($idPropuesta) {
-		//die($idPropuesta); 
 		$this->load->model('Propuesta_model');
 
 		if (null !== $this->input->post('select') && $this->input->post('select') == 1) {
