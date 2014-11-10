@@ -64,10 +64,16 @@ Class Propuesta extends CI_Controller {
 
 	}
 
+	public function listaPropuestasConEvaluaciones(){
+		$this->load->model('Propuesta_model');
+
+		$this->load->view('barra');
+		$this->load->view('listaPropuestasConEvaluaciones', $data);
+	}
+
   /**
        * esta funcion sirve para listar las propuestas del modelo propuesta_model
        * @return arreglo de propuestas
-       * @param 
        * @author Karen Daniela Ramirez Montoya 
        * @author Yurani Alejandra Salamanca 
        */
@@ -84,6 +90,11 @@ Class Propuesta extends CI_Controller {
 
 	}
 
+	/**
+	* esta funcion sirve para actualizar las propuestas del modelo propuestas_model
+    * @author Karen Daniela Ramirez Montoya 
+    * @author Yurani Alejandra Salamanca 
+	*/
 	public function actualizarListaDePropuestas(){
 
 		$this->load->model('propuesta_model');
