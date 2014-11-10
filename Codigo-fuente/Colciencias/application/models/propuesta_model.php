@@ -708,6 +708,22 @@
       }else{
         return 'no hay';
       }
+  }
+
+  public function evaluacionPropuesta($idPropuesta){
+  $sql="SELECT c.nombre as nombreConv, c.idConvocatoria as idConvocatoria, p.titulo as titulo, pro.nombre as proponente, i.nombre as institucion, ef.calificacion_final as calificacion
+            FROM Convocatoria c, Propuesta p, Proponente pro, Institucion i, Evaluacion_Final ef, evaluacion_propuesta ep, parametros_evaluacion pe
+            WHERE p.Convocatoria_idConvocatoria = c.idConvocatoria
+            AND pro.idProponente = p.proponente_idProponente
+            AND i.idInstitucion = p.Institucion_idInstitucion 
+            AND ep.Propuesta_idPropuesta = p.idPropuesta
+            AND ep.Evaluacion_Final_idEvaluacion_Final=ef.idEvaluacion_Final
+            AND pe.idParametros_Evaluacion = c.Parametros_evaluacion_idParametros_evaluacion
+            AND ep.esAsignado =1
+            AND ep.esConfirmado = 1
+            AND ep.iniciarProceso = 1
+            AND ep.esEvaluado = 1 
+            AND p.idPropuesta=".$idPropuesta." ORDER BY c.idConvocatoria";
 
   }
   /**
@@ -716,8 +732,7 @@
   * @author Karen Daniela Ramirez Montoya
   * @author Yurani Alejandra Salamanca
   */
-  public function listaAniosPropuestasEvaluacion()
-  {
+  public function listaAniosPropuestasEvaluacion(){
      $sql = "SELECT distinct c.anioCreacion as anio FROM convocatoria c, Propuesta p, evaluacion_propuesta ep
             WHERE p.Convocatoria_idConvocatoria=c.idConvocatoria
             AND ep.Propuesta_idPropuesta=p.idPropuesta
