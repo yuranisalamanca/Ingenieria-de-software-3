@@ -69,7 +69,6 @@
              				<th width="210" style="text-align: center"> &Aacute;rea de conocimiento</th>
                             <th width="210" style="text-align: center"> Tipo de evaluaci&oacute;n </th>
                             <th width="210" style="text-align: center"> Ver </th>
-                            <th width="210" style="text-align: center"> Evaluar </th>
               			</tr>
              		</thead>
              		<tbody>
@@ -87,11 +86,6 @@
                                        <img src="<?php echo base_url(); ?>img/iconos/listarPropuesta.png" title="Descargar (Caso de uso REP06)">
                                 </a>
                             </td>
-                            <td style="text-align: center">
-                                <a class="" href="">
-                                       <img src="<?php echo base_url(); ?>img/iconos/checkEvaluador.png" title="Evaluar (Caso de uso EVA37)">
-                                </a>
-                        </td>
              			</tr>
                         <?php } ?>
              		</tbody>
