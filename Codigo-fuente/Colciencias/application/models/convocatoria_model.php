@@ -89,27 +89,5 @@ class Convocatoria_model extends CI_Model{
 			return $nombreConvocatoria;
 		}
 	}
-
-	/**
-       * esta funcion sirve para listar las convocatorias que tiene propuestas con evaluaciones
-       * @param $idAnio. Anio de creacion de las convocatorias
-       * @return $arreglo. Lista de convocatorias
-       * @author Karen Daniela Ramirez Montoya 
-       * @author Yurani Alejandra Salamanca 
-     */
-	public function convocatoriasPorAnio($anio)
-	{
-		$sql = "SELECT titulo FROM Convocatorias WHERE anioCreacion =".$anio." AND Estado_idEstado= 2";
-		$query = $this->db->query($sql);
-		if($query->num_rows()>0){
-			$arreglo = array();
-			$cont = 0;
-			foreach ($query->result() as $resultado) {
-				$arreglo[$cont]['tituloConvocatoria'] = $resultado->titulo;
-				$cont++;
-			}
-			return $arreglo;
-		}
-	}
 }
 ?>

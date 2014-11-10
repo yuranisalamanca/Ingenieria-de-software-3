@@ -639,21 +639,48 @@
   }
 
   /**
-  * Esta funcion lista las propuestas que ya han sido evaluadas
+  * Esta funcion lista las convocatorias con propuestas que ya han sido evaluadas
   * @param $anio, $idConvocatoria
   * @return $arreglo. Lista de convocatorias
   * @author Karen Daniela Ramirez Montoya
   * @author Yurani Alejandra Salamanca
   */
-  public function listarPropuestasConEvaluaciones($anio='', $idConvocatoria=''){
+  public function listarConvocatoriasConEvaluaciones($anio=''){
     $where='';
-    if($anio!=''){
+    if($anio!='' && $anio!=0){
       $where .=' AND c.anioCreacion='.$anio;
     }
-    if($idConvocatoria!='' && $idConvocatoria!=null && $idConvocatoria!=0){
-      $where .=' AND c.idConvocatoria='.$idConvocatoria;
-    }
-    $sql = "SELECT p.idConvocatoria as idConvocatoria, p.titulo as titulo, pro.nombre as proponente, i.nombre as institucion, ef.calificacion_final as calificacion
+    $sql = "SELECT distinct c.idConvocatoria as idConvocatoria, c.nombre as nombre, e.nombre as estadoC
+            FROM Convocatoria c, Propuesta p, Proponente pro, Institucion i, Evaluacion_Final ef, evaluacion_propuesta ep, estado e
+            WHERE p.Convocatoria_idConvocatoria = c.idConvocatoria
+            AND pro.idProponente = p.proponente_idProponente
+            AND i.idInstitucion = p.Institucion_idInstitucion 
+            AND ep.Propuesta_idPropuesta = p.idPropuesta
+            AND ep.Evaluacion_Final_idEvaluacion_Final=ef.idEvaluacion_Final
+            AND ep.esAsignado =1
+            AND ep.esConfirmado = 1
+            AND ep.iniciarProceso = 1
+            AND ep.esEvaluado = 1
+            AND e.idEstado = c.Estado_idEstado".$where." ORDER BY c.idConvocatoria";
+            //die($sql);
+    $query = $this->db->query($sql);
+      if($query->num_rows()>0){
+        $arreglo = array();
+        $cont = 0;
+        foreach ($query->result() as $resultado) {
+          $arreglo[$cont]['idConvocatoria'] = $resultado->idConvocatoria;
+          $arreglo[$cont]['nombre'] = $resultado->nombre;
+          $arreglo[$cont]['estado'] = $resultado->estadoC;
+          $cont++;
+        }
+        return $arreglo;
+      }else{
+        return 'no hay';
+      }
+  }
+
+  public function listarPropuestasConEvaluaciones($idConvocatoria=''){
+  $sql="SELECT c.idConvocatoria as idConvocatoria, p.titulo as titulo, pro.nombre as proponente, i.nombre as institucion, ef.calificacion_final as calificacion
             FROM Convocatoria c, Propuesta p, Proponente pro, Institucion i, Evaluacion_Final ef, evaluacion_propuesta ep
             WHERE p.Convocatoria_idConvocatoria = c.idConvocatoria
             AND pro.idProponente = p.proponente_idProponente
@@ -663,23 +690,26 @@
             AND ep.esAsignado =1
             AND ep.esConfirmado = 1
             AND ep.iniciarProceso = 1
-            AND ep.esEvaluado = 1".$where." ORDER BY c.idConvocatoria";
-    $query = $this->db->query($sql);
+            AND ep.esEvaluado = 1 
+            AND c.idConvocatoria=".$idConvocatoria." ORDER BY c.idConvocatoria";
+  $query = $this->db->query($sql);
       if($query->num_rows()>0){
         $arreglo = array();
         $cont = 0;
         foreach ($query->result() as $resultado) {
           $arreglo[$cont]['idConvocatoria'] = $resultado->idConvocatoria;
-          $arreglo[$cont]['titulo'] = $resultado->titlo;
+          $arreglo[$cont]['titulo'] = $resultado->titulo;
           $arreglo[$cont]['proponente'] = $resultado->proponente;
           $arreglo[$cont]['institucion'] = $resultado->institucion;
           $arreglo[$cont]['calificacion'] = $resultado->calificacion;
           $cont++;
         }
         return $arreglo;
+      }else{
+        return 'no hay';
       }
-  }
 
+  }
   /**
   * Esta funcion lista los anios de las convocatorias que ya tienen propuestas evaluadas
   * @return $arreglo. Lista de anios de creacion de las convocatorias
@@ -688,7 +718,7 @@
   */
   public function listaAniosPropuestasEvaluacion()
   {
-     $sql = "SELECT c.anioCreacion as anio FROM convocatoria c, Propuesta p, evaluacion_propuesta ep
+     $sql = "SELECT distinct c.anioCreacion as anio FROM convocatoria c, Propuesta p, evaluacion_propuesta ep
             WHERE p.Convocatoria_idConvocatoria=c.idConvocatoria
             AND ep.Propuesta_idPropuesta=p.idPropuesta
             AND ep.esAsignado =1

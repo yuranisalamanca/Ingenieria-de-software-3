@@ -64,14 +64,60 @@ Class Propuesta extends CI_Controller {
 
 	}
 
-	public function listaPropuestasConEvaluaciones(){
+	public function listarPropuestasConEvaluaciones($idConvocatoria){
+		$this->load->model('Propuesta_model');
+		$data['listaPropuestas']= $this->Propuesta_model->listarPropuestasConEvaluaciones($idConvocatoria);
+		$this->load->view('barra');
+	    $this->load->view('listaPropuestasConEvaluaciones',$data);
+	}
+
+	public function listarConvocatoriasConEvaluaciones(){
 		$this->load->model('Propuesta_model');
 		$this->load->model('convocatoria_model');
-		$data['listaConvocatoriasPorAnio'] = $this->convocatoria_model->convocatoriasPorAnio();
-		$data['listaAnios']= $this->propuesta_model->listaAniosPropuestasEvaluacion();
-		$data['listarPropuestas']= $this->propuesta_model->listarPropuestasConEvaluaciones();
+		$data['listaAnios']= $this->Propuesta_model->listaAniosPropuestasEvaluacion();
+		$data['listarConvocatorias']= $this->Propuesta_model->listarConvocatoriasConEvaluaciones();
 		$this->load->view('barra');
-		$this->load->view('listaPropuestasConEvaluaciones', $data);
+		$this->load->view('listarConvocatoriasEvaluaciones', $data);
+	}
+
+	public function actualizarConvocatoriasConEvaluaciones(){
+		$this->load->model('Propuesta_model');
+		$this->load->model('convocatoria_model');
+		
+		if($this->input->post('select_anio')!==null && $this->input->post('select_anio')!=0){
+			$selectAnio=$this->input->post('select_anio');
+		}else{
+			$selectAnio='';
+		}
+		$listarPropuestas= $this->Propuesta_model->listarConvocatoriasConEvaluaciones($selectAnio);
+
+		$html = '<table style="margin:0 auto">
+             		<thead>
+             			<tr> 
+                            <th width="210" style="text-align: center"> Nombre </th>
+             				<th width="210" style="text-align: center"> Estado </th> 
+             				<th width="210" style="text-align: center"> Ver Propuestas </th>
+              			</tr>
+             		</thead>
+             		<tbody>';
+        foreach ($listarPropuestas as $resultado) {
+        	$html.='<tr>';
+        		$html.='<td style="text-align: center">';
+        			$html.=$resultado['nombre'];
+        		$html.='</td>';
+        		$html.='<td style="text-align: center">';
+        			$html.=$resultado['estado'];
+        		$html.='</td>';
+        		$html.='<td style="text-align: center">';
+        			$html.='<a class="" href="">';
+        				$html.='<img src="'.base_url().'img/iconos/listarPropuesta.png" title="Ver evaluacion">';
+        			$html.='</a>';
+        		$html.='</td>';
+        	$html.='</tr>';
+        }
+        $html.='</body>
+        		</table>';
+        echo $html;
 	}
 
   /**

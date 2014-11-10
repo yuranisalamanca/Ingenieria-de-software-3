@@ -10,110 +10,49 @@
         <script src="<?php echo base_url(); ?>js/vendor/jquery.js"></script>
     </head>
     <body>   
-        </br>
-        <br>
-        <div class="row" style="">
-            <form> 
-             <fieldset>
-                <legend>Buscar propuesta</legend>
-                <div class="row">
-                 <div class="large-4 columns"> 
-                    <label>Anio:
-                        <select id="select_anio"> 
-                           <option value="0" selected="selected">Todas</option> 
-                           <?php for ($i=0; $i < count($listadoConvocatoriasBusqueda); $i++) { ?>
-                                <option value="<?php echo $listadoConvocatoriasBusqueda[$i]['listaAnios']; ?>">
-                                    <?php echo utf8_decode ($listadoConvocatoriasBusqueda[$i]['listaAnios']); ?>
-                                </option>
-                           <?php } ?>
-                        </select>
-                     </label> 
-                 </div>
-                    <div class="large-4 columns">
-                         <label>Convocatorias: 
-                    </div> 
-                    <div class="large-4 columns"> 
-                        <label>Estado:
-                            <select id="select_convocatorias"> 
-                                <option value="0" selected="selected">Todos</option>
-                                <?php for ($i=0; $i < count($listadoConvocatorias); $i++) { ?>
-                                      <option value="<?php echo $listadoConvocatorias[$i]['idConvocatoria']; ?>">
-                                        <?php echo utf8_decode ($listadoConvocatorias[$i]['titulo']); ?>
-                                    </option>
-                                <?php } ?>
-                            </select>
-                         </label> 
-                    </div>
-                    <div align="center">
-                        <input id="buscar" class="button round" style="font-size: 12px;background-color: #086A87" value="Iniciar B&uacute;squeda">
-                    </div>
-                </div>
-             </fieldset>
-            </form>
-        </div>
-          <div class="row" style="">
+             <div id="tabla" >
             <br>
-             <div id="tabla">
-             	<table>
+            <br>
+            <div class="row" style="">
+             	<table style="margin:0 auto">
              		<thead>
              			<tr> 
-                            <th width="210" style="text-align: center"> Convocatoria </th>
-             				<th width="210" style="text-align: center"> T&iacute;tulo </th>
-             				<th width="210" style="text-align: center"> Estado </th>
-             				<th width="210" style="text-align: center"> Organizaci&oacute;n </th> 
+                            <th width="210" style="text-align: center"> Titulo </th>
+             				<th width="210" style="text-align: center"> Proponente </th>
              				<th width="210" style="text-align: center"> Instituci&oacute;n </th>
-             				<th width="210" style="text-align: center"> &Aacute;rea de conocimiento</th>
-                            <th width="210" style="text-align: center"> Tipo de evaluaci&oacute;n </th>
-                            <th width="210" style="text-align: center"> Ver </th>
-                            <th width="210" style="text-align: center"> Evaluar </th>
+             				<th width="210" style="text-align: center"> Calificaci&oacute;n Final </th> 
+             				<th width="210" style="text-align: center"> Ver evaluaci&oacute;n </th>
               			</tr>
              		</thead>
              		<tbody>
-             			<?php for($i=0; $i<count($listadoPropuestas);$i++) { ?>
+                        <?php if($listaPropuestas!='no hay'){ ?>
+             			<?php for($i=0; $i<count($listaPropuestas);$i++) { ?>
              			<tr>
-                            <td style="text-align: center"> <?php echo utf8_decode($listadoPropuestas[$i]['nombreConvocatoria']); ?></td>
-             				<td style="text-align: center"> <?php echo utf8_decode($listadoPropuestas[$i]['titulo']); ?></td>
-             				<td style="text-align: center"> <?php echo utf8_decode($listadoPropuestas[$i]['nombreEstado']); ?> </td>
-              				<td style="text-align: center"> <?php echo utf8_decode($listadoPropuestas[$i]['nombreOrganizacion']); ?> </td>
-             				<td style="text-align: center"> <?php echo utf8_decode($listadoPropuestas[$i]['nombreInstitucion']); ?> </td>
-             				<td style="text-align: center"> <?php echo utf8_decode($listadoPropuestas[$i]['areaNombre']);?> </td>
-             				<td style="text-align: center"> <?php echo utf8_decode($listadoPropuestas[$i]['tipoEvaluacionNombre']); ?> </td>
+                            <td style="text-align: center"> <?php echo utf8_decode($listaPropuestas[$i]['titulo']); ?></td>
+             				<td style="text-align: center"> <?php echo utf8_decode($listaPropuestas[$i]['proponente']);?></td>
+             				<td style="text-align: center"> <?php echo utf8_decode($listaPropuestas[$i]['institucion']); ?></td>
+              				<td style="text-align: center"> <?php echo utf8_decode($listaPropuestas[$i]['calificacion']); ?></td>
                             <td style="text-align: center">
                                 <a class="" href="">
-                                       <img src="<?php echo base_url(); ?>img/iconos/listarPropuesta.png" title="Descargar (Caso de uso REP06)">
+                                       <img src="<?php echo base_url(); ?>img/iconos/listarPropuesta.png" title="Ver evaluacion">
                                 </a>
                             </td>
-                            <td style="text-align: center">
-                                <a class="" href="">
-                                       <img src="<?php echo base_url(); ?>img/iconos/checkEvaluador.png" title="Evaluar (Caso de uso EVA37)">
-                                </a>
-                        </td>
              			</tr>
+                        <?php }?>
+                        <?php }else{ ?>
+                        <tr>
+                            <td colspan='5' style="text-align: center">
+                                No se encontraron propuestas para la convocatoria seleccionada
+                            </td>
+                        </tr>
                         <?php } ?>
              		</tbody>
              	</table>
-
+             </div>
         	</div>
-    	
         </div>
         <center><h3 class="subheader">Todos los derechos reservados</h3><center>
         <center><h3 class="subheader">2014</h3><center>
     </body>
-    <script type="text/javascript">
-    $("#buscar").click(function(){
-        var titulo=$("#titulo").val();
-        var select_convocatoria=$("#select_convocatoria").val();
-        var select_estado=$("#select_estado").val();
-        $.ajax({
-          type: "POST",
-          url: "<?php echo base_url().'index.php/propuesta/actualizarListaDePropuestas'; ?>",
-          data: "titulo="+titulo+"&select_convocatoria="+select_convocatoria+"&select_estado="+select_estado,
-          dataType: "html",
-          success: function(msg){
-            $("#tabla").html(msg);
-          }
-        });
-    });
     
-    </script>
 </html>
