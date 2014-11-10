@@ -474,8 +474,7 @@
     if ($data['idioma'] != 0 && $data['select_idioma'] != 0) {
       $where .= ' AND e.idioma_ididioma = ' . $data['select_idioma'];
     }
-    if($data['organizacion'] != 0 && $data['select_organizacion'] != 0)
-    {
+    if($data['organizacion'] != 0 && $data['select_organizacion'] != 0){
       $where .= ' AND e.Organizacion_idOrganizacion = ' . $data['select_organizacion'];
     }
     $sql = "SELECT e.idEvaluador,e.nombre 
