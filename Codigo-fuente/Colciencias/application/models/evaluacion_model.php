@@ -7,16 +7,14 @@
 //
 //////////////////////////////////////////////////////////////////////////
 
-class Evaluacion_model extends CI_Model
-{
+class Evaluacion_model extends CI_Model{
 	
 	/**
     * esta funcion sirve para construir los objetos de la case Evaluacion
     * @author Karen Daniela Ramirez Montoya 
     * @author Yurani Alejandra Salamanca 
   */
-	function __construct()
-	{
+	function __construct(){
 		parent::__construct();
         $this->load->database();
 	}
@@ -36,5 +34,4 @@ class Evaluacion_model extends CI_Model
   }
 	
 }
-
 ?>

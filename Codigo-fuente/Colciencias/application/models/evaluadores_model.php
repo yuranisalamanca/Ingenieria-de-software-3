@@ -5,8 +5,7 @@
 //  Autor: Karen Daniela Ramirez Ramirez
 //
 //////////////////////////////////////////////////////////////////////////
-Class Evaluadores_model extends CI_Model
-{
+Class Evaluadores_model extends CI_Model{
 
 
   /**
@@ -27,8 +26,7 @@ Class Evaluadores_model extends CI_Model
   * @author Karen Daniela Ramirez Montoya 
   * @author Yurani Alejandra Salamanca 
   */
-  public function listarEvaluadores()
-  {
+  public function listarEvaluadores(){
     $sql = "SELECT e.idEvaluador,e.nombre, e.cedula, c.nombre as ciudadNombre, e.calificacion, n.nombre as nvNombre, 
                    o.nombre as organizacionNombre, a.nombre as areaNombre
             FROM evaluador e, nivel_formacion n, organizacion o, ciudad c, area_conocimiento a
@@ -40,11 +38,9 @@ Class Evaluadores_model extends CI_Model
     $query = $this->db->query($sql);
 
     if($query->num_rows() > 0){
-
       $arreglo = array();
       $cont = 0;
       foreach ($query->result() as $resultado) {
-
         $arreglo[$cont]['idEvaluador']        = $resultado->idEvaluador;
         $arreglo[$cont]['nombre']             = $resultado->nombre;
         $arreglo[$cont]['cedula']             = $resultado->cedula;
@@ -67,7 +63,7 @@ Class Evaluadores_model extends CI_Model
   * @author Karen Daniela Ramirez Montoya 
   * @author Yurani Alejandra Salamanca 
   */
-  public function listar3EvaluadoresPorPropuesta($idPropuesta) {
+  public function listar3EvaluadoresPorPropuesta($idPropuesta){
 
     $sql = "SELECT  p.idPropuesta as idPropuesta, p.titulo as tituloPropuesta,e.idEvaluador as idEvaluador, e.nombre, e.cedula, c.nombre as ciudadNombre, e.calificacion, n.nombre as nvNombre, 
                     o.nombre as organizacionNombre, a.nombre as areaNombre
@@ -80,12 +76,10 @@ Class Evaluadores_model extends CI_Model
             AND   ep.Propuesta_idPropuesta = ".$idPropuesta." AND p.idPropuesta = " .$idPropuesta;
 
     $query = $this->db->query($sql);
-    if($query->num_rows() > 0) {
-
+    if($query->num_rows() > 0){
       $arreglo = array();
       $cont = 0;
       foreach ($query->result() as $resultado) {
-
         $arreglo[$cont]['idPropuesta']        = $resultado->idPropuesta;
         $arreglo[$cont]['tituloPropuesta']    = $resultado->tituloPropuesta;
         $arreglo[$cont]['idEvaluador']        = $resultado->idEvaluador;
@@ -111,8 +105,7 @@ Class Evaluadores_model extends CI_Model
    * @author Karen Daniela Ramirez Montoya 
    * @author Yurani Alejandra Salamanca 
  */
-  public function listaDeEvaluadoresYPropuestas($idConvocatoria)
-  {
+  public function listaDeEvaluadoresYPropuestas($idConvocatoria){
 
     $sql = "SELECT  p.idPropuesta, ep.iniciarProceso, p.titulo as nombrePropuesta, e.nombre as nombreEvaluador, e.idEvaluador
             FROM evaluacion_propuesta ep, convocatoria c, evaluador e, propuesta p
@@ -122,14 +115,11 @@ Class Evaluadores_model extends CI_Model
             AND ep.esAsignado = 1
             AND ep.esConfirmado = 1
             AND c.idConvocatoria = ".$idConvocatoria;
-
     $query = $this->db->query($sql);
     if($query->num_rows() > 0) {
-
       $arreglo = array();
       $cont = 0;
       foreach ($query->result() as $resultado) {
-
         $arreglo[$cont]['idPropuesta']     = $resultado->idPropuesta;
         $arreglo[$cont]['nombrePropuesta'] = $resultado->nombrePropuesta;
         $arreglo[$cont]['nombreEvaluador'] = $resultado->nombreEvaluador;
@@ -151,8 +141,7 @@ Class Evaluadores_model extends CI_Model
     * @author Karen Daniela Ramirez Montoya 
     * @author Yurani Alejandra Salamanca 
   */
-  public function listaDeEvaluadoresYPropuestasOrdenado($idConvocatoria,$ordenarEvaluador = '',$ordenarPropuesta = '')
-  {
+  public function listaDeEvaluadoresYPropuestasOrdenado($idConvocatoria,$ordenarEvaluador = '',$ordenarPropuesta = ''){
     $orden = '';
     if($ordenarPropuesta == 1) {
       $orden = 'ORDER BY nombrePropuesta ASC';
@@ -163,7 +152,6 @@ Class Evaluadores_model extends CI_Model
     } else if($ordenarEvaluador == 2) {
       $orden = 'ORDER BY nombreEvaluador DESC';
     }
-
     $sql = "SELECT  p.idPropuesta, ep.iniciarProceso, p.titulo as nombrePropuesta,e.idEvaluador, e.nombre as nombreEvaluador, e.idEvaluador
             FROM evaluacion_propuesta ep, convocatoria c, evaluador e, propuesta p
             WHERE p.idPropuesta = ep.Propuesta_idPropuesta
@@ -172,10 +160,8 @@ Class Evaluadores_model extends CI_Model
             AND ep.esAsignado = 1
             AND ep.esConfirmado = 1
             AND c.idConvocatoria = ".$idConvocatoria.' '.$orden;
-
     $query = $this->db->query($sql);
     if($query->num_rows() > 0){
-
       $arreglo = array();
       $cont = 0;
       foreach ($query->result() as $resultado) {
@@ -204,16 +190,12 @@ Class Evaluadores_model extends CI_Model
     $sql = "DELETE FROM evaluacion_propuesta WHERE Evaluador_idEvaluador = ".$idEvaluador." 
             AND Propuesta_idPropuesta = ".$idPropuesta;
     $query = $this->db->query($sql);
-
     if($query){
       return true;
     }else{
       return false;
     }
   }
-
-
-
   /**
     * esta funcion sirve para obtener los datos de un evaluador a partir de su id
     * @param $idEvaluador - El id del evaluador del que se quieren obtener los datos
@@ -221,8 +203,7 @@ Class Evaluadores_model extends CI_Model
     * @author Karen Daniela Ramirez Montoya 
     * @author Yurani Alejandra Salamanca 
   */
-  public function getEvaluador($idEvaluador)
-  {
+  public function getEvaluador($idEvaluador){
     $sql = "SELECT e.idEvaluador,e.nombre, e.cedula, c.nombre as ciudadNombre, e.calificacion, n.nombre as nvNombre, 
                    o.nombre as organizacionNombre, a.nombre as areaNombre
             FROM evaluador e, nivel_formacion n, organizacion o, ciudad c, area_conocimiento a
@@ -231,13 +212,11 @@ Class Evaluadores_model extends CI_Model
             AND   e.area_conocimiento_idArea_conocimiento = a.idArea_conocimiento
             AND   e.ciudad_idCiudad = c.idCiudad
             AND   e.idEvaluador = ".$idEvaluador;
-
     $query = $this->db->query($sql);
-    if($query->num_rows() > 0) {
-
+    if($query->num_rows() > 0){
       $arreglo = array();
       $cont = 0;
-      foreach ($query->result() as $resultado) {
+      foreach ($query->result() as $resultado){
         $arreglo[$cont]['idEvaluador']        = $resultado->idEvaluador;
         $arreglo[$cont]['nombre']             = $resultado->nombre;
         $arreglo[$cont]['cedula']             = $resultado->cedula;
@@ -260,8 +239,7 @@ Class Evaluadores_model extends CI_Model
     * @author Karen Daniela Ramirez Montoya 
     * @author Yurani Alejandra Salamanca 
   */
-  public function listarEvaluadoresPorConvocatoria($idConvocatoria)
-  {
+  public function listarEvaluadoresPorConvocatoria($idConvocatoria)  {
     $sql = "SELECT e.idEvaluador,e.nombre, e.cedula, c.nombre as ciudadNombre, e.calificacion, n.nombre as nvNombre, 
                    o.nombre as organizacionNombre, a.nombre as areaNombre
             FROM evaluador e, nivel_formacion n, organizacion o, ciudad c, area_conocimiento a, evaluacion_propuesta ep
@@ -273,14 +251,11 @@ Class Evaluadores_model extends CI_Model
             AND   ep.esConfirmado=1
             AND   ep.esAsignado<>1
             AND   e.Convocatoria_idConvocatoria =".$idConvocatoria;
-
     $query = $this->db->query($sql);
     if($query->num_rows()>0) {
-
       $arreglo = array();
       $cont = 0;
       foreach ($query->result() as $resultado) {
-
         $arreglo[$cont]['idEvaluador']        = $resultado->idEvaluador;
         $arreglo[$cont]['nombre']             = $resultado->nombre;
         $arreglo[$cont]['cedula']             = $resultado->cedula;
@@ -303,7 +278,6 @@ Class Evaluadores_model extends CI_Model
     * @author Yurani Alejandra Salamanca 
   */
   public function buscarEvaluadoresPorConvocatoria($idConvocatoria){
-
     $sql = "SELECT e.idEvaluador,e.nombre, e.cedula, c.nombre as ciudadNombre, e.calificacion, n.nombre as nvNombre, 
                  o.nombre as organizacionNombre, a.nombre as areaNombre
             FROM evaluador e, nivel_formacion n, organizacion o, ciudad c, area_conocimiento a, evaluacion_propuesta ep
@@ -346,7 +320,6 @@ Class Evaluadores_model extends CI_Model
     * @author Yurani Alejandra Salamanca 
   */
   public function buscarEvaluadoresYPropuestasPorConvocatoria($idConvocatoria) {
-
     $sql = "SELECT e.idEvaluador,e.nombre, e.cedula, c.nombre as ciudadNombre, e.calificacion, n.nombre as nvNombre, 
                    o.nombre as organizacionNombre, a.nombre as areaNombre
             FROM evaluador e, nivel_formacion n, organizacion o, ciudad c, area_conocimiento a, evaluacion_propuesta ep
@@ -358,7 +331,6 @@ Class Evaluadores_model extends CI_Model
             AND   ep.esConfirmado=1
             AND   ep.esAsignado=1
             AND   e.Convocatoria_idConvocatoria=".$idConvocatoria;
-
     $query = $this->db->query($sql);
     if($query->num_rows() > 0) {
       return true;
@@ -369,20 +341,15 @@ Class Evaluadores_model extends CI_Model
 
   public function login($username, $password){
     $sql="SELECT e.idEvaluador,e.username, e.password from evaluador e where e.username=".$username." AND e.password=".$password;
-    $query = $this -> db -> get();
- 
-   if($query -> num_rows() == 1)
-   {
+    $query = $this -> db -> get(); 
+   if($query -> num_rows() == 1){
      return $query->result();
-   }
-   else
-   {
+   }else{
      return false;
    }
   }
 
     public function listarPropuestaEvaluador($idEvaluador,$titulo='', $idConvocatoria='', $idEstado=''){
-
     $where='';
     if ($titulo != '') {
       $where .= ' AND p.titulo LIKE "%' . $titulo.'%"';
@@ -411,7 +378,6 @@ Class Evaluadores_model extends CI_Model
   
       $query = $this->db->query($sql);
       if($query->num_rows() > 0){
-
         $arreglo = array();
         $cont = 0;
         foreach ($query->result() as $resultado) {
@@ -428,7 +394,6 @@ Class Evaluadores_model extends CI_Model
         }
         return $arreglo;     
       } else {
-
         return 'No hay';
       }      
   }

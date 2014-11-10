@@ -6,16 +6,14 @@
 //
 //////////////////////////////////////////////////////////////////////////
 
-class Convocatoria_model extends CI_Model
-{
+class Convocatoria_model extends CI_Model{
 	
 	/**
        * esta funcion sirve para construir los objetos de la case Convocatoria
        * @author Karen Daniela Ramirez Montoya 
        * @author Yurani Alejandra Salamanca 
      */
-	function __construct()
-	{
+	function __construct(){
 		parent::__construct();
         $this->load->database();
 	}
@@ -26,8 +24,7 @@ class Convocatoria_model extends CI_Model
        * @author Karen Daniela Ramirez Montoya 
        * @author Yurani Alejandra Salamanca 
     */
-	public function listaConvocatorias()
-	{
+	public function listaConvocatorias(){
 		$sql = "SELECT c.idConvocatoria,c.nombre as convocatoriaNombre, tc.nombre as tipoConvocatoria, e.nombre as estadoConvocatoria
 				FROM Convocatoria c, Tipo_Convocatoria tc, Estado e
 				WHERE c.Tipo_Convocatoria_idTipo_Convocatoria = tc.idTipo_Convocatoria 
@@ -35,11 +32,9 @@ class Convocatoria_model extends CI_Model
 				AND c.Estado_idEstado = 2";
 		$query = $this->db->query($sql);
 
-		if($query->num_rows() > 0)
-		{
+		if($query->num_rows() > 0){
 			$arreglo = array();
 			$cont = 0;
-
 			foreach ($query->result() as $resultado) {
 
 				$arreglo[$cont]['idConvocatoria'] 	  = $resultado->idConvocatoria;
@@ -60,21 +55,18 @@ class Convocatoria_model extends CI_Model
        * @author Karen Daniela Ramirez Montoya 
  	   * @author Yurani Alejandra Salamanca 
     */
-	public function buscarConvocatoriaPorPropuesta($idPropuesta)
-	{
+	public function buscarConvocatoriaPorPropuesta($idPropuesta){
 		$sql = "SELECT c.idConvocatoria FROM convocatoria c, propuesta p
 			  	WHERE p.Convocatoria_idConvocatoria = c.idConvocatoria
 			  	AND p.idPropuesta = ".$idPropuesta;
 		$query = $this->db->query($sql);
-		if($query->num_rows() > 0)
-		{
+		if($query->num_rows() > 0){
 			$idConvocatoria = '';
 			foreach ($query->result() as $resultado) {
 				$idConvocatoria = $resultado->idConvocatoria;
 			}
 			return $idConvocatoria;
 		}
-
 	}
 
 
@@ -85,13 +77,11 @@ class Convocatoria_model extends CI_Model
        * @author Karen Daniela Ramirez Montoya 
        * @author Yurani Alejandra Salamanca 
      */
-	public function getConvocatoria($idConvocatoria)
-	{
+	public function getConvocatoria($idConvocatoria){
 		$sql = "SELECT c.nombre FROM convocatoria c, propuesta 
 			  	WHERE c.idConvocatoria = ".$idConvocatoria;
 		$query = $this->db->query($sql);
-		if($query->num_rows() > 0)
-		{
+		if($query->num_rows() > 0){
 			$nombreConvocatoria = '';
 			foreach ($query->result() as $resultado) {
 				$nombreConvocatoria = $resultado->nombre;
