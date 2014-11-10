@@ -308,7 +308,7 @@ Class Evaluadores_model extends CI_Model{
     $sql = "UPDATE evaluacion_propuesta ep SET ep.esSuplente = 1 
             WHERE ep.Evaluador_idEvaluador = ".$idEvaluador." 
             AND ep.Propuesta_idPropuesta = ".$idPropuesta;
-    $query = $this->db->query($sql);
+    $this->db->query($sql);
   }
 
 
