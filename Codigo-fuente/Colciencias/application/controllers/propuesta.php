@@ -180,8 +180,8 @@ Class Propuesta extends CI_Controller {
 		$this->load->model('Propuesta_model');
 
 		if (null !== $this->input->post('select') && $this->input->post('select') == 1) {
-
-			if(count($this->input->post()) > 4) {			
+				$post1=$this->input->post();
+			if(count($post1) > 4) {			
 				if (null != $this->input->post('area')) {
 					$dataSearch['area'] = 1;
 				} else {
