@@ -232,9 +232,9 @@ Class Evaluador extends CI_Controller {
 
 		$this->load->model('evaluadores_model');
 		if($this->input->post('select_convocatoria') !== null){
-			$select_convocatoria=$this->input->post('select_convocatoria');
+			$selectConvocatoria=$this->input->post('select_convocatoria');
 		}else{
-			$select_convocatoria='';
+			$selectConvocatoria='';
 		}
 		if($this->input->post('titulo') !== null){
 			$titulo=$this->input->post('titulo');
@@ -242,13 +242,13 @@ Class Evaluador extends CI_Controller {
 			$titulo='';
 		}
 		if($this->input->post('select_estado') !== null){
-			$select_estado=$this->input->post('select_estado');
+			$selectEstado=$this->input->post('select_estado');
 		}else{
-			$select_estado='';
+			$selectEstado='';
 		}
 		$sessionData = $this->session->userdata('logged_in');
 		$idEvaluador=$sessionData['id'];
-		$listaDePropuesta= $this->evaluadores_model->listarPropuestaEvaluador($idEvaluador,$titulo, $select_convocatoria, $select_estado);
+		$listaDePropuesta= $this->evaluadores_model->listarPropuestaEvaluador($idEvaluador,$titulo, $selectConvocatoria, $selectEstado);
 
 		$html='<table>
              		<thead>
