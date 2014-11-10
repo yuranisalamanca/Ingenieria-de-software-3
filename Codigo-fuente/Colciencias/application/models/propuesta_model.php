@@ -655,6 +655,10 @@
             AND i.idInstitucion = p.Institucion_idInstitucion 
             AND ep.Propuesta_idPropuesta = p.idPropuesta
             AND ep.Evaluacion_Final_idEvaluacion_Final=ef.idEvaluacion_Final
+            AND ep.esAsignado =1
+            AND ep.esConfirmado = 1
+            AND ep.iniciarProceso = 1
+            AND ep.esEvaluado = 1
           ".$where."ORDER BY c.idConvocatoria";
 
   }
