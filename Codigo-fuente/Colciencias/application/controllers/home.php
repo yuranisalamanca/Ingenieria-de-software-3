@@ -9,7 +9,7 @@ class Home extends CI_Controller {
    function index(){
      if($this->session->userdata('logged_in')){
        $sessionData = $this->session->userdata('logged_in');
-       $data['username'] = $sessionData['username']; 
+       $sessionData['username']; 
         $this->load->view('barra');
         $this->load->view('homeUsuarioColciencias');  
      }else{

@@ -247,7 +247,7 @@
   public function asignarEvaluador($idPropuesta,$idEvaluador){
         $sql = "UPDATE evaluacion_propuesta e SET e.esConfirmado = 1  
                 WHERE e.Propuesta_idPropuesta = ".$idPropuesta." AND e.Evaluador_idEvaluador = ".$idEvaluador;
-        $query = $this->db->query($sql);
+    $this->db->query($sql);
   }
 
 
@@ -406,7 +406,7 @@
   public function cambiarEvaluador($idCambiado,$idEvalNuevo,$idPropuesta){
     $sql = "UPDATE evaluacion_propuesta e SET e.Evaluador_idEvaluador = ".$idEvalNuevo." 
             WHERE e.Evaluador_idEvaluador = ".$idCambiado." AND e.Propuesta_idPropuesta = ".$idPropuesta;
-    $query = $this->db->query($sql);
+    $this->db->query($sql);
   }
 
 

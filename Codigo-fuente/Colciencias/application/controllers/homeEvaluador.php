@@ -10,7 +10,7 @@ class HomeEvaluador extends CI_Controller {
    if($this->session->userdata('logged_in')){
 
      $sessionData = $this->session->userdata('logged_in');
-     $data['username'] = $sessionData['username']; 
+     $sessionData['username']; 
 
       $this->load->view('barraEvaluador');
       $this->load->view('homeEvaluador');  
