@@ -82,7 +82,8 @@
                                     <img src="<?php echo base_url(); ?>img/iconos/suplente.png">
                                     </span>                                   
                                 </a> 
-                            <?php } ?>
+                            <?php } else{
+                            }?>
                                 <a  class="cambiarEvaluador" href="<?php echo site_url('propuesta/cambiarEvaluador/'.$idEv0.'/'.$idEv1.'/'.$idEv2.'/'.$listar3EvaluadoresPropuesta[$i]['idEvaluador'].'/'.$idPropuesta); ?>">
                                     <span data-tooltip aria-haspopup="true" class="has-tip" data-options="show_on:large" title="Cambiar evaluador">
                                     <img src="<?php echo base_url(''); ?>img/iconos/cambiarEvaluador.png">    
