@@ -2,8 +2,7 @@
 session_start(); //we need to call PHP's session object to access it through CI
 class HomeEvaluador extends CI_Controller {
  
- function __construct()
- {
+ function __construct() {
    parent::__construct();
  }
  
