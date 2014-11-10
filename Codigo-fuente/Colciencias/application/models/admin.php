@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
 
 ///////////////////////////////////////////////////////////////////////////
 //	Esta clase es la responsable de controlar comunicar la vista con el modelo
