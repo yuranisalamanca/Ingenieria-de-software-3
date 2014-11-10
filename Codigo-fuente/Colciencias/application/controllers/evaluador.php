@@ -219,8 +219,8 @@ Class Evaluador extends CI_Controller {
 		$this->load->model('Propuesta_model');
 		$this->load->model('convocatoria_model');
 
-		$session_data = $this->session->userdata('logged_in');
-		$idEvaluador=$session_data['id'];
+		$sessionData = $this->session->userdata('logged_in');
+		$idEvaluador=$sessionData['id'];
 		$data['listadoPropuestas'] = $this->evaluadores_model->listarPropuestaEvaluador($idEvaluador);
 		$data['listadoConvocatoriasBusqueda'] = $this->convocatoria_model->listaConvocatorias();
 		$data['listadoEstadoPropuesta'] = $this->Propuesta_model->listarEstadoPropuesta();
@@ -246,8 +246,8 @@ Class Evaluador extends CI_Controller {
 		}else{
 			$select_estado='';
 		}
-		$session_data = $this->session->userdata('logged_in');
-		$idEvaluador=$session_data['id'];
+		$sessionData = $this->session->userdata('logged_in');
+		$idEvaluador=$sessionData['id'];
 		$listaDePropuesta= $this->evaluadores_model->listarPropuestaEvaluador($idEvaluador,$titulo, $select_convocatoria, $select_estado);
 
 		$html='<table>
