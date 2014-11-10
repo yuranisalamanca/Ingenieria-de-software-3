@@ -460,7 +460,8 @@ Class Propuesta extends CI_Controller {
 		$data['ciudad']		  = $this->propuesta_model->getCiudadPropuesta($idPropuesta);
 		$data['area']		  = $this->propuesta_model->getAreaPropuesta($idPropuesta);
 		$data['grupoinvestigacion']  		 = $this->propuesta_model->getGrupoInvestigacionPropuesta($idPropuesta);
-		$data['organizacion'] = $this->propuesta_model->getOrganizacionPropuesta($idPropuesta);
+		$organizacion = $this->propuesta_model->getOrganizacionPropuesta($idPropuesta);
+		$data['organizaciones']=$this->propuesta_model->getOrganizacionesDiferenteAPropuesta($organizacion);
 	    $this->load->view('seleccionarCriteriosEvaluadorCambiado', $data);
 	}
 
