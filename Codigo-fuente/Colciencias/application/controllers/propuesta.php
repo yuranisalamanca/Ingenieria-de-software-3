@@ -99,9 +99,9 @@ Class Propuesta extends CI_Controller {
 
 		$this->load->model('propuesta_model');
 		if($this->input->post('select_convocatoria') !== null){
-			$select_convocatoria=$this->input->post('select_convocatoria');
+			$selectConvocatoria=$this->input->post('select_convocatoria');
 		}else{
-			$select_convocatoria='';
+			$selectConvocatoria='';
 		}
 		if($this->input->post('titulo') !== null){
 			$titulo=$this->input->post('titulo');
@@ -109,12 +109,12 @@ Class Propuesta extends CI_Controller {
 			$titulo='';
 		}
 		if($this->input->post('select_estado') !== null){
-			$select_estado=$this->input->post('select_estado');
+			$selectEstado=$this->input->post('select_estado');
 		}else{
-			$select_estado='';
+			$selectEstado='';
 		}
 
-		$listaDePropuesta= $this->propuesta_model->listarPropuesta($titulo, $select_convocatoria, $select_estado);
+		$listaDePropuesta= $this->propuesta_model->listarPropuesta($titulo, $selectConvocatoria, $selectEstado);
 
 		$html='<table>
              		<thead>
