@@ -354,8 +354,8 @@ Class Propuesta extends CI_Controller {
     	$this->load->model('propuesta_model');
     	$this->load->model('evaluadores_model');
     	if (null !== $this->input->post('select') && $this->input->post('select') == 1) {
-
-			if(count($this->input->post()) > 4) {		
+    			$postAux=$this->input->post();
+			if(count($postAux) > 4) {		
 				if (null != $this->input->post('nombre')) {
 					$dataSearch['nombre'] = 1;
 				} else {
