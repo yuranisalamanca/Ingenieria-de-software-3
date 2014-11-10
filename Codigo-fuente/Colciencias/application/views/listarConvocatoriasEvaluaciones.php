@@ -55,7 +55,7 @@
              				<td style="text-align: center"> <?php echo utf8_decode($listarConvocatorias[$i]['estado']);?></td>
                             <td style="text-align: center">
                                 <a class="" href="<?php echo site_url('propuesta/listarPropuestasConEvaluaciones/'.$listarConvocatorias[$i]['idConvocatoria']); ?>">
-                                       <img src="<?php echo base_url(); ?>img/iconos/listarPropuesta.png" title="Ver evaluacion">
+                                       <img src="<?php echo base_url(); ?>img/iconos/listarPropuesta.png" title="Ver propuestas">
                                 </a>
                             </td>
              			</tr>

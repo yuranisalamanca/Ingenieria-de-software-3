@@ -16,25 +16,15 @@ Class Propuesta extends CI_Controller {
 	 * So any other public methods not prefixed with an underscore will
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
-	 */
+	 */	
 
-
-  /**
-       * esta funcion sirve para llamar el home principal
-       * @return 
-       * @param 
-       * @author Karen Daniela Ramirez Montoya 
-       * @author Yurani Alejandra Salamanca 
-       */	
-
-	  /**
+	 /**
        * esta funcion sirve para llamar el va vista las funciones que vienen del modelo propuesta_model
        * @return arreglo de propuestas
        * @param 
        * @author Karen Daniela Ramirez Montoya 
        * @author Yurani Alejandra Salamanca 
-       */
-
+      */
 	public function listaDePropuestasPorConvocatoria($idConvocatoria){
 
 		$this->load->model('Propuesta_model');
@@ -64,6 +54,12 @@ Class Propuesta extends CI_Controller {
 
 	}
 
+	 /**
+       * listar las propuestas que han sido evaluadas y mostrarlo en su respectiva vista
+       * @param idConvocatoria. Convocatoria de la cual se quiere listar las propuestas
+       * @author Karen Daniela Ramirez Montoya 
+       * @author Yurani Alejandra Salamanca 
+     */
 	public function listarPropuestasConEvaluaciones($idConvocatoria){
 		$this->load->model('Propuesta_model');
 		$data['listaPropuestas']= $this->Propuesta_model->listarPropuestasConEvaluaciones($idConvocatoria);
@@ -71,6 +67,11 @@ Class Propuesta extends CI_Controller {
 	    $this->load->view('listaPropuestasConEvaluaciones',$data);
 	}
 
+	/**
+       * listar las convocatorias que tienen propuestas que han sido evaluadas y mostrarlo en su respectiva vista
+       * @author Karen Daniela Ramirez Montoya 
+       * @author Yurani Alejandra Salamanca 
+     */
 	public function listarConvocatoriasConEvaluaciones(){
 		$this->load->model('Propuesta_model');
 		$this->load->model('convocatoria_model');
@@ -80,6 +81,11 @@ Class Propuesta extends CI_Controller {
 		$this->load->view('listarConvocatoriasEvaluaciones', $data);
 	}
 
+	/**
+	* esta funcion sirve para actualizar las convocatorias que tienen propuestas que han sido evaluadas del modelo propuestas_model
+    * @author Karen Daniela Ramirez Montoya 
+    * @author Yurani Alejandra Salamanca 
+	*/
 	public function actualizarConvocatoriasConEvaluaciones(){
 		$this->load->model('Propuesta_model');
 		$this->load->model('convocatoria_model');
@@ -110,7 +116,7 @@ Class Propuesta extends CI_Controller {
         		$html.='</td>';
         		$html.='<td style="text-align: center">';
         			$html.='<a class="" href="">';
-        				$html.='<img src="'.base_url().'img/iconos/listarPropuesta.png" title="Ver evaluacion">';
+        				$html.='<img src="'.base_url().'img/iconos/listarPropuesta.png" title="Ver propuestas">';
         			$html.='</a>';
         		$html.='</td>';
         	$html.='</tr>';
