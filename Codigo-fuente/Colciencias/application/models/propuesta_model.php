@@ -674,7 +674,7 @@
   */
   public function listaAniosPropuestasEvaluacion()
   {
-     $sql = "SELECT p.anioCreacion as anio FROM convocatoria c, Propuesta p, evaluacion_propuesta ep
+     $sql = "SELECT c.anioCreacion as anio FROM convocatoria c, Propuesta p, evaluacion_propuesta ep
             WHERE p.Convocatoria_idConvocatoria=c.idConvocatoria
             AND ep.Propuesta_idPropuesta=p.idPropuesta
             AND ep.esAsignado =1
