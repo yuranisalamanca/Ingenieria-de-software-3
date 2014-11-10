@@ -36,7 +36,8 @@
                                     <select name="select_calificacion">
                                         <option value="0" selected="selected" disabled="disabled">Seleccione...</option>
                                         <?php for ($i=1; $i < 11; $i++) { ?>
-                                            <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                                            <option value="<?php echo $i; ?>"><?php echo $i; ?>
+                                            </option>
                                         <?php } ?>
                                     </select>
                                 </td>
