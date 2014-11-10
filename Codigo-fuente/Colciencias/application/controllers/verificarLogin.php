@@ -19,8 +19,8 @@ class VerificarLogin extends CI_Controller {
      //Field validation failed.  User redirected to login page
      $this->load->view('login');
    }else{
-     $session_data = $this->session->userdata('logged_in');
-     if($session_data['username']=='admin')     {
+     $sessionData = $this->session->userdata('logged_in');
+     if($sessionData['username']=='admin')     {
      //Go to private area
        redirect('home', 'refresh');
      }else{
@@ -38,17 +38,17 @@ class VerificarLogin extends CI_Controller {
    $result = $this->admin->loginAdministrador($username, $password);
  
    if($result){
-     $sess_array = array();
+     $sessArray = array();
      foreach($result as $row){
-       $sess_array = array('id' => $row->id,'username' => $row->nombre);
-       $this->session->set_userdata('logged_in', $sess_array);
+       $sessArray = array('id' => $row->id,'username' => $row->nombre);
+       $this->session->set_userdata('logged_in', $sessArray);
      }
      return TRUE;
    }else if($result=$this->admin->loginEvaluador($username, $password)){
-        $sess_array = array();
+        $sessArray = array();
          foreach($result as $row){
-           $sess_array = array('id' => $row->idEvaluador,'username' => $row->username);
-           $this->session->set_userdata('logged_in', $sess_array);
+           $sessArray = array('id' => $row->idEvaluador,'username' => $row->username);
+           $this->session->set_userdata('logged_in', $sessArray);
          }
      return TRUE;
    }else{
