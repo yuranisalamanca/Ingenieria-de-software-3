@@ -17,7 +17,7 @@
 			<option value="0" selected="selected" disabled="disabled">Seleccione...</option>
 			<?php for ($i=0; $i < count($evaluadoresNuevos); $i++) { ?>
 				<option value="<?php echo $evaluadoresNuevos[$i]['idEvaluador']; ?>">
-					<?php echo $evaluadoresNuevos[$i]['nombre']; ?>
+					<?php echo utf8_decode($evaluadoresNuevos[$i]['nombre']); ?>
 				</option>
 			<?php } ?>
 			</select>

@@ -456,7 +456,7 @@
   * @author Karen Daniela Ramirez Montoya
   * @author Yurani Alejandra Salamanca
   */
-   public function buscarEvaluadoresCambiado($idPropuesta,$data,$idEv0,$idEv1,$idEv2) {
+   public function buscarEvaluadoresCambiado($data,$idEv0,$idEv1,$idEv2) {
     $where = '';
 
     if ($data['nombre'] != 0 && $data['select_nombre'] != '') {
