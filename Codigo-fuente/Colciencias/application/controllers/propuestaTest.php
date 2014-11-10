@@ -1,8 +1,7 @@
 <?php 
 
 Class PropuestaTest extends CI_Controller {
-	public function test()
-	{
+	public function test()	{
 		$this->load->library('unit_test');
 		$this->load->model('Propuesta_model');
 		$this->unit->run($this->Propuesta_model->listarPropuesta(),'is_array','Lista de propuestas');
