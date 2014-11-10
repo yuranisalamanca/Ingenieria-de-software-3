@@ -97,7 +97,7 @@
                         <?php }else{ ?>
                         <tr>
                             <td colspan='9' style='text-align: center'>
-                                No se encontraron propuestas para este evaluadorc con los criterios seleccionados
+                                No se encontraron propuestas para este evaluador con los criterios seleccionados
                             </td>
                         </tr>
                         <?php }?>
