@@ -10,8 +10,8 @@ Class PropuestaTest extends CI_Controller {
 		$this->unit->run($this->Propuesta_model->listarPropuestaPorConvocatoria(24),'is_null','listarPropuestaPorConvocatoria test','Se probo con un id de una convocatoria no existente');
 		$this->unit->run($this->Propuesta_model->listarPropuestaPorConvocatoria(8),'is_null','listarPropuestaPorConvocatoria test','Se probo con un id de una convocatoria que no tiene propuestas');
 
-		$this->unit->run($this->Propuesta_model->listarPropuestaPorEvaluador(4),'is_array','listarPropuestaPorEvaluador test','Se probo con el id de un evaluador que tiene propuestas asignadas');
-		$this->unit->run($this->Propuesta_model->listarPropuestaPorEvaluador(2),'is_null','listarPropuestaPorEvaluador test','Se probo con el id de un evaluador que no tiene propuestas asginadas');
+		$this->unit->run($this->Propuesta_model->listarPropuestaPorEvaluador(1),'is_array','listarPropuestaPorEvaluador test','Se probo con el id de un evaluador que tiene propuestas asignadas');
+		$this->unit->run($this->Propuesta_model->listarPropuestaPorEvaluador(9),'is_null','listarPropuestaPorEvaluador test','Se probo con el id de un evaluador que no tiene propuestas asginadas');
 		$this->unit->run($this->Propuesta_model->listarPropuestaPorEvaluador(78),'is_null','listarPropuestaPorEvaluador test','Se probo con el id de un evaluador que no existe');
 
 		$this->unit->run($this->Propuesta_model->getIdiomas(),'is_array','getIdiomas test','Lista de idiomas');
