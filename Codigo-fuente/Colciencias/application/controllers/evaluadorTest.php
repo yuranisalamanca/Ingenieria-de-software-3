@@ -12,7 +12,8 @@ Class EvaluadorTest extends CI_Controller {
 		$this->unit->run($this->evaluadores_model->listaDeEvaluadoresYPropuestas(1),'is_array','Lista de evaluadores y propuestas por convocatoria', 'Se probo que la funcion listaDeEvaluadoresYPropuestas retorne un array');
 		$this->unit->run($this->evaluadores_model->listaDeEvaluadoresYPropuestasOrdenado(1,1,2),'is_array','Lista de evaluadores y propuestas por convocatoria ordenadas', 'Se probo que la funcion listaDeEvaluadoresYPropuestasOrdenado retorne un array');
 		$this->unit->run($this->evaluadores_model->getEvaluador(1),'is_array','Obtener un evaluador','Se probo que la funcion getEvaluador retorna un string');
-		$this->unit->run($this->evaluadores_model->buscarEvaluadoresYPropuestasPorConvocatoria(1),'is_string','Busqueda de evaluadores y propuestas por convocatoria');
+		$this->unit->run($this->evaluadores_model->listarEvaluadoresPorConvocatoria(2),'is_array','Listar evaluadores por convocatoria','');
+		$this->unit->run($this->evaluadores_model->buscarEvaluadoresYPropuestasPorConvocatoria(1),'is_bool','Busqueda de evaluadores y propuestas por convocatoria');
 		echo $this->unit->report();	
 	}
 
