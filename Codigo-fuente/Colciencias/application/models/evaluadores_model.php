@@ -242,17 +242,17 @@ Class Evaluadores_model extends CI_Model{
   public function listarEvaluadoresPorConvocatoria($idConvocatoria)  {
     $sql = "SELECT e.idEvaluador,e.nombre, e.cedula, c.nombre as ciudadNombre, e.calificacion, n.nombre as nvNombre, 
                    o.nombre as organizacionNombre, a.nombre as areaNombre
-            FROM evaluador e, nivel_formacion n, organizacion o, ciudad c, area_conocimiento a, evaluacion_propuesta ep
+            FROM evaluador e,propuesta p,nivel_formacion n, organizacion o, ciudad c, area_conocimiento a, evaluacion_propuesta ep
             WHERE e.Nivel_formacion_idNivel_formacion = n.idNivel_formacion 
             AND   e.organizacion_idOrganizacion = o.idOrganizacion
             AND   e.area_conocimiento_idArea_conocimiento = a.idArea_conocimiento
             AND   e.ciudad_idCiudad = c.idCiudad
             AND   e.idEvaluador = ep.Evaluador_idEvaluador
             AND   ep.esConfirmado=1
-            AND   ep.esAsignado<>1
-            AND   ep.iniciarProceso<>1
-            AND   ep.Evaluador_idEvaluador=e.idEvaluador
-            AND   e.Convocatoria_idConvocatoria =".$idConvocatoria;
+            AND   ep.esAsignado=0
+            AND   ep.iniciarProceso=0
+            AND   ep.Propuesta_idPropuesta=p.idPropuesta
+            AND   p.Convocatoria_idConvocatoria =".$idConvocatoria;
     $query = $this->db->query($sql);
     if($query->num_rows()>0) {
       $arreglo = array();
