@@ -318,7 +318,7 @@ Class Propuesta extends CI_Controller {
 					echo "pre";
 				print_r($evaluadores['evaluadores']);
 				echo "/pre";
-					$varSeleccion='Por favor indique el valor del criterio de b&uacute;squeda seleccionado';
+					$varSeleccion='Por favor indique un criterio de b&uacute;squeda valido';
 					$this->session->set_userdata('varSeleccion', $varSeleccion);
 				}
 				if($evaluadores['evaluadores']=='No hay'){
