@@ -26,7 +26,7 @@ class Convocatoria_model extends CI_Model{
     */
 	public function listaConvocatorias(){
 		$sql = "SELECT c.idConvocatoria,c.nombre as convocatoriaNombre, tc.nombre as tipoConvocatoria, e.nombre as estadoConvocatoria
-				FROM Convocatoria c, Tipo_Convocatoria tc, Estado e
+				FROM convocatoria c, tipo_Convocatoria tc, estado e
 				WHERE c.Tipo_Convocatoria_idTipo_Convocatoria = tc.idTipo_Convocatoria 
 				AND c.Estado_idEstado = e.idEstado
 				AND c.Estado_idEstado = 2";
