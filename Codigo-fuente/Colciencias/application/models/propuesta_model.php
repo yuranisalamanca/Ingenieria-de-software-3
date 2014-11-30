@@ -20,6 +20,7 @@
   * @author Yurani Alejandra Salamanca
   */
   public function listarPropuestaPorConvocatoria($idConvocatoria){
+
     $sql = "SELECT c.idConvocatoria as idConvocatoria,p.titulo,e.nombre as nombreEstado,o.nombre as nombreOrganizacion,i.nombre as nombreInstitucion,          
                    a.nombre as areaNombre, te.nombre as tipoEvaluacionNombre, p.idPropuesta 
             FROM propuesta p, organizacion o, institucion i, area_conocimiento a, tipo_evaluacion te, 
@@ -322,6 +323,12 @@
   * @author Yurani Alejandra Salamanca
   */
   public function buscarEvaluadores($idPropuesta, $data){
+    if(($data['select_calificacion']==1 && $data['calificacion']==0) ||($data['select_idioma']==1 && $data['idioma']==0) || 
+      ($data['select_nivel']==1 && $data['nivel']==0) || ($data['select_organizacion']==1 && $data['organizacion']==0) ||
+      ($data['select_experiencia']==1 && $data['experiencia']==0) )
+    {
+      return 'errorSeleccion';
+    }
 
     $where = '';
     if ($data['area'] != 0 && $data['select_area'] != 0) {
