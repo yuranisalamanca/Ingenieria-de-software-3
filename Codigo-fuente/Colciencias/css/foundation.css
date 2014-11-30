@@ -6175,3 +6175,13 @@ th.hide-for-touch {
 
   th.show-for-print {
     display: table-cell !important; } }
+
+#footer{
+background-color: #086A87;
+width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  margin-bottom: 0;
+  max-width: 62.5rem;
+}

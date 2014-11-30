@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/jquery.fancybox.css" />
     <script src="<?php echo base_url(); ?>js/modernizr.js"></script>
 </head>
-<body>
+<body bgcolor="red">
 	<br>
 	<div class="row">
 		<br>
@@ -48,5 +48,6 @@
 	<br>
 	<center><h3 class="subheader">Todos los derechos reservados</h3><center>
     <center><h3 class="subheader">2014</h3><center>
+    <div id="footer">[contenido de footer]</div>
 </body>
 </html>
