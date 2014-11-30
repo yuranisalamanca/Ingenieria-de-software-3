@@ -95,7 +95,7 @@ Class Propuesta extends CI_Controller {
 		}else{
 			$selectAnio='';
 		}
-		$listarPropuestas= $this->Propuesta_model->listarConvocatoriasConEvaluaciones($selectAnio);
+		$listarConvocatorias= $this->Propuesta_model->listarConvocatoriasConEvaluaciones($selectAnio);
 
 		$html = '<table style="margin:0 auto">
              		<thead>
@@ -106,7 +106,7 @@ Class Propuesta extends CI_Controller {
               			</tr>
              		</thead>
              		<tbody>';
-        foreach ($listarPropuestas as $resultado) {
+        foreach ($listarConvocatorias as $resultado) {
         	$html.='<tr>';
         		$html.='<td style="text-align: center">';
         			$html.=$resultado['nombre'];
@@ -115,7 +115,7 @@ Class Propuesta extends CI_Controller {
         			$html.=$resultado['estado'];
         		$html.='</td>';
         		$html.='<td style="text-align: center">';
-        			$html.='<a class="" href="">';
+        			$html.='<a class="" href="'.site_url('propuesta/listarPropuestasConEvaluaciones/'.$resultado['idConvocatoria']).'">';
         				$html.='<img src="'.base_url().'img/iconos/listarPropuesta.png" title="Ver propuestas">';
         			$html.='</a>';
         		$html.='</td>';

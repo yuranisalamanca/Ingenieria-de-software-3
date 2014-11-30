@@ -49,7 +49,7 @@
                          </label> 
                     </div>
                     <div align="center">
-                        <input id="buscar" class="button round" style="font-size: 12px;background-color: #086A87" value="Iniciar B&uacute;squeda">
+                        <input id="buscar" type="button" class="button" style="font-size: 12px;background-color: #086A87;" value="Iniciar B&uacute;squeda">
                     </div>
                 </div>
              </fieldset>

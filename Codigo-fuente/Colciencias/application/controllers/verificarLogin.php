@@ -1,5 +1,5 @@
 <?php 
- 
+
 class VerificarLogin extends CI_Controller {
  
  function __construct() {
@@ -7,7 +7,7 @@ class VerificarLogin extends CI_Controller {
    $this->load->model('admin','',TRUE);
 
  }
- 
+
  function index(){
    //This method will have the credentials validation
    $this->load->library('form_validation');
@@ -29,7 +29,6 @@ class VerificarLogin extends CI_Controller {
    }
  
  }
- 
  function check_database($password) {
    //Field validation succeeded.  Validate against database
    $username = $this->input->post('username');
