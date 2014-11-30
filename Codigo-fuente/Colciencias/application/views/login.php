@@ -25,7 +25,7 @@
      <?php echo form_open('verificarLogin'); ?>
         <div>
           <label for="username">Usuario: <small>requerido</small></label>
-          <input type="text" size="20" id="username" name="username" pattern="(/w){1,25}$" required/>
+          <input type="text" size="20" id="username" name="username" pattern="[a-z]{1,15}" required/>
         </div>
         <div>
           <label for="password"> Contrase&ntilde;a: <small>requerido</small></label>
