@@ -12,6 +12,9 @@
 
 	 <br>
         <div class="row">
+            <hr3> hola </h3>
+
+
          <center>
          	
         <center><h3 class="subheader">Todos los derechos reservados</h3><center>
@@ -27,5 +30,6 @@
         <script>
         $(document).foundation();
         </script>
+
 </body>
 </html>
