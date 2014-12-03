@@ -26,10 +26,7 @@
             </li>
         </ul>
         </center>
-
-
-     
-         	
+           	
         <center><h3 class="subheader">Todos los derechos reservados</h3><center>
          <center><h3 class="subheader">2014</h3><center>
        
