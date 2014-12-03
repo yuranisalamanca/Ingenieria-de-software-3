@@ -11,8 +11,30 @@
 <body>
 
 	 <br>
-        <div class="row">
-         <center>
+        <center>
+            <ul class="example-orbit" data-orbit>
+              <li>
+                <img src="img/imagen1home.jpg" alt="slide 1" />
+                <div class="orbit-caption">
+                  
+                </div>
+              </li>
+              <li class="active">
+                <img src="img/imagen2home.jpg" alt="slide 2" />
+                <div class="orbit-caption">
+                  
+                </div>
+              </li>
+              <li>
+                <img src="img/imagen3home.jpg" alt="slide 3" />
+                <div class="orbit-caption">
+                 
+                </div>
+              </li>
+            </ul>
+        
+         </center>
+
          	
         <center><h3 class="subheader">Todos los derechos reservados</h3><center>
          <center><h3 class="subheader">2014</h3><center>
