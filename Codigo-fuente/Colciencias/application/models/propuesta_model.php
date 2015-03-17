@@ -323,15 +323,7 @@
   * @author Yurani Alejandra Salamanca
   */
   public function buscarEvaluadores($idPropuesta, $data){
-    if( 1==1 || ($data['select_calificacion']==1 && $data['calificacion']==0) ||($data['select_idioma']==1 && $data['idioma']==0) || 
-      ($data['select_nivel']==1 && $data['nivel']==0) || ($data['select_organizacion']==1 && $data['organizacion']==0) ||
-      ($data['select_experiencia']==1 && $data['experiencia']==0) ||
-      ($data['select_calificacion']==0 && $data['calificacion']==1) ||($data['select_idioma']==0 && $data['idioma']==1) || 
-      ($data['select_nivel']==0 && $data['nivel']==1) || ($data['select_organizacion']==0 && $data['organizacion']==1) ||
-      ($data['select_experiencia']==0 && $data['experiencia']==1) )
-    {
-      return 'errorSeleccion';
-    }
+   
 
     $where = '';
     if ($data['area'] != 0 && $data['select_area'] != 0) {

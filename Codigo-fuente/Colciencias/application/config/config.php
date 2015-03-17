@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/Ingenieria-de-software-3/Codigo-fuente/Colciencias/';
+$config['base_url']	= 'http://localhost:8090/Ingenieria-de-software-3/Codigo-fuente/Colciencias/';
 
 /*
 |--------------------------------------------------------------------------
